@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
+	/// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
 	public func sendVoice(_ input: TelegramSendVoiceInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendVoice", object: input, completion: completionHandler)

@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	/// Use this method to get information about a member of a chat. Returns a ChatMember object on success.
 	public func getChatMember(_ input: TelegramGetChatMemberInput, completionHandler: @escaping (TelegramResult<TelegramChatMember>) -> Void)
 	{
 		self.requester.request("getChatMember", object: input, completion: completionHandler)

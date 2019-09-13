@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+	/// Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
 	public func getUserProfilePhotos(_ input: TelegramGetUserProfilePhotosInput, completionHandler: @escaping (TelegramResult<TelegramUserProfilePhotos>) -> Void)
 	{
 		self.requester.request("getUserProfilePhotos", object: input, completion: completionHandler)

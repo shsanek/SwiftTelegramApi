@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send static .WEBP or animated .TGS stickers. On success, the sent Message is returned.
+	/// Use this method to send static .WEBP or animated .TGS stickers. On success, the sent Message is returned.
 	public func sendSticker(_ input: TelegramSendStickerInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendSticker", object: input, completion: completionHandler)

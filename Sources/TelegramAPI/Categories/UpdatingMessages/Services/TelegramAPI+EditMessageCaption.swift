@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to edit captions of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+	/// Use this method to edit captions of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
 	public func editMessageCaption(_ input: TelegramEditMessageCaptionInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("editMessageCaption", object: input, completion: completionHandler)

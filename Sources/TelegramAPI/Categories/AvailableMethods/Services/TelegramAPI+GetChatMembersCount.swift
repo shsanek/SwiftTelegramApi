@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to get the number of members in a chat. Returns Int on success.
+	/// Use this method to get the number of members in a chat. Returns Int on success.
 	public func getChatMembersCount(_ input: TelegramGetChatMembersCountInput, completionHandler: @escaping (TelegramResult<TelegramInteger>) -> Void)
 	{
 		self.requester.request("getChatMembersCount", object: input, completion: completionHandler)

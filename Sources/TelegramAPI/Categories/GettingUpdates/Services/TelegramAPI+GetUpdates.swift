@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to receive incoming updates using long polling (wiki). An Array of Update objects is returned.
+	/// Use this method to receive incoming updates using long polling (wiki). An Array of Update objects is returned.
 	public func getUpdates(_ input: TelegramGetUpdatesInput, completionHandler: @escaping (TelegramResult<[TelegramUpdate]>) -> Void)
 	{
 		self.requester.request("getUpdates", object: input, completion: completionHandler)

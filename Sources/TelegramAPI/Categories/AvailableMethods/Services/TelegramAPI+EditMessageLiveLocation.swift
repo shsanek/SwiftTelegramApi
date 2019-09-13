@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
+	/// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
 	public func editMessageLiveLocation(_ input: TelegramEditMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("editMessageLiveLocation", object: input, completion: completionHandler)

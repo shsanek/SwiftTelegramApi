@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to set the score of the specified user in a game. On success, if the message was sent by the bot, returns the edited Message, otherwise returns True. Returns an error, if the new score is not greater than the user&#39;s current score in the chat and force is False.
+	/// Use this method to set the score of the specified user in a game. On success, if the message was sent by the bot, returns the edited Message, otherwise returns True. Returns an error, if the new score is not greater than the user&#39;s current score in the chat and force is False.
 	public func setGameScore(_ input: TelegramSetGameScoreInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("setGameScore", object: input, completion: completionHandler)

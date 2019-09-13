@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send answers to an inline query. On success, True is returned.No more than 50 results per query are allowed.
+	/// Use this method to send answers to an inline query. On success, True is returned.No more than 50 results per query are allowed.
 	public func answerInlineQuery(_ input: TelegramAnswerInlineQueryInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("answerInlineQuery", object: input, completion: completionHandler)

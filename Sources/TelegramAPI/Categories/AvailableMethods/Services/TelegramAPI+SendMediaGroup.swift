@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
+	/// Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
 	public func sendMediaGroup(_ input: TelegramSendMediaGroupInput, completionHandler: @escaping (TelegramResult<[TelegramMessage]>) -> Void)
 	{
 		self.requester.request("sendMediaGroup", object: input, completion: completionHandler)

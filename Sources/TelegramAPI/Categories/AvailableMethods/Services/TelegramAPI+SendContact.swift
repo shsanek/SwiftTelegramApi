@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send phone contacts. On success, the sent Message is returned.
+	/// Use this method to send phone contacts. On success, the sent Message is returned.
 	public func sendContact(_ input: TelegramSendContactInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendContact", object: input, completion: completionHandler)

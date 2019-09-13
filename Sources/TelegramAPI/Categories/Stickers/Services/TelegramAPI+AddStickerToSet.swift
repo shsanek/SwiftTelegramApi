@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to add a new sticker to a set created by the bot. Returns True on success.
+	/// Use this method to add a new sticker to a set created by the bot. Returns True on success.
 	public func addStickerToSet(_ input: TelegramAddStickerToSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("addStickerToSet", object: input, completion: completionHandler)

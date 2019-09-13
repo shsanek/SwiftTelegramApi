@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to edit text and game messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+	/// Use this method to edit text and game messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
 	public func editMessageText(_ input: TelegramEditMessageTextInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("editMessageText", object: input, completion: completionHandler)

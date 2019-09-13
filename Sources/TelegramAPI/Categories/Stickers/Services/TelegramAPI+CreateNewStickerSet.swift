@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set. Returns True on success.
+	/// Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set. Returns True on success.
 	public func createNewStickerSet(_ input: TelegramCreateNewStickerSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("createNewStickerSet", object: input, completion: completionHandler)

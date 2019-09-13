@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to get a sticker set. On success, a StickerSet object is returned.
+	/// Use this method to get a sticker set. On success, a StickerSet object is returned.
 	public func getStickerSet(_ input: TelegramGetStickerSetInput, completionHandler: @escaping (TelegramResult<TelegramStickerSet>) -> Void)
 	{
 		self.requester.request("getStickerSet", object: input, completion: completionHandler)

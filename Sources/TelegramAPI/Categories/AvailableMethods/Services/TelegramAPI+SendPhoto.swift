@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send photos. On success, the sent Message is returned.
+	/// Use this method to send photos. On success, the sent Message is returned.
 	public func sendPhoto(_ input: TelegramSendPhotoInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendPhoto", object: input, completion: completionHandler)

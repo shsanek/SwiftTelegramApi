@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+	/// Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
 	public func uploadStickerFile(_ input: TelegramUploadStickerFileInput, completionHandler: @escaping (TelegramResult<TelegramFile>) -> Void)
 	{
 		self.requester.request("uploadStickerFile", object: input, completion: completionHandler)

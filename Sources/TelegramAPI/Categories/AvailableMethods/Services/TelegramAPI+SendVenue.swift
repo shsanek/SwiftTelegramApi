@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send information about a venue. On success, the sent Message is returned.
+	/// Use this method to send information about a venue. On success, the sent Message is returned.
 	public func sendVenue(_ input: TelegramSendVenueInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendVenue", object: input, completion: completionHandler)

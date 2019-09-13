@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
+	/// Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
 	public func leaveChat(_ input: TelegramLeaveChatInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("leaveChat", object: input, completion: completionHandler)

@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
+	/// Use this method to set a new profile photo for the chat. Photos can&#39;t be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
 	public func setChatPhoto(_ input: TelegramSetChatPhotoInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("setChatPhoto", object: input, completion: completionHandler)

@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send point on the map. On success, the sent Message is returned.
+	/// Use this method to send point on the map. On success, the sent Message is returned.
 	public func sendLocation(_ input: TelegramSendLocationInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendLocation", object: input, completion: completionHandler)

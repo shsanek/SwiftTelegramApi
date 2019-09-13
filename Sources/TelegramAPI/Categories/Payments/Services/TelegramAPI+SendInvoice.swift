@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send invoices. On success, the sent Message is returned.
+	/// Use this method to send invoices. On success, the sent Message is returned.
 	public func sendInvoice(_ input: TelegramSendInvoiceInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendInvoice", object: input, completion: completionHandler)

@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send text messages. On success, the sent Message is returned.
+	/// Use this method to send text messages. On success, the sent Message is returned.
 	public func sendMessage(_ input: TelegramSendMessageInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendMessage", object: input, completion: completionHandler)

@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned.
+	/// Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned.
 	public func stopPoll(_ input: TelegramStopPollInput, completionHandler: @escaping (TelegramResult<TelegramPoll>) -> Void)
 	{
 		self.requester.request("stopPoll", object: input, completion: completionHandler)

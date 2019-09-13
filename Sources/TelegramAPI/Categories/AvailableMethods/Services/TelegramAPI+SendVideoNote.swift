@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+	/// As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
 	public func sendVideoNote(_ input: TelegramSendVideoNoteInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendVideoNote", object: input, completion: completionHandler)

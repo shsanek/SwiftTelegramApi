@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to edit only the reply markup of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+	/// Use this method to edit only the reply markup of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
 	public func editMessageReplyMarkup(_ input: TelegramEditMessageReplyMarkupInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("editMessageReplyMarkup", object: input, completion: completionHandler)

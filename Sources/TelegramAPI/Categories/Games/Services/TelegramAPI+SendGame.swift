@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send a game. On success, the sent Message is returned.
+	/// Use this method to send a game. On success, the sent Message is returned.
 	public func sendGame(_ input: TelegramSendGameInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendGame", object: input, completion: completionHandler)

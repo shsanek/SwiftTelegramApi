@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to send a native poll. A native poll can&#39;t be sent to a private chat. On success, the sent Message is returned.
+	/// Use this method to send a native poll. A native poll can&#39;t be sent to a private chat. On success, the sent Message is returned.
 	public func sendPoll(_ input: TelegramSendPollInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("sendPoll", object: input, completion: completionHandler)

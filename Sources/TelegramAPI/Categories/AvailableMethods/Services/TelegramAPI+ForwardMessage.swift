@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to forward messages of any kind. On success, the sent Message is returned.
+	/// Use this method to forward messages of any kind. On success, the sent Message is returned.
 	public func forwardMessage(_ input: TelegramForwardMessageInput, completionHandler: @escaping (TelegramResult<TelegramMessage>) -> Void)
 	{
 		self.requester.request("forwardMessage", object: input, completion: completionHandler)

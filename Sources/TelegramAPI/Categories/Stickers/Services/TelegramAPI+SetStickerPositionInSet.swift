@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to move a sticker in a set created by the bot to a specific position . Returns True on success.
+	/// Use this method to move a sticker in a set created by the bot to a specific position . Returns True on success.
 	public func setStickerPositionInSet(_ input: TelegramSetStickerPositionInSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("setStickerPositionInSet", object: input, completion: completionHandler)

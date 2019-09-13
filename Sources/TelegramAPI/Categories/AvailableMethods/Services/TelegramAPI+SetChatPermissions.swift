@@ -9,7 +9,7 @@
 extension TelegramAPI
 {
 
-/// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
+	/// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
 	public func setChatPermissions(_ input: TelegramSetChatPermissionsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("setChatPermissions", object: input, completion: completionHandler)
