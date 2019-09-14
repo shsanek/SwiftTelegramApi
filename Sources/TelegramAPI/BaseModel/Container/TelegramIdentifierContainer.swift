@@ -49,3 +49,17 @@ extension TelegramIdentifierContainer: Codable
         }
     }
 }
+
+extension TelegramIdentifierContainer: IMultiPartFromDataValueEncodable
+{
+    
+    internal var multipartFromDataValue: MultiPartFromDataContainer {
+        switch self {
+        case .integer(let identifier):
+            return MultiPartFromDataContainer("\(identifier)")
+        case .string(let identifier):
+            return MultiPartFromDataContainer(identifier)
+        }
+    }
+    
+}

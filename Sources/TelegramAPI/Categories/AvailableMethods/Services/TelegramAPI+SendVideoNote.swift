@@ -66,19 +66,21 @@ public struct TelegramSendVideoNoteInput
 
 }
 
-extension TelegramSendVideoNoteInput: Codable
+
+extension TelegramSendVideoNoteInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case videoNote = "video_note"
-		case duration
-		case length
-		case thumb
-		case disableNotification = "disable_notification"
-		case replyToMessageId = "reply_to_message_id"
-		case replyMarkup = "reply_markup"
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("video_note", object: self.videoNote)
+		encoder.append("duration", object: self.duration)
+		encoder.append("length", object: self.length)
+		encoder.append("thumb", object: self.thumb)
+		encoder.append("disable_notification", object: self.disableNotification)
+		encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		encoder.append("reply_markup", object: self.replyMarkup)
 	}
 
 }
+

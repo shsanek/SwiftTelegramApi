@@ -58,3 +58,4 @@ extension TelegramForwardMessageInput: Codable
 	}
 
 }
+

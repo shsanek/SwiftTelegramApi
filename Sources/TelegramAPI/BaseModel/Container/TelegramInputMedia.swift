@@ -8,3 +8,13 @@
 public struct TelegramInputMedia: Codable
 {
 }
+
+extension TelegramInputMedia: IMultiPartFromDataEncodable
+{
+    
+    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+    {
+        fatalError()
+    }
+    
+}

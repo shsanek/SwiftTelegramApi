@@ -9,3 +9,12 @@ public struct TelegramInlineQueryResult: Codable
 {
 }
 
+extension TelegramInlineQueryResult: IMultiPartFromDataEncodable
+{
+    
+    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+    {
+        fatalError()
+    }
+    
+}

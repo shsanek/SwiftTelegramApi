@@ -51,16 +51,18 @@ public struct TelegramSendStickerInput
 
 }
 
-extension TelegramSendStickerInput: Codable
+
+extension TelegramSendStickerInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case sticker
-		case disableNotification = "disable_notification"
-		case replyToMessageId = "reply_to_message_id"
-		case replyMarkup = "reply_markup"
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("sticker", object: self.sticker)
+		encoder.append("disable_notification", object: self.disableNotification)
+		encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		encoder.append("reply_markup", object: self.replyMarkup)
 	}
 
 }
+

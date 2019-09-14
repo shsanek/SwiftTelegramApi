@@ -47,3 +47,16 @@ extension TelegramMaskPosition: Codable
 	}
 
 }
+
+extension TelegramMaskPosition: IMultiPartFromDataEncodable
+{
+
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
+	{
+		encoder.append("point", object: self.point)
+		encoder.append("x_shift", object: self.xShift)
+		encoder.append("y_shift", object: self.yShift)
+		encoder.append("scale", object: self.scale)
+	}
+
+}

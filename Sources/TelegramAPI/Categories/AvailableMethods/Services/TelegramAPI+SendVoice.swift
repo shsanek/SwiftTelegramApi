@@ -66,19 +66,21 @@ public struct TelegramSendVoiceInput
 
 }
 
-extension TelegramSendVoiceInput: Codable
+
+extension TelegramSendVoiceInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case voice
-		case caption
-		case parseMode = "parse_mode"
-		case duration
-		case disableNotification = "disable_notification"
-		case replyToMessageId = "reply_to_message_id"
-		case replyMarkup = "reply_markup"
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("voice", object: self.voice)
+		encoder.append("caption", object: self.caption)
+		encoder.append("parse_mode", object: self.parseMode)
+		encoder.append("duration", object: self.duration)
+		encoder.append("disable_notification", object: self.disableNotification)
+		encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		encoder.append("reply_markup", object: self.replyMarkup)
 	}
 
 }
+

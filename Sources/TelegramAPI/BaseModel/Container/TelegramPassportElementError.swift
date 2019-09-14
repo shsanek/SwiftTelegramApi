@@ -8,3 +8,13 @@
 public struct TelegramPassportElementError: Codable
 {
 }
+
+extension TelegramPassportElementError: IMultiPartFromDataEncodable
+{
+    
+    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+    {
+        fatalError()
+    }
+    
+}

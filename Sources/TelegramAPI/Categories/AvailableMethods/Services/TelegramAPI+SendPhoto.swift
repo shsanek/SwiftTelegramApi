@@ -61,18 +61,20 @@ public struct TelegramSendPhotoInput
 
 }
 
-extension TelegramSendPhotoInput: Codable
+
+extension TelegramSendPhotoInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case photo
-		case caption
-		case parseMode = "parse_mode"
-		case disableNotification = "disable_notification"
-		case replyToMessageId = "reply_to_message_id"
-		case replyMarkup = "reply_markup"
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("photo", object: self.photo)
+		encoder.append("caption", object: self.caption)
+		encoder.append("parse_mode", object: self.parseMode)
+		encoder.append("disable_notification", object: self.disableNotification)
+		encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		encoder.append("reply_markup", object: self.replyMarkup)
 	}
 
 }
+

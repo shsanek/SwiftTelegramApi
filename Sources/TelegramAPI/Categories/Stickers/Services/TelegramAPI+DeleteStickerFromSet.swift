@@ -40,3 +40,4 @@ extension TelegramDeleteStickerFromSetInput: Codable
 	}
 
 }
+

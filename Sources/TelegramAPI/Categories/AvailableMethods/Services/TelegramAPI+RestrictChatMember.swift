@@ -58,3 +58,4 @@ extension TelegramRestrictChatMemberInput: Codable
 	}
 
 }
+

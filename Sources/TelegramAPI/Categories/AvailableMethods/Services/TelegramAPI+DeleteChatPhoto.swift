@@ -40,3 +40,4 @@ extension TelegramDeleteChatPhotoInput: Codable
 	}
 
 }
+

@@ -58,3 +58,4 @@ extension TelegramGetGameHighScoresInput: Codable
 	}
 
 }
+

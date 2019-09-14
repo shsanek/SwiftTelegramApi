@@ -8,3 +8,13 @@
 public struct TelegramCallbackGame: Codable
 {
 }
+
+extension TelegramCallbackGame: IMultiPartFromDataEncodable
+{
+    
+    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+    {
+        fatalError()
+    }
+    
+}

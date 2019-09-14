@@ -70,3 +70,4 @@ extension TelegramEditMessageCaptionInput: Codable
 	}
 
 }
+

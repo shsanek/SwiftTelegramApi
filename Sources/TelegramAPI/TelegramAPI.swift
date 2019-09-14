@@ -12,13 +12,13 @@ public final class TelegramAPI
     
     private static let api: String = "https://api.telegram.org"
 
-    internal var requester: TelegramRequester!
+    internal let requester: TelegramRequester
 
     public init(token: String)
     {
         guard let url = URL(string: TelegramAPI.api) else
         {
-            return
+            fatalError()
         }
         let fullURL = url.appendingPathComponent(token)
         let requester = TelegramRequester(url: fullURL)

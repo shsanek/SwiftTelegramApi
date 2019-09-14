@@ -46,3 +46,4 @@ extension TelegramSetChatPermissionsInput: Codable
 	}
 
 }
+

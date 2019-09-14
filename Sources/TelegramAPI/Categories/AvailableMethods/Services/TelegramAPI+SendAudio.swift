@@ -81,22 +81,24 @@ public struct TelegramSendAudioInput
 
 }
 
-extension TelegramSendAudioInput: Codable
+
+extension TelegramSendAudioInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case audio
-		case caption
-		case parseMode = "parse_mode"
-		case duration
-		case performer
-		case title
-		case thumb
-		case disableNotification = "disable_notification"
-		case replyToMessageId = "reply_to_message_id"
-		case replyMarkup = "reply_markup"
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("audio", object: self.audio)
+		encoder.append("caption", object: self.caption)
+		encoder.append("parse_mode", object: self.parseMode)
+		encoder.append("duration", object: self.duration)
+		encoder.append("performer", object: self.performer)
+		encoder.append("title", object: self.title)
+		encoder.append("thumb", object: self.thumb)
+		encoder.append("disable_notification", object: self.disableNotification)
+		encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		encoder.append("reply_markup", object: self.replyMarkup)
 	}
 
 }
+

@@ -46,15 +46,17 @@ public struct TelegramSetWebhookInput
 
 }
 
-extension TelegramSetWebhookInput: Codable
+
+extension TelegramSetWebhookInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case url
-		case certificate
-		case maxConnections = "max_connections"
-		case allowedUpdates = "allowed_updates"
+		encoder.append("url", object: self.url)
+		encoder.append("certificate", object: self.certificate)
+		encoder.append("max_connections", object: self.maxConnections)
+		encoder.append("allowed_updates", object: self.allowedUpdates)
 	}
 
 }
+

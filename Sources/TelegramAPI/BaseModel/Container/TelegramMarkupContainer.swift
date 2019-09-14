@@ -9,3 +9,14 @@ public struct TelegramMarkupContainer: Codable
 {
     
 }
+
+
+extension TelegramMarkupContainer: IMultiPartFromDataEncodable
+{
+
+    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+    {
+        fatalError()
+    }
+
+}

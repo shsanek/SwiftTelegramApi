@@ -58,3 +58,4 @@ extension TelegramGetUpdatesInput: Codable
 	}
 
 }
+

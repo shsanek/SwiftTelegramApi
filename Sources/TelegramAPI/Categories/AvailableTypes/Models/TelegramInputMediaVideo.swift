@@ -77,3 +77,21 @@ extension TelegramInputMediaVideo: Codable
 	}
 
 }
+
+extension TelegramInputMediaVideo: IMultiPartFromDataEncodable
+{
+
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
+	{
+		encoder.append("type", object: self.type)
+		encoder.append("media", object: self.media)
+		encoder.append("thumb", object: self.thumb)
+		encoder.append("caption", object: self.caption)
+		encoder.append("parse_mode", object: self.parseMode)
+		encoder.append("width", object: self.width)
+		encoder.append("height", object: self.height)
+		encoder.append("duration", object: self.duration)
+		encoder.append("supports_streaming", object: self.supportsStreaming)
+	}
+
+}

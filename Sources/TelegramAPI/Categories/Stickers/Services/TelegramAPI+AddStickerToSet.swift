@@ -51,16 +51,18 @@ public struct TelegramAddStickerToSetInput
 
 }
 
-extension TelegramAddStickerToSetInput: Codable
+
+extension TelegramAddStickerToSetInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case userId = "user_id"
-		case name
-		case pngSticker = "png_sticker"
-		case emojis
-		case maskPosition = "mask_position"
+		encoder.append("user_id", object: self.userId)
+		encoder.append("name", object: self.name)
+		encoder.append("png_sticker", object: self.pngSticker)
+		encoder.append("emojis", object: self.emojis)
+		encoder.append("mask_position", object: self.maskPosition)
 	}
 
 }
+

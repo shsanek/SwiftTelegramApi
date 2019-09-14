@@ -53,3 +53,17 @@ extension TelegramInputMediaDocument: Codable
 	}
 
 }
+
+extension TelegramInputMediaDocument: IMultiPartFromDataEncodable
+{
+
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
+	{
+		encoder.append("type", object: self.type)
+		encoder.append("media", object: self.media)
+		encoder.append("thumb", object: self.thumb)
+		encoder.append("caption", object: self.caption)
+		encoder.append("parse_mode", object: self.parseMode)
+	}
+
+}

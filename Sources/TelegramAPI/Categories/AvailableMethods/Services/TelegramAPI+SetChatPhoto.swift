@@ -36,13 +36,15 @@ public struct TelegramSetChatPhotoInput
 
 }
 
-extension TelegramSetChatPhotoInput: Codable
+
+extension TelegramSetChatPhotoInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case chatId = "chat_id"
-		case photo
+		encoder.append("chat_id", object: self.chatId)
+		encoder.append("photo", object: self.photo)
 	}
 
 }
+

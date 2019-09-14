@@ -70,3 +70,4 @@ extension TelegramSendPollInput: Codable
 	}
 
 }
+

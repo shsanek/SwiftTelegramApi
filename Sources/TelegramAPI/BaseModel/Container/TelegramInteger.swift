@@ -6,3 +6,12 @@
 //
 
 public typealias TelegramInteger = UInt64
+
+extension UInt64: IMultiPartFromDataValueEncodable
+{
+    
+    internal var multipartFromDataValue: MultiPartFromDataContainer {
+        return MultiPartFromDataContainer("\(self)")
+    }
+    
+}

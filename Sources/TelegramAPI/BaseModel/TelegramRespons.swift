@@ -5,7 +5,6 @@
 //  Created by Alex Shipin on 11.08.2019.
 //
 
-
 public struct TelegramRespons<ResultType: Decodable>: Decodable
 {
 

@@ -94,3 +94,4 @@ extension TelegramPromoteChatMemberInput: Codable
 	}
 
 }
+

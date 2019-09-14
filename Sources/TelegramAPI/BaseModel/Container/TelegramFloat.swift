@@ -6,3 +6,12 @@
 //
 
 public typealias TelegramFloat = Double
+
+extension Double: IMultiPartFromDataValueEncodable
+{
+
+    internal var multipartFromDataValue: MultiPartFromDataContainer {
+        return MultiPartFromDataContainer("\(self)")
+    }
+
+}

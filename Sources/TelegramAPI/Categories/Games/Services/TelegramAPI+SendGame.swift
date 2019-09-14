@@ -64,3 +64,4 @@ extension TelegramSendGameInput: Codable
 	}
 
 }
+

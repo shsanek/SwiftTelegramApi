@@ -36,13 +36,15 @@ public struct TelegramUploadStickerFileInput
 
 }
 
-extension TelegramUploadStickerFileInput: Codable
+
+extension TelegramUploadStickerFileInput: IMultiPartFromDataEncodable
 {
 
-	private enum CodingKeys: String, CodingKey
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
-		case userId = "user_id"
-		case pngSticker = "png_sticker"
+		encoder.append("user_id", object: self.userId)
+		encoder.append("png_sticker", object: self.pngSticker)
 	}
 
 }
+

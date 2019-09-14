@@ -52,3 +52,4 @@ extension TelegramGetUserProfilePhotosInput: Codable
 	}
 
 }
+

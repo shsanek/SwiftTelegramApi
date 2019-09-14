@@ -82,3 +82,4 @@ extension TelegramSendContactInput: Codable
 	}
 
 }
+

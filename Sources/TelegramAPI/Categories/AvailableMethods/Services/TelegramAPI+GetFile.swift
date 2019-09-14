@@ -40,3 +40,4 @@ extension TelegramGetFileInput: Codable
 	}
 
 }
+

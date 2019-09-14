@@ -52,3 +52,4 @@ extension TelegramAnswerPreCheckoutQueryInput: Codable
 	}
 
 }
+

@@ -46,3 +46,4 @@ extension TelegramSetChatStickerSetInput: Codable
 	}
 
 }
+
