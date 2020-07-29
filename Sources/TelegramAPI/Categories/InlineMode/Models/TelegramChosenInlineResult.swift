@@ -7,7 +7,7 @@
 //
 
 ///Represents a result of an inline query that was chosen by the user and sent to their chat partner.
-public struct TelegramChosenInlineResult
+public struct TelegramChosenInlineResult: TelegramInlineQueryResult
 {
 
 	///The unique identifier for the result that was chosen

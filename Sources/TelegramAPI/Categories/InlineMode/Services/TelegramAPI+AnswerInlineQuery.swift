@@ -10,7 +10,7 @@ extension TelegramAPI
 {
 
 	/// Use this method to send answers to an inline query. On success, True is returned.No more than 50 results per query are allowed.
-	public func answerInlineQuery(_ input: TelegramAnswerInlineQueryInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
+    public func answerInlineQuery<Result: TelegramInlineQueryResult>(_ input: TelegramAnswerInlineQueryInput<Result>, completionHandler: @escaping (TelegramResult<Bool>) -> Void)
 	{
 		self.requester.request("answerInlineQuery", object: input, completion: completionHandler)
 	}
@@ -18,14 +18,14 @@ extension TelegramAPI
 }
 
 
-public struct TelegramAnswerInlineQueryInput
+public struct TelegramAnswerInlineQueryInput<Result: TelegramInlineQueryResult>
 {
 
 	///Unique identifier for the answered query
 	public let inlineQueryId: String
 
 	///A JSON-serialized array of results for the inline query
-	public let results: [TelegramInlineQueryResult]
+	public let results: [Result]
 
 	///The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
 	public let cacheTime: TelegramInteger?
@@ -43,7 +43,7 @@ public struct TelegramAnswerInlineQueryInput
 	public let switchPmParameter: String?
 
 	public init(inlineQueryId: String,
-                results: [TelegramInlineQueryResult],
+                results: [Result],
                 cacheTime: TelegramInteger? = nil,
                 isPersonal: Bool? = nil,
                 nextOffset: String? = nil,
@@ -61,7 +61,7 @@ public struct TelegramAnswerInlineQueryInput
 
 }
 
-extension TelegramAnswerInlineQueryInput: Codable
+extension TelegramAnswerInlineQueryInput: Encodable
 {
 
 	private enum CodingKeys: String, CodingKey

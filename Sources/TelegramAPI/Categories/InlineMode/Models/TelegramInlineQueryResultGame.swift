@@ -7,7 +7,7 @@
 //
 
 ///Represents a Game.
-public struct TelegramInlineQueryResultGame
+public struct TelegramInlineQueryResultGame: TelegramInlineQueryResult
 {
 
 	///Type of the result, must be game

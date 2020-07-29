@@ -7,7 +7,7 @@
 //
 
 ///Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
-public struct TelegramInlineQueryResultVideo
+public struct TelegramInlineQueryResultVideo: TelegramInlineQueryResult
 {
 
 	///Type of the result, must be video

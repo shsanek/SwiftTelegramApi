@@ -5,16 +5,24 @@
 //  Created by Alex Shipin on 14.09.2019.
 //
 
-public struct TelegramInlineQueryResult: Codable
+public protocol TelegramInlineQueryResult: Encodable
 {
 }
 
-extension TelegramInlineQueryResult: IMultiPartFromDataEncodable
+public struct TelegramInlineQueryResultContainer: Encodable
 {
-    
-    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+
+    public let encodeHandler: (_ encoder: Encoder) throws -> Void
+
+    public init<Content: TelegramInlineQueryResult>(content: TelegramInlineQueryResult)
     {
-        fatalError()
+        self.encodeHandler = content.encode
     }
-    
+
+    public func encode(to encoder: Encoder) throws
+    {
+        try self.encodeHandler(encoder)
+    }
+
 }
+

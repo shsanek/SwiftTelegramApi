@@ -70,7 +70,7 @@ public struct TelegramInlineQueryResultArticle
 
 }
 
-extension TelegramInlineQueryResultArticle: Codable
+extension TelegramInlineQueryResultArticle: TelegramInlineQueryResult
 {
 
 	private enum CodingKeys: String, CodingKey
