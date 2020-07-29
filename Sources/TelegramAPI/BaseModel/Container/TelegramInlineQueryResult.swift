@@ -14,7 +14,7 @@ public struct TelegramInlineQueryResultContainer: Encodable
 
     public let encodeHandler: (_ encoder: Encoder) throws -> Void
 
-    public init<Content: TelegramInlineQueryResult>(content: TelegramInlineQueryResult)
+    public init<Content: TelegramInlineQueryResult>(content: Content)
     {
         self.encodeHandler = content.encode
     }
