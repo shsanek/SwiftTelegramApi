@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
 
 public final class TelegramAPI
 {
@@ -20,7 +23,7 @@ public final class TelegramAPI
         {
             fatalError()
         }
-        let fullURL = url.appendingPathComponent(token)
+        let fullURL = url.appendingPathComponent("bot" + token)
         let requester = TelegramRequester(url: fullURL)
         self.requester = requester
     }

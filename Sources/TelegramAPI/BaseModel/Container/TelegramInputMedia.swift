@@ -7,6 +7,7 @@
 
 public struct TelegramInputMedia: Codable
 {
+	public init() { }
 }
 
 extension TelegramInputMedia: IMultiPartFromDataEncodable

@@ -17,7 +17,7 @@ extension Array: IMultiPartFromDataEncodable
     
     internal func encode(_ encoder: MultiPartFromDataEncoder)
     {
-        for i in 0...self.count
+        for i in 0..<self.count
         {
             if let obj = self[i] as? IMultiPartFromDataEncodable
             {

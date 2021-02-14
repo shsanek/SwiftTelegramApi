@@ -29,3 +29,11 @@ extension TelegramInlineKeyboardMarkup: Codable
 	}
 
 }
+
+extension TelegramInlineKeyboardMarkup: IMultiPartFromDataEncodable
+{
+	func encode(_ encoder: MultiPartFromDataEncoder)
+	{
+		encoder.append("inline_keyboard", object: self.inlineKeyboard)
+	}
+}

@@ -7,16 +7,30 @@
 
 public struct TelegramMarkupContainer: Codable
 {
-    
+	public let inlineKeyboard: TelegramInlineKeyboardMarkup?
+
+	public init(inlineKeyboard: TelegramInlineKeyboardMarkup? = nil)
+	{
+		self.inlineKeyboard = inlineKeyboard
+	}
 }
 
 
 extension TelegramMarkupContainer: IMultiPartFromDataEncodable
 {
 
-    internal func encode(_ encoder: MultiPartFromDataEncoder) 
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.singleValueContainer()
+		self.inlineKeyboard = try? container.decode(TelegramInlineKeyboardMarkup.self)
+	}
+
+	public func encode(to encoder: Encoder) throws {
+		try self.inlineKeyboard?.encode(to: encoder)
+	}
+
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
     {
-        fatalError()
+		inlineKeyboard?.encode(encoder)
     }
 
 }

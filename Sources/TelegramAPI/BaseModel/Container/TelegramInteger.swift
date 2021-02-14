@@ -5,9 +5,9 @@
 //  Created by Alex Shipin on 14.09.2019.
 //
 
-public typealias TelegramInteger = UInt64
+public typealias TelegramInteger = Int64
 
-extension UInt64: IMultiPartFromDataValueEncodable
+extension Int64: IMultiPartFromDataValueEncodable
 {
     
     internal var multipartFromDataValue: MultiPartFromDataContainer {

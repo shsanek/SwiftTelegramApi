@@ -71,3 +71,17 @@ extension TelegramInlineKeyboardButton: Codable
 	}
 
 }
+
+extension TelegramInlineKeyboardButton: IMultiPartFromDataEncodable
+{
+	internal func encode(_ encoder: MultiPartFromDataEncoder)
+	{
+		encoder.append("text", object: self.text)
+		encoder.append("url", object: self.url)
+		encoder.append("callback_data", object: self.callbackData)
+		encoder.append("switch_inline_query", object: self.switchInlineQuery)
+		encoder.append("switch_inline_query_current_chat", object: self.switchInlineQueryCurrentChat)
+		encoder.append("callback_game", object: self.callbackGame)
+		encoder.append("pay", object: self.pay)
+	}
+}

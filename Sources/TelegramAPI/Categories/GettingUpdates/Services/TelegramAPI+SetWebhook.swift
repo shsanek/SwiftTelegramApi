@@ -53,7 +53,7 @@ extension TelegramSetWebhookInput: IMultiPartFromDataEncodable
 	internal func encode(_ encoder: MultiPartFromDataEncoder)
 	{
 		encoder.append("url", object: self.url)
-		encoder.append("certificate", object: self.certificate)
+		encoder.append("@certificate", object: self.certificate)
 		encoder.append("max_connections", object: self.maxConnections)
 		encoder.append("allowed_updates", object: self.allowedUpdates)
 	}
