@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request deleteForumTopic
 public final class DeleteForumTopicInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier for the target message thread of the forum topic
 	public let messageThreadId: TelegramInteger
 
 	public init(

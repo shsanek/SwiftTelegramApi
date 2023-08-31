@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setCustomEmojiStickerSetThumbnail
 public final class SetCustomEmojiStickerSetThumbnailInput: Encodable {
-	///Yes
+	///Yes. Sticker set name
 	public let name: String
 	
-	///Optional
+	///Optional. Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
 	public let customEmojiId: String?
 
 	public init(

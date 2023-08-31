@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setStickerPositionInSet
 public final class SetStickerPositionInSetInput: Encodable {
-	///Yes
+	///Yes. File identifier of the sticker
 	public let sticker: String
 	
-	///Yes
+	///Yes. New sticker position in the set, zero-based
 	public let position: TelegramInteger
 
 	public init(

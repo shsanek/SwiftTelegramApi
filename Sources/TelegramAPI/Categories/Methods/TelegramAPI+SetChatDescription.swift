@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setChatDescription
 public final class SetChatDescriptionInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. New chat description, 0-255 characters
 	public let description: String?
 
 	public init(

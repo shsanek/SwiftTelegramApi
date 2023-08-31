@@ -7,49 +7,49 @@ extension TelegramAPI {
 
 //Input model for request sendVenue
 public final class SendVenueInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Latitude of the venue
 	public let latitude: TelegramFloat
 	
-	///Yes
+	///Yes. Longitude of the venue
 	public let longitude: TelegramFloat
 	
-	///Yes
+	///Yes. Name of the venue
 	public let title: String
 	
-	///Yes
+	///Yes. Address of the venue
 	public let address: String
 	
-	///Optional
+	///Optional. Foursquare identifier of the venue
 	public let foursquareId: String?
 	
-	///Optional
+	///Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
 	public let foursquareType: String?
 	
-	///Optional
+	///Optional. Google Places identifier of the venue
 	public let googlePlaceId: String?
 	
-	///Optional
+	///Optional. Google Places type of the venue. (See supported types.)
 	public let googlePlaceType: String?
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the message is a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 	
-	///Optional
+	///Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 	public let replyMarkup: TelegramMarkupContainer?
 
 	public init(

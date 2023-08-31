@@ -7,19 +7,19 @@ extension TelegramAPI {
 
 //Input model for request editMessageMedia
 public final class EditMessageMediaInput: IMultiPartFromDataEncodable {
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the message to edit
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 	
-	///Yes
+	///Yes. A JSON-serialized object for a new media content of the message
 	public let media: InputMedia
 	
-	///Optional
+	///Optional. A JSON-serialized object for a new inline keyboard.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

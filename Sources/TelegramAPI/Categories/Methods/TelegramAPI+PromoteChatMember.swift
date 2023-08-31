@@ -7,46 +7,46 @@ extension TelegramAPI {
 
 //Input model for request promoteChatMember
 public final class PromoteChatMemberInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 	
-	///Optional
+	///Optional. Pass True if the administrator's presence in the chat is hidden
 	public let isAnonymous: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
 	public let canManageChat: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can create channel posts, channels only
 	public let canPostMessages: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can edit messages of other users and can pin messages, channels only
 	public let canEditMessages: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can delete messages of other users
 	public let canDeleteMessages: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can manage video chats
 	public let canManageVideoChats: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can restrict, ban or unban chat members
 	public let canRestrictMembers: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
 	public let canPromoteMembers: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can change chat title, photo and other settings
 	public let canChangeInfo: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can invite new users to the chat
 	public let canInviteUsers: Bool?
 	
-	///Optional
+	///Optional. Pass True if the administrator can pin messages, supergroups only
 	public let canPinMessages: Bool?
 	
-	///Optional
+	///Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
 	public let canManageTopics: Bool?
 
 	public init(

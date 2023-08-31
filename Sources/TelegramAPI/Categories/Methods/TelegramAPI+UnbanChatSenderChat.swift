@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request unbanChatSenderChat
 public final class UnbanChatSenderChatInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier of the target sender chat
 	public let senderChatId: TelegramInteger
 
 	public init(

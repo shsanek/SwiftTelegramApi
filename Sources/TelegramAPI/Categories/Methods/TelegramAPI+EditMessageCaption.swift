@@ -7,25 +7,25 @@ extension TelegramAPI {
 
 //Input model for request editMessageCaption
 public final class EditMessageCaptionInput: IMultiPartFromDataEncodable {
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the message to edit
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 	
-	///Optional
+	///Optional. New caption of the message, 0-1024 characters after entities parsing
 	public let caption: String?
 	
-	///Optional
+	///Optional. Mode for parsing entities in the message caption. See formatting options for more details.
 	public let parseMode: String?
 	
-	///Optional
+	///Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
 	public let captionEntities: [MessageEntity]?
 	
-	///Optional
+	///Optional. A JSON-serialized object for an inline keyboard.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

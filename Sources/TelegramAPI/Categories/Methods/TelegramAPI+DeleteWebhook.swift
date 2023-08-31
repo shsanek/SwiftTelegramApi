@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request deleteWebhook
 public final class DeleteWebhookInput: Encodable {
-	///Optional
+	///Optional. Pass True to drop all pending updates
 	public let dropPendingUpdates: Bool?
 
 	public init(

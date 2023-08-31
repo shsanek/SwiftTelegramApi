@@ -7,25 +7,25 @@ extension TelegramAPI {
 
 //Input model for request sendMediaGroup
 public final class SendMediaGroupInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. A JSON-serialized array describing messages to be sent, must include 2-10 items
 	public let media: [TelegramInputMediaContainer]
 	
-	///Optional
+	///Optional. Sends messages silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent messages from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the messages are a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 
 	public init(

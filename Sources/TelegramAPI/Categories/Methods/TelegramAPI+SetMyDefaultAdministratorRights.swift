@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setMyDefaultAdministratorRights
 public final class SetMyDefaultAdministratorRightsInput: Encodable {
-	///Optional
+	///Optional. A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
 	public let rights: ChatAdministratorRights?
 	
-	///Optional
+	///Optional. Pass True to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
 	public let forChannels: Bool?
 
 	public init(

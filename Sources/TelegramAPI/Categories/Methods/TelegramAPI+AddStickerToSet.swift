@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request addStickerToSet
 public final class AddStickerToSetInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. User identifier of sticker set owner
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. Sticker set name
 	public let name: String
 	
-	///Yes
+	///Yes. A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
 	public let sticker: InputSticker
 
 	public init(

@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getMyDescription
 public final class GetMyDescriptionInput: Encodable {
-	///Optional
+	///Optional. A two-letter ISO 639-1 language code or an empty string
 	public let languageCode: String?
 
 	public init(

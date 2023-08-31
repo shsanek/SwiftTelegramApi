@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request stopPoll
 public final class StopPollInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Identifier of the original message with the poll
 	public let messageId: TelegramInteger
 	
-	///Optional
+	///Optional. A JSON-serialized object for a new message inline keyboard.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

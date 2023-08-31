@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getChatMenuButton
 public final class GetChatMenuButtonInput: Encodable {
-	///Optional
+	///Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
 	public let chatId: TelegramInteger?
 
 	public init(

@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setChatMenuButton
 public final class SetChatMenuButtonInput: Encodable {
-	///Optional
+	///Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
 	public let chatId: TelegramInteger?
 	
-	///Optional
+	///Optional. A JSON-serialized object for the bot's new menu button. Defaults to MenuButtonDefault
 	public let menuButton: MenuButton?
 
 	public init(

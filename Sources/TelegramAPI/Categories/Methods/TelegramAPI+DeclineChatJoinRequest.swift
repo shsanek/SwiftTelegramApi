@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request declineChatJoinRequest
 public final class DeclineChatJoinRequestInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 
 	public init(

@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request getUserProfilePhotos
 public final class GetUserProfilePhotosInput: Encodable {
-	///Yes
+	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 	
-	///Optional
+	///Optional. Sequential number of the first photo to be returned. By default, all photos are returned.
 	public let offset: TelegramInteger?
 	
-	///Optional
+	///Optional. Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100.
 	public let limit: TelegramInteger?
 
 	public init(

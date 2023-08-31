@@ -7,40 +7,40 @@ extension TelegramAPI {
 
 //Input model for request copyMessage
 public final class CopyMessageInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
 	public let fromChatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Message identifier in the chat specified in from_chat_id
 	public let messageId: TelegramInteger
 	
-	///Optional
+	///Optional. New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept
 	public let caption: String?
 	
-	///Optional
+	///Optional. Mode for parsing entities in the new caption. See formatting options for more details.
 	public let parseMode: String?
 	
-	///Optional
+	///Optional. A JSON-serialized list of special entities that appear in the new caption, which can be specified instead of parse_mode
 	public let captionEntities: [MessageEntity]?
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the message is a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 	
-	///Optional
+	///Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 	public let replyMarkup: TelegramMarkupContainer?
 
 	public init(

@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setStickerSetTitle
 public final class SetStickerSetTitleInput: Encodable {
-	///Yes
+	///Yes. Sticker set name
 	public let name: String
 	
-	///Yes
+	///Yes. Sticker set title, 1-64 characters
 	public let title: String
 
 	public init(

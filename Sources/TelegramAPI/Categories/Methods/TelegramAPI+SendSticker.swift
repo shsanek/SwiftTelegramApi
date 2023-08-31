@@ -7,31 +7,31 @@ extension TelegramAPI {
 
 //Input model for request sendSticker
 public final class SendStickerInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP or .TGS sticker using multipart/form-data. More information on Sending Files ». Video stickers can only be sent by a file_id. Animated stickers can't be sent via an HTTP URL.
 	public let sticker: TelegramInputFileContainer
 	
-	///Optional
+	///Optional. Emoji associated with the sticker; only for just uploaded stickers
 	public let emoji: String?
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the message is a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 	
-	///Optional
+	///Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 	public let replyMarkup: TelegramMarkupContainer?
 
 	public init(

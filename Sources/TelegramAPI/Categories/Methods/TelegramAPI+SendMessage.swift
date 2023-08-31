@@ -7,37 +7,37 @@ extension TelegramAPI {
 
 //Input model for request sendMessage
 public final class SendMessageInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Text of the message to be sent, 1-4096 characters after entities parsing
 	public let text: String
 	
-	///Optional
+	///Optional. Mode for parsing entities in the message text. See formatting options for more details.
 	public let parseMode: String?
 	
-	///Optional
+	///Optional. A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
 	public let entities: [MessageEntity]?
 	
-	///Optional
+	///Optional. Disables link previews for links in this message
 	public let disableWebPagePreview: Bool?
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the message is a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 	
-	///Optional
+	///Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 	public let replyMarkup: TelegramMarkupContainer?
 
 	public init(

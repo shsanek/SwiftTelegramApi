@@ -7,31 +7,31 @@ extension TelegramAPI {
 
 //Input model for request editMessageLiveLocation
 public final class EditMessageLiveLocationInput: IMultiPartFromDataEncodable {
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the message to edit
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 	
-	///Yes
+	///Yes. Latitude of new location
 	public let latitude: TelegramFloat
 	
-	///Yes
+	///Yes. Longitude of new location
 	public let longitude: TelegramFloat
 	
-	///Optional
+	///Optional. The radius of uncertainty for the location, measured in meters; 0-1500
 	public let horizontalAccuracy: TelegramFloat?
 	
-	///Optional
+	///Optional. Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
 	public let heading: TelegramInteger?
 	
-	///Optional
+	///Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
 	public let proximityAlertRadius: TelegramInteger?
 	
-	///Optional
+	///Optional. A JSON-serialized object for a new inline keyboard.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

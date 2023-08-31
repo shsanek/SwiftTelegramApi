@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request deleteChatPhoto
 public final class DeleteChatPhotoInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 
 	public init(

@@ -7,22 +7,22 @@ extension TelegramAPI {
 
 //Input model for request forwardMessage
 public final class ForwardMessageInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
 	public let fromChatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the forwarded message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Yes
+	///Yes. Message identifier in the chat specified in from_chat_id
 	public let messageId: TelegramInteger
 
 	public init(

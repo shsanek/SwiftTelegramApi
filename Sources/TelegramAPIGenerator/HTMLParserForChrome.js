@@ -15,11 +15,18 @@ function getAllItems() {
         if (table.length > 0) {
             table = table[0].children[1]
             for (var j = 0; j <  table.children.length; j++) {
-                if (table.children[j].children.length >= 3) {
+                if (table.children[j].children.length == 3) {
                     properties.push({
                         "name": table.children[j].children[0].textContent,
                         "type": table.children[j].children[1].textContent,
                         "description": table.children[j].children[2].textContent,
+                    })
+                }
+                if (table.children[j].children.length >= 4) {
+                    properties.push({
+                        "name": table.children[j].children[0].textContent,
+                        "type": table.children[j].children[1].textContent,
+                        "description": table.children[j].children[2].textContent + ". " + table.children[j].children[3].textContent,
                     })
                 }
             }

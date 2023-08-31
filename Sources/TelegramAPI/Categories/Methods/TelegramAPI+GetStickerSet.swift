@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getStickerSet
 public final class GetStickerSetInput: Encodable {
-	///Yes
+	///Yes. Name of the sticker set
 	public let name: String
 
 	public init(

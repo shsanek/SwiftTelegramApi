@@ -7,16 +7,16 @@ extension TelegramAPI {
 
 //Input model for request stopMessageLiveLocation
 public final class StopMessageLiveLocationInput: IMultiPartFromDataEncodable {
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the message with live location to stop
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 	
-	///Optional
+	///Optional. A JSON-serialized object for a new inline keyboard.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

@@ -7,28 +7,28 @@ extension TelegramAPI {
 
 //Input model for request sendGame
 public final class SendGameInput: Encodable {
-	///Yes
+	///Yes. Unique identifier for the target chat
 	public let chatId: TelegramInteger
 	
-	///Optional
+	///Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
 	public let messageThreadId: TelegramInteger?
 	
-	///Yes
+	///Yes. Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather.
 	public let gameShortName: String
 	
-	///Optional
+	///Optional. Sends the message silently. Users will receive a notification with no sound.
 	public let disableNotification: Bool?
 	
-	///Optional
+	///Optional. Protects the contents of the sent message from forwarding and saving
 	public let protectContent: Bool?
 	
-	///Optional
+	///Optional. If the message is a reply, ID of the original message
 	public let replyToMessageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Pass True if the message should be sent even if the specified replied-to message is not found
 	public let allowSendingWithoutReply: Bool?
 	
-	///Optional
+	///Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game.
 	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(

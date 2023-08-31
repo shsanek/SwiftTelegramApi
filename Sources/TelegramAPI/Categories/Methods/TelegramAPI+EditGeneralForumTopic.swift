@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request editGeneralForumTopic
 public final class EditGeneralForumTopicInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. New topic name, 1-128 characters
 	public let name: String
 
 	public init(

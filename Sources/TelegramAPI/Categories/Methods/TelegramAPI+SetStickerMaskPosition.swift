@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setStickerMaskPosition
 public final class SetStickerMaskPositionInput: Encodable {
-	///Yes
+	///Yes. File identifier of the sticker
 	public let sticker: String
 	
-	///Optional
+	///Optional. A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
 	public let maskPosition: MaskPosition?
 
 	public init(

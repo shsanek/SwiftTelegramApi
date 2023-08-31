@@ -7,16 +7,16 @@ extension TelegramAPI {
 
 //Input model for request answerShippingQuery
 public final class AnswerShippingQueryInput: Encodable {
-	///Yes
+	///Yes. Unique identifier for the query to be answered
 	public let shippingQueryId: String
 	
-	///Yes
+	///Yes. Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
 	public let ok: Bool
 	
-	///Optional
+	///Optional. Required if ok is True. A JSON-serialized array of available shipping options.
 	public let shippingOptions: [ShippingOption]?
 	
-	///Optional
+	///Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
 	public let errorMessage: String?
 
 	public init(

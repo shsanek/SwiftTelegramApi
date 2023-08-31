@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request unpinAllGeneralForumTopicMessages
 public final class UnpinAllGeneralForumTopicMessagesInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 
 	public init(

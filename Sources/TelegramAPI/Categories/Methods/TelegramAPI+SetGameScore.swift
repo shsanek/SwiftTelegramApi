@@ -7,25 +7,25 @@ extension TelegramAPI {
 
 //Input model for request setGameScore
 public final class SetGameScoreInput: Encodable {
-	///Yes
+	///Yes. User identifier
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. New score, must be non-negative
 	public let score: TelegramInteger
 	
-	///Optional
+	///Optional. Pass True if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
 	public let force: Bool?
 	
-	///Optional
+	///Optional. Pass True if the game message should not be automatically edited to include the current scoreboard
 	public let disableEditMessage: Bool?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat
 	public let chatId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the sent message
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 
 	public init(

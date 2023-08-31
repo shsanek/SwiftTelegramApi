@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request setChatAdministratorCustomTitle
 public final class SetChatAdministratorCustomTitleInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. New custom title for the administrator; 0-16 characters, emoji are not allowed
 	public let customTitle: String
 
 	public init(

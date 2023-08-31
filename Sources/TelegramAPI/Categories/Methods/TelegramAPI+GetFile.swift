@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getFile
 public final class GetFileInput: Encodable {
-	///Yes
+	///Yes. File identifier to get information about
 	public let fileId: String
 
 	public init(

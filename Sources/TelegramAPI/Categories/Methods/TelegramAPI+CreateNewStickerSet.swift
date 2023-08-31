@@ -7,25 +7,25 @@ extension TelegramAPI {
 
 //Input model for request createNewStickerSet
 public final class CreateNewStickerSetInput: Encodable {
-	///Yes
+	///Yes. User identifier of created sticker set owner
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
 	public let name: String
 	
-	///Yes
+	///Yes. Sticker set title, 1-64 characters
 	public let title: String
 	
-	///Yes
+	///Yes. A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
 	public let stickers: [InputSticker]
 	
-	///Yes
+	///Yes. Format of stickers in the set, must be one of “static”, “animated”, “video”
 	public let stickerFormat: String
 	
-	///Optional
+	///Optional. Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
 	public let stickerType: String?
 	
-	///Optional
+	///Optional. Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
 	public let needsRepainting: Bool?
 
 	public init(

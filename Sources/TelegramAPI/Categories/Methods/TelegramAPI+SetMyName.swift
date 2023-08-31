@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setMyName
 public final class SetMyNameInput: Encodable {
-	///Optional
+	///Optional. New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language.
 	public let name: String?
 	
-	///Optional
+	///Optional. A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose language there is no dedicated name.
 	public let languageCode: String?
 
 	public init(

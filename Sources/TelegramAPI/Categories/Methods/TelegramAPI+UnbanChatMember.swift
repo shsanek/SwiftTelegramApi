@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request unbanChatMember
 public final class UnbanChatMemberInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 	
-	///Optional
+	///Optional. Do nothing if the user is not banned
 	public let onlyIfBanned: Bool?
 
 	public init(

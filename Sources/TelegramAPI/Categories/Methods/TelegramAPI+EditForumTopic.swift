@@ -7,16 +7,16 @@ extension TelegramAPI {
 
 //Input model for request editForumTopic
 public final class EditForumTopicInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Unique identifier for the target message thread of the forum topic
 	public let messageThreadId: TelegramInteger
 	
-	///Optional
+	///Optional. New topic name, 0-128 characters. If not specified or empty, the current name of the topic will be kept
 	public let name: String?
 	
-	///Optional
+	///Optional. New unique identifier of the custom emoji shown as the topic icon. Use getForumTopicIconStickers to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept
 	public let iconCustomEmojiId: String?
 
 	public init(

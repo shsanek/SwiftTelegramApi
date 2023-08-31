@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request answerWebAppQuery
 public final class AnswerWebAppQueryInput: Encodable {
-	///Yes
+	///Yes. Unique identifier for the query to be answered
 	public let webAppQueryId: String
 	
-	///Yes
+	///Yes. A JSON-serialized object describing the message to be sent
 	public let result: InlineQueryResult
 
 	public init(

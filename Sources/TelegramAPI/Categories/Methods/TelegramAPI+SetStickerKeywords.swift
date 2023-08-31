@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setStickerKeywords
 public final class SetStickerKeywordsInput: Encodable {
-	///Yes
+	///Yes. File identifier of the sticker
 	public let sticker: String
 	
-	///Optional
+	///Optional. A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
 	public let keywords: [String]?
 
 	public init(

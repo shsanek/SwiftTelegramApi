@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getCustomEmojiStickers
 public final class GetCustomEmojiStickersInput: Encodable {
-	///Yes
+	///Yes. List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
 	public let customEmojiIds: [String]
 
 	public init(

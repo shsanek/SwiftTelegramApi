@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setStickerEmojiList
 public final class SetStickerEmojiListInput: Encodable {
-	///Yes
+	///Yes. File identifier of the sticker
 	public let sticker: String
 	
-	///Yes
+	///Yes. A JSON-serialized list of 1-20 emoji associated with the sticker
 	public let emojiList: [String]
 
 	public init(

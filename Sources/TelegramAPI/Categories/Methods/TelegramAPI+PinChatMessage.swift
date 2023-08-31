@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request pinChatMessage
 public final class PinChatMessageInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Identifier of a message to pin
 	public let messageId: TelegramInteger
 	
-	///Optional
+	///Optional. Pass True if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
 	public let disableNotification: Bool?
 
 	public init(

@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request revokeChatInviteLink
 public final class RevokeChatInviteLinkInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier of the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. The invite link to revoke
 	public let inviteLink: String
 
 	public init(

@@ -7,16 +7,16 @@ extension TelegramAPI {
 
 //Input model for request getGameHighScores
 public final class GetGameHighScoresInput: Encodable {
-	///Yes
+	///Yes. Target user id
 	public let userId: TelegramInteger
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Unique identifier for the target chat
 	public let chatId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if inline_message_id is not specified. Identifier of the sent message
 	public let messageId: TelegramInteger?
 	
-	///Optional
+	///Optional. Required if chat_id and message_id are not specified. Identifier of the inline message
 	public let inlineMessageId: String?
 
 	public init(

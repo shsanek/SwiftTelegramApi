@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setPassportDataErrors
 public final class SetPassportDataErrorsInput: Encodable {
-	///Yes
+	///Yes. User identifier
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. A JSON-serialized array describing the errors
 	public let errors: [PassportElementError]
 
 	public init(

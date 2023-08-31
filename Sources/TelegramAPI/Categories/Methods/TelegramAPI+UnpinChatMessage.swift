@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request unpinChatMessage
 public final class UnpinChatMessageInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Optional
+	///Optional. Identifier of a message to unpin. If not specified, the most recent pinned message (by sending date) will be unpinned.
 	public let messageId: TelegramInteger?
 
 	public init(

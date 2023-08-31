@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setChatStickerSet
 public final class SetChatStickerSetInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. Name of the sticker set to be set as the group sticker set
 	public let stickerSetName: String
 
 	public init(

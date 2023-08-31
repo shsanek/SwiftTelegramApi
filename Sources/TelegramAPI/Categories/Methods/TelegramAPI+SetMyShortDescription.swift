@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setMyShortDescription
 public final class SetMyShortDescriptionInput: Encodable {
-	///Optional
+	///Optional. New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language.
 	public let shortDescription: String?
 	
-	///Optional
+	///Optional. A two-letter ISO 639-1 language code. If empty, the short description will be applied to all users for whose language there is no dedicated short description.
 	public let languageCode: String?
 
 	public init(

@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request uploadStickerFile
 public final class UploadStickerFileInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. User identifier of sticker file owner
 	public let userId: TelegramInteger
 	
-	///Yes
+	///Yes. A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. More information on Sending Files »
 	public let sticker: TelegramInputFile
 	
-	///Yes
+	///Yes. Format of the sticker, must be one of “static”, “animated”, “video”
 	public let stickerFormat: String
 
 	public init(

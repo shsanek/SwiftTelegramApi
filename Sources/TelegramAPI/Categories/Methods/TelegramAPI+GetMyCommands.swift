@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request getMyCommands
 public final class GetMyCommandsInput: Encodable {
-	///Optional
+	///Optional. A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
 	public let scope: BotCommandScope?
 	
-	///Optional
+	///Optional. A two-letter ISO 639-1 language code or an empty string
 	public let languageCode: String?
 
 	public init(

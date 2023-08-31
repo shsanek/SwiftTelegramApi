@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setChatPhoto
 public final class SetChatPhotoInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. New chat photo, uploaded using multipart/form-data
 	public let photo: TelegramInputFile
 
 	public init(

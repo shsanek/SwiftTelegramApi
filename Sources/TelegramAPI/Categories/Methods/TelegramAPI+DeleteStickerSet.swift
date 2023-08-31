@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request deleteStickerSet
 public final class DeleteStickerSetInput: Encodable {
-	///Yes
+	///Yes. Sticker set name
 	public let name: String
 
 	public init(

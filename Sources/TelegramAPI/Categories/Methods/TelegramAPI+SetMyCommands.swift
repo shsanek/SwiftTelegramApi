@@ -7,13 +7,13 @@ extension TelegramAPI {
 
 //Input model for request setMyCommands
 public final class SetMyCommandsInput: Encodable {
-	///Yes
+	///Yes. A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
 	public let commands: [BotCommand]
 	
-	///Optional
+	///Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
 	public let scope: BotCommandScope?
 	
-	///Optional
+	///Optional. A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
 	public let languageCode: String?
 
 	public init(

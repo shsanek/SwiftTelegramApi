@@ -7,10 +7,10 @@ extension TelegramAPI {
 
 //Input model for request setChatTitle
 public final class SetChatTitleInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 	
-	///Yes
+	///Yes. New chat title, 1-128 characters
 	public let title: String
 
 	public init(

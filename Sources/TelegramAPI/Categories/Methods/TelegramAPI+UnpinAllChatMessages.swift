@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request unpinAllChatMessages
 public final class UnpinAllChatMessagesInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 
 	public init(

@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request leaveChat
 public final class LeaveChatInput: IMultiPartFromDataEncodable {
-	///Yes
+	///Yes. Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	public let chatId: TelegramIdentifierContainer
 
 	public init(

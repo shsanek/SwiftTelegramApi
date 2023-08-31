@@ -7,7 +7,7 @@ extension TelegramAPI {
 
 //Input model for request getMyDefaultAdministratorRights
 public final class GetMyDefaultAdministratorRightsInput: Encodable {
-	///Optional
+	///Optional. Pass True to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
 	public let forChannels: Bool?
 
 	public init(
