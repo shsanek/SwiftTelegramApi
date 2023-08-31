@@ -1,6 +1,6 @@
 extension TelegramAPI {
     /// Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func editMessageText(_ input: EditMessageTextInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+    public func editMessageText(_ input: EditMessageTextInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
         self.requester.request("editMessageText", object: input, completion: completionHandler)
     }
 }
@@ -8,38 +8,38 @@ extension TelegramAPI {
 //Input model for request editMessageText
 public final class EditMessageTextInput: IMultiPartFromDataEncodable {
 	///Optional
-	public let chatId: TelegramIdentifierContainer
+	public let chatId: TelegramIdentifierContainer?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 	
 	///Yes
 	public let text: String
 	
 	///Optional
-	public let parseMode: String
+	public let parseMode: String?
 	
 	///Optional
-	public let entities: [MessageEntity]
+	public let entities: [MessageEntity]?
 	
 	///Optional
-	public let disableWebPagePreview: Bool
+	public let disableWebPagePreview: Bool?
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
-		chatId: TelegramIdentifierContainer,
-		messageId: TelegramInteger,
-		inlineMessageId: String,
+		chatId: TelegramIdentifierContainer? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil,
 		text: String,
-		parseMode: String,
-		entities: [MessageEntity],
-		disableWebPagePreview: Bool,
-		replyMarkup: InlineKeyboardMarkup
+		parseMode: String? = nil,
+		entities: [MessageEntity]? = nil,
+		disableWebPagePreview: Bool? = nil,
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

@@ -8,10 +8,10 @@ extension TelegramAPI {
 //Input model for request getChatMenuButton
 public final class GetChatMenuButtonInput: Encodable {
 	///Optional
-	public let chatId: TelegramInteger
+	public let chatId: TelegramInteger?
 
 	public init(
-		chatId: TelegramInteger
+		chatId: TelegramInteger? = nil
 	) {
 		self.chatId = chatId
 	}
@@ -22,6 +22,6 @@ public final class GetChatMenuButtonInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.chatId.self, forKey: .chatId)
+		try container.encodeIfPresent(self.chatId.self, forKey: .chatId)
 	}
 }

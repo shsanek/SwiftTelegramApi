@@ -8,14 +8,14 @@ extension TelegramAPI {
 //Input model for request setMyDefaultAdministratorRights
 public final class SetMyDefaultAdministratorRightsInput: Encodable {
 	///Optional
-	public let rights: ChatAdministratorRights
+	public let rights: ChatAdministratorRights?
 	
 	///Optional
-	public let forChannels: Bool
+	public let forChannels: Bool?
 
 	public init(
-		rights: ChatAdministratorRights,
-		forChannels: Bool
+		rights: ChatAdministratorRights? = nil,
+		forChannels: Bool? = nil
 	) {
 		self.rights = rights
 		self.forChannels = forChannels
@@ -28,7 +28,7 @@ public final class SetMyDefaultAdministratorRightsInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.rights.self, forKey: .rights)
-		try container.encode(self.forChannels.self, forKey: .forChannels)
+		try container.encodeIfPresent(self.rights.self, forKey: .rights)
+		try container.encodeIfPresent(self.forChannels.self, forKey: .forChannels)
 	}
 }

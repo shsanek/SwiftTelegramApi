@@ -14,12 +14,12 @@ public final class SetStickerSetThumbnailInput: Encodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let thumbnail: TelegramInputFileContainer
+	public let thumbnail: TelegramInputFileContainer?
 
 	public init(
 		name: String,
 		userId: TelegramInteger,
-		thumbnail: TelegramInputFileContainer
+		thumbnail: TelegramInputFileContainer? = nil
 	) {
 		self.name = name
 		self.userId = userId
@@ -36,6 +36,6 @@ public final class SetStickerSetThumbnailInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.name.self, forKey: .name)
 		try container.encode(self.userId.self, forKey: .userId)
-		try container.encode(self.thumbnail.self, forKey: .thumbnail)
+		try container.encodeIfPresent(self.thumbnail.self, forKey: .thumbnail)
 	}
 }

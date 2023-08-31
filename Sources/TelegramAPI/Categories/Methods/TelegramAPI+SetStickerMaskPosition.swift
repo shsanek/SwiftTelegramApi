@@ -11,11 +11,11 @@ public final class SetStickerMaskPositionInput: Encodable {
 	public let sticker: String
 	
 	///Optional
-	public let maskPosition: MaskPosition
+	public let maskPosition: MaskPosition?
 
 	public init(
 		sticker: String,
-		maskPosition: MaskPosition
+		maskPosition: MaskPosition? = nil
 	) {
 		self.sticker = sticker
 		self.maskPosition = maskPosition
@@ -29,6 +29,6 @@ public final class SetStickerMaskPositionInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.sticker.self, forKey: .sticker)
-		try container.encode(self.maskPosition.self, forKey: .maskPosition)
+		try container.encodeIfPresent(self.maskPosition.self, forKey: .maskPosition)
 	}
 }

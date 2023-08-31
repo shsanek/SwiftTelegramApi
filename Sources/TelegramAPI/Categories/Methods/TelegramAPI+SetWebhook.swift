@@ -11,31 +11,31 @@ public final class SetWebhookInput: IMultiPartFromDataEncodable {
 	public let url: String
 	
 	///Optional
-	public let certificate: TelegramInputFile
+	public let certificate: TelegramInputFile?
 	
 	///Optional
-	public let ipAddress: String
+	public let ipAddress: String?
 	
 	///Optional
-	public let maxConnections: TelegramInteger
+	public let maxConnections: TelegramInteger?
 	
 	///Optional
-	public let allowedUpdates: [String]
+	public let allowedUpdates: [String]?
 	
 	///Optional
-	public let dropPendingUpdates: Bool
+	public let dropPendingUpdates: Bool?
 	
 	///Optional
-	public let secretToken: String
+	public let secretToken: String?
 
 	public init(
 		url: String,
-		certificate: TelegramInputFile,
-		ipAddress: String,
-		maxConnections: TelegramInteger,
-		allowedUpdates: [String],
-		dropPendingUpdates: Bool,
-		secretToken: String
+		certificate: TelegramInputFile? = nil,
+		ipAddress: String? = nil,
+		maxConnections: TelegramInteger? = nil,
+		allowedUpdates: [String]? = nil,
+		dropPendingUpdates: Bool? = nil,
+		secretToken: String? = nil
 	) {
 		self.url = url
 		self.certificate = certificate

@@ -8,14 +8,14 @@ extension TelegramAPI {
 //Input model for request getMyCommands
 public final class GetMyCommandsInput: Encodable {
 	///Optional
-	public let scope: BotCommandScope
+	public let scope: BotCommandScope?
 	
 	///Optional
-	public let languageCode: String
+	public let languageCode: String?
 
 	public init(
-		scope: BotCommandScope,
-		languageCode: String
+		scope: BotCommandScope? = nil,
+		languageCode: String? = nil
 	) {
 		self.scope = scope
 		self.languageCode = languageCode
@@ -28,7 +28,7 @@ public final class GetMyCommandsInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.scope.self, forKey: .scope)
-		try container.encode(self.languageCode.self, forKey: .languageCode)
+		try container.encodeIfPresent(self.scope.self, forKey: .scope)
+		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
 	}
 }

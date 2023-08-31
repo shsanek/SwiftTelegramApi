@@ -14,12 +14,12 @@ public final class SetChatPermissionsInput: IMultiPartFromDataEncodable {
 	public let permissions: ChatPermissions
 	
 	///Optional
-	public let useIndependentChatPermissions: Bool
+	public let useIndependentChatPermissions: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		permissions: ChatPermissions,
-		useIndependentChatPermissions: Bool
+		useIndependentChatPermissions: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.permissions = permissions

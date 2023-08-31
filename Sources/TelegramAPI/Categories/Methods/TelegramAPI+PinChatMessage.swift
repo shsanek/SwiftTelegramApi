@@ -14,12 +14,12 @@ public final class PinChatMessageInput: IMultiPartFromDataEncodable {
 	public let messageId: TelegramInteger
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		messageId: TelegramInteger,
-		disableNotification: Bool
+		disableNotification: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

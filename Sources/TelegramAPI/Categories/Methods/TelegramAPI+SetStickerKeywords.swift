@@ -11,11 +11,11 @@ public final class SetStickerKeywordsInput: Encodable {
 	public let sticker: String
 	
 	///Optional
-	public let keywords: [String]
+	public let keywords: [String]?
 
 	public init(
 		sticker: String,
-		keywords: [String]
+		keywords: [String]? = nil
 	) {
 		self.sticker = sticker
 		self.keywords = keywords
@@ -29,6 +29,6 @@ public final class SetStickerKeywordsInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.sticker.self, forKey: .sticker)
-		try container.encode(self.keywords.self, forKey: .keywords)
+		try container.encodeIfPresent(self.keywords.self, forKey: .keywords)
 	}
 }

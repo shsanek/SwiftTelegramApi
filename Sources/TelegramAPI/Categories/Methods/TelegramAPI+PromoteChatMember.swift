@@ -14,56 +14,56 @@ public final class PromoteChatMemberInput: IMultiPartFromDataEncodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let isAnonymous: Bool
+	public let isAnonymous: Bool?
 	
 	///Optional
-	public let canManageChat: Bool
+	public let canManageChat: Bool?
 	
 	///Optional
-	public let canPostMessages: Bool
+	public let canPostMessages: Bool?
 	
 	///Optional
-	public let canEditMessages: Bool
+	public let canEditMessages: Bool?
 	
 	///Optional
-	public let canDeleteMessages: Bool
+	public let canDeleteMessages: Bool?
 	
 	///Optional
-	public let canManageVideoChats: Bool
+	public let canManageVideoChats: Bool?
 	
 	///Optional
-	public let canRestrictMembers: Bool
+	public let canRestrictMembers: Bool?
 	
 	///Optional
-	public let canPromoteMembers: Bool
+	public let canPromoteMembers: Bool?
 	
 	///Optional
-	public let canChangeInfo: Bool
+	public let canChangeInfo: Bool?
 	
 	///Optional
-	public let canInviteUsers: Bool
+	public let canInviteUsers: Bool?
 	
 	///Optional
-	public let canPinMessages: Bool
+	public let canPinMessages: Bool?
 	
 	///Optional
-	public let canManageTopics: Bool
+	public let canManageTopics: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		userId: TelegramInteger,
-		isAnonymous: Bool,
-		canManageChat: Bool,
-		canPostMessages: Bool,
-		canEditMessages: Bool,
-		canDeleteMessages: Bool,
-		canManageVideoChats: Bool,
-		canRestrictMembers: Bool,
-		canPromoteMembers: Bool,
-		canChangeInfo: Bool,
-		canInviteUsers: Bool,
-		canPinMessages: Bool,
-		canManageTopics: Bool
+		isAnonymous: Bool? = nil,
+		canManageChat: Bool? = nil,
+		canPostMessages: Bool? = nil,
+		canEditMessages: Bool? = nil,
+		canDeleteMessages: Bool? = nil,
+		canManageVideoChats: Bool? = nil,
+		canRestrictMembers: Bool? = nil,
+		canPromoteMembers: Bool? = nil,
+		canChangeInfo: Bool? = nil,
+		canInviteUsers: Bool? = nil,
+		canPinMessages: Bool? = nil,
+		canManageTopics: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.userId = userId

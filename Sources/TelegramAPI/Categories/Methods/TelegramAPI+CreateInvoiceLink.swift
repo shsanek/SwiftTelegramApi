@@ -26,46 +26,46 @@ public final class CreateInvoiceLinkInput: Encodable {
 	public let prices: [LabeledPrice]
 	
 	///Optional
-	public let maxTipAmount: TelegramInteger
+	public let maxTipAmount: TelegramInteger?
 	
 	///Optional
-	public let suggestedTipAmounts: [TelegramInteger]
+	public let suggestedTipAmounts: [TelegramInteger]?
 	
 	///Optional
-	public let providerData: String
+	public let providerData: String?
 	
 	///Optional
-	public let photoUrl: String
+	public let photoUrl: String?
 	
 	///Optional
-	public let photoSize: TelegramInteger
+	public let photoSize: TelegramInteger?
 	
 	///Optional
-	public let photoWidth: TelegramInteger
+	public let photoWidth: TelegramInteger?
 	
 	///Optional
-	public let photoHeight: TelegramInteger
+	public let photoHeight: TelegramInteger?
 	
 	///Optional
-	public let needName: Bool
+	public let needName: Bool?
 	
 	///Optional
-	public let needPhoneNumber: Bool
+	public let needPhoneNumber: Bool?
 	
 	///Optional
-	public let needEmail: Bool
+	public let needEmail: Bool?
 	
 	///Optional
-	public let needShippingAddress: Bool
+	public let needShippingAddress: Bool?
 	
 	///Optional
-	public let sendPhoneNumberToProvider: Bool
+	public let sendPhoneNumberToProvider: Bool?
 	
 	///Optional
-	public let sendEmailToProvider: Bool
+	public let sendEmailToProvider: Bool?
 	
 	///Optional
-	public let isFlexible: Bool
+	public let isFlexible: Bool?
 
 	public init(
 		title: String,
@@ -74,20 +74,20 @@ public final class CreateInvoiceLinkInput: Encodable {
 		providerToken: String,
 		currency: String,
 		prices: [LabeledPrice],
-		maxTipAmount: TelegramInteger,
-		suggestedTipAmounts: [TelegramInteger],
-		providerData: String,
-		photoUrl: String,
-		photoSize: TelegramInteger,
-		photoWidth: TelegramInteger,
-		photoHeight: TelegramInteger,
-		needName: Bool,
-		needPhoneNumber: Bool,
-		needEmail: Bool,
-		needShippingAddress: Bool,
-		sendPhoneNumberToProvider: Bool,
-		sendEmailToProvider: Bool,
-		isFlexible: Bool
+		maxTipAmount: TelegramInteger? = nil,
+		suggestedTipAmounts: [TelegramInteger]? = nil,
+		providerData: String? = nil,
+		photoUrl: String? = nil,
+		photoSize: TelegramInteger? = nil,
+		photoWidth: TelegramInteger? = nil,
+		photoHeight: TelegramInteger? = nil,
+		needName: Bool? = nil,
+		needPhoneNumber: Bool? = nil,
+		needEmail: Bool? = nil,
+		needShippingAddress: Bool? = nil,
+		sendPhoneNumberToProvider: Bool? = nil,
+		sendEmailToProvider: Bool? = nil,
+		isFlexible: Bool? = nil
 	) {
 		self.title = title
 		self.description = description
@@ -142,19 +142,19 @@ public final class CreateInvoiceLinkInput: Encodable {
 		try container.encode(self.providerToken.self, forKey: .providerToken)
 		try container.encode(self.currency.self, forKey: .currency)
 		try container.encode(self.prices.self, forKey: .prices)
-		try container.encode(self.maxTipAmount.self, forKey: .maxTipAmount)
-		try container.encode(self.suggestedTipAmounts.self, forKey: .suggestedTipAmounts)
-		try container.encode(self.providerData.self, forKey: .providerData)
-		try container.encode(self.photoUrl.self, forKey: .photoUrl)
-		try container.encode(self.photoSize.self, forKey: .photoSize)
-		try container.encode(self.photoWidth.self, forKey: .photoWidth)
-		try container.encode(self.photoHeight.self, forKey: .photoHeight)
-		try container.encode(self.needName.self, forKey: .needName)
-		try container.encode(self.needPhoneNumber.self, forKey: .needPhoneNumber)
-		try container.encode(self.needEmail.self, forKey: .needEmail)
-		try container.encode(self.needShippingAddress.self, forKey: .needShippingAddress)
-		try container.encode(self.sendPhoneNumberToProvider.self, forKey: .sendPhoneNumberToProvider)
-		try container.encode(self.sendEmailToProvider.self, forKey: .sendEmailToProvider)
-		try container.encode(self.isFlexible.self, forKey: .isFlexible)
+		try container.encodeIfPresent(self.maxTipAmount.self, forKey: .maxTipAmount)
+		try container.encodeIfPresent(self.suggestedTipAmounts.self, forKey: .suggestedTipAmounts)
+		try container.encodeIfPresent(self.providerData.self, forKey: .providerData)
+		try container.encodeIfPresent(self.photoUrl.self, forKey: .photoUrl)
+		try container.encodeIfPresent(self.photoSize.self, forKey: .photoSize)
+		try container.encodeIfPresent(self.photoWidth.self, forKey: .photoWidth)
+		try container.encodeIfPresent(self.photoHeight.self, forKey: .photoHeight)
+		try container.encodeIfPresent(self.needName.self, forKey: .needName)
+		try container.encodeIfPresent(self.needPhoneNumber.self, forKey: .needPhoneNumber)
+		try container.encodeIfPresent(self.needEmail.self, forKey: .needEmail)
+		try container.encodeIfPresent(self.needShippingAddress.self, forKey: .needShippingAddress)
+		try container.encodeIfPresent(self.sendPhoneNumberToProvider.self, forKey: .sendPhoneNumberToProvider)
+		try container.encodeIfPresent(self.sendEmailToProvider.self, forKey: .sendEmailToProvider)
+		try container.encodeIfPresent(self.isFlexible.self, forKey: .isFlexible)
 	}
 }

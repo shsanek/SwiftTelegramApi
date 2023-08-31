@@ -11,14 +11,14 @@ public final class SendChatActionInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let action: String
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		action: String
 	) {
 		self.chatId = chatId

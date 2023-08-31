@@ -8,14 +8,14 @@ extension TelegramAPI {
 //Input model for request setMyName
 public final class SetMyNameInput: Encodable {
 	///Optional
-	public let name: String
+	public let name: String?
 	
 	///Optional
-	public let languageCode: String
+	public let languageCode: String?
 
 	public init(
-		name: String,
-		languageCode: String
+		name: String? = nil,
+		languageCode: String? = nil
 	) {
 		self.name = name
 		self.languageCode = languageCode
@@ -28,7 +28,7 @@ public final class SetMyNameInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.name.self, forKey: .name)
-		try container.encode(self.languageCode.self, forKey: .languageCode)
+		try container.encodeIfPresent(self.name.self, forKey: .name)
+		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
 	}
 }

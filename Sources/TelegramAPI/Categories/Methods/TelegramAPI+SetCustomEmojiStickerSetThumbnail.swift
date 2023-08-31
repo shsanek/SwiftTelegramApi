@@ -11,11 +11,11 @@ public final class SetCustomEmojiStickerSetThumbnailInput: Encodable {
 	public let name: String
 	
 	///Optional
-	public let customEmojiId: String
+	public let customEmojiId: String?
 
 	public init(
 		name: String,
-		customEmojiId: String
+		customEmojiId: String? = nil
 	) {
 		self.name = name
 		self.customEmojiId = customEmojiId
@@ -29,6 +29,6 @@ public final class SetCustomEmojiStickerSetThumbnailInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.name.self, forKey: .name)
-		try container.encode(self.customEmojiId.self, forKey: .customEmojiId)
+		try container.encodeIfPresent(self.customEmojiId.self, forKey: .customEmojiId)
 	}
 }

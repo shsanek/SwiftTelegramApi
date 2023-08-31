@@ -14,12 +14,12 @@ public final class AnswerPreCheckoutQueryInput: Encodable {
 	public let ok: Bool
 	
 	///Optional
-	public let errorMessage: String
+	public let errorMessage: String?
 
 	public init(
 		preCheckoutQueryId: String,
 		ok: Bool,
-		errorMessage: String
+		errorMessage: String? = nil
 	) {
 		self.preCheckoutQueryId = preCheckoutQueryId
 		self.ok = ok
@@ -36,6 +36,6 @@ public final class AnswerPreCheckoutQueryInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.preCheckoutQueryId.self, forKey: .preCheckoutQueryId)
 		try container.encode(self.ok.self, forKey: .ok)
-		try container.encode(self.errorMessage.self, forKey: .errorMessage)
+		try container.encodeIfPresent(self.errorMessage.self, forKey: .errorMessage)
 	}
 }

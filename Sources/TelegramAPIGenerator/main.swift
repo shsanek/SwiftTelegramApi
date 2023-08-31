@@ -89,7 +89,7 @@ struct Element: Codable {
         }
 
         var isOptional: Bool {
-            description.hasPrefix("Optional.")
+            description.hasPrefix("Optional")
         }
     }
 }

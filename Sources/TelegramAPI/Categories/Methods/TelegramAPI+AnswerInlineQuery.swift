@@ -14,24 +14,24 @@ public final class AnswerInlineQueryInput: Encodable {
 	public let results: [InlineQueryResult]
 	
 	///Optional
-	public let cacheTime: TelegramInteger
+	public let cacheTime: TelegramInteger?
 	
 	///Optional
-	public let isPersonal: Bool
+	public let isPersonal: Bool?
 	
 	///Optional
-	public let nextOffset: String
+	public let nextOffset: String?
 	
 	///Optional
-	public let button: InlineQueryResultsButton
+	public let button: InlineQueryResultsButton?
 
 	public init(
 		inlineQueryId: String,
 		results: [InlineQueryResult],
-		cacheTime: TelegramInteger,
-		isPersonal: Bool,
-		nextOffset: String,
-		button: InlineQueryResultsButton
+		cacheTime: TelegramInteger? = nil,
+		isPersonal: Bool? = nil,
+		nextOffset: String? = nil,
+		button: InlineQueryResultsButton? = nil
 	) {
 		self.inlineQueryId = inlineQueryId
 		self.results = results
@@ -54,9 +54,9 @@ public final class AnswerInlineQueryInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.inlineQueryId.self, forKey: .inlineQueryId)
 		try container.encode(self.results.self, forKey: .results)
-		try container.encode(self.cacheTime.self, forKey: .cacheTime)
-		try container.encode(self.isPersonal.self, forKey: .isPersonal)
-		try container.encode(self.nextOffset.self, forKey: .nextOffset)
-		try container.encode(self.button.self, forKey: .button)
+		try container.encodeIfPresent(self.cacheTime.self, forKey: .cacheTime)
+		try container.encodeIfPresent(self.isPersonal.self, forKey: .isPersonal)
+		try container.encodeIfPresent(self.nextOffset.self, forKey: .nextOffset)
+		try container.encodeIfPresent(self.button.self, forKey: .button)
 	}
 }

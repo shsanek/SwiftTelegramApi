@@ -14,16 +14,16 @@ public final class CreateForumTopicInput: IMultiPartFromDataEncodable {
 	public let name: String
 	
 	///Optional
-	public let iconColor: TelegramInteger
+	public let iconColor: TelegramInteger?
 	
 	///Optional
-	public let iconCustomEmojiId: String
+	public let iconCustomEmojiId: String?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		name: String,
-		iconColor: TelegramInteger,
-		iconCustomEmojiId: String
+		iconColor: TelegramInteger? = nil,
+		iconCustomEmojiId: String? = nil
 	) {
 		self.chatId = chatId
 		self.name = name

@@ -1,6 +1,6 @@
 extension TelegramAPI {
     /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func editMessageLiveLocation(_ input: EditMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+    public func editMessageLiveLocation(_ input: EditMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
         self.requester.request("editMessageLiveLocation", object: input, completion: completionHandler)
     }
 }
@@ -8,13 +8,13 @@ extension TelegramAPI {
 //Input model for request editMessageLiveLocation
 public final class EditMessageLiveLocationInput: IMultiPartFromDataEncodable {
 	///Optional
-	public let chatId: TelegramIdentifierContainer
+	public let chatId: TelegramIdentifierContainer?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 	
 	///Yes
 	public let latitude: TelegramFloat
@@ -23,27 +23,27 @@ public final class EditMessageLiveLocationInput: IMultiPartFromDataEncodable {
 	public let longitude: TelegramFloat
 	
 	///Optional
-	public let horizontalAccuracy: TelegramFloat
+	public let horizontalAccuracy: TelegramFloat?
 	
 	///Optional
-	public let heading: TelegramInteger
+	public let heading: TelegramInteger?
 	
 	///Optional
-	public let proximityAlertRadius: TelegramInteger
+	public let proximityAlertRadius: TelegramInteger?
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
-		chatId: TelegramIdentifierContainer,
-		messageId: TelegramInteger,
-		inlineMessageId: String,
+		chatId: TelegramIdentifierContainer? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil,
 		latitude: TelegramFloat,
 		longitude: TelegramFloat,
-		horizontalAccuracy: TelegramFloat,
-		heading: TelegramInteger,
-		proximityAlertRadius: TelegramInteger,
-		replyMarkup: InlineKeyboardMarkup
+		horizontalAccuracy: TelegramFloat? = nil,
+		heading: TelegramInteger? = nil,
+		proximityAlertRadius: TelegramInteger? = nil,
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

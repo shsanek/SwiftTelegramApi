@@ -23,10 +23,10 @@ public final class CreateNewStickerSetInput: Encodable {
 	public let stickerFormat: String
 	
 	///Optional
-	public let stickerType: String
+	public let stickerType: String?
 	
 	///Optional
-	public let needsRepainting: Bool
+	public let needsRepainting: Bool?
 
 	public init(
 		userId: TelegramInteger,
@@ -34,8 +34,8 @@ public final class CreateNewStickerSetInput: Encodable {
 		title: String,
 		stickers: [InputSticker],
 		stickerFormat: String,
-		stickerType: String,
-		needsRepainting: Bool
+		stickerType: String? = nil,
+		needsRepainting: Bool? = nil
 	) {
 		self.userId = userId
 		self.name = name
@@ -63,7 +63,7 @@ public final class CreateNewStickerSetInput: Encodable {
 		try container.encode(self.title.self, forKey: .title)
 		try container.encode(self.stickers.self, forKey: .stickers)
 		try container.encode(self.stickerFormat.self, forKey: .stickerFormat)
-		try container.encode(self.stickerType.self, forKey: .stickerType)
-		try container.encode(self.needsRepainting.self, forKey: .needsRepainting)
+		try container.encodeIfPresent(self.stickerType.self, forKey: .stickerType)
+		try container.encodeIfPresent(self.needsRepainting.self, forKey: .needsRepainting)
 	}
 }

@@ -8,22 +8,22 @@ extension TelegramAPI {
 //Input model for request getUpdates
 public final class GetUpdatesInput: Encodable {
 	///Optional
-	public let offset: TelegramInteger
+	public let offset: TelegramInteger?
 	
 	///Optional
-	public let limit: TelegramInteger
+	public let limit: TelegramInteger?
 	
 	///Optional
-	public let timeout: TelegramInteger
+	public let timeout: TelegramInteger?
 	
 	///Optional
-	public let allowedUpdates: [String]
+	public let allowedUpdates: [String]?
 
 	public init(
-		offset: TelegramInteger,
-		limit: TelegramInteger,
-		timeout: TelegramInteger,
-		allowedUpdates: [String]
+		offset: TelegramInteger? = nil,
+		limit: TelegramInteger? = nil,
+		timeout: TelegramInteger? = nil,
+		allowedUpdates: [String]? = nil
 	) {
 		self.offset = offset
 		self.limit = limit
@@ -40,9 +40,9 @@ public final class GetUpdatesInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.offset.self, forKey: .offset)
-		try container.encode(self.limit.self, forKey: .limit)
-		try container.encode(self.timeout.self, forKey: .timeout)
-		try container.encode(self.allowedUpdates.self, forKey: .allowedUpdates)
+		try container.encodeIfPresent(self.offset.self, forKey: .offset)
+		try container.encodeIfPresent(self.limit.self, forKey: .limit)
+		try container.encodeIfPresent(self.timeout.self, forKey: .timeout)
+		try container.encodeIfPresent(self.allowedUpdates.self, forKey: .allowedUpdates)
 	}
 }

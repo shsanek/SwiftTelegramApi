@@ -14,12 +14,12 @@ public final class UnbanChatMemberInput: IMultiPartFromDataEncodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let onlyIfBanned: Bool
+	public let onlyIfBanned: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		userId: TelegramInteger,
-		onlyIfBanned: Bool
+		onlyIfBanned: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.userId = userId

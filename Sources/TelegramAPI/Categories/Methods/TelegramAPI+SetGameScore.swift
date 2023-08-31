@@ -1,6 +1,6 @@
 extension TelegramAPI {
     /// Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
-    public func setGameScore(_ input: SetGameScoreInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+    public func setGameScore(_ input: SetGameScoreInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
         self.requester.request("setGameScore", object: input, completion: completionHandler)
     }
 }
@@ -14,28 +14,28 @@ public final class SetGameScoreInput: Encodable {
 	public let score: TelegramInteger
 	
 	///Optional
-	public let force: Bool
+	public let force: Bool?
 	
 	///Optional
-	public let disableEditMessage: Bool
+	public let disableEditMessage: Bool?
 	
 	///Optional
-	public let chatId: TelegramInteger
+	public let chatId: TelegramInteger?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 
 	public init(
 		userId: TelegramInteger,
 		score: TelegramInteger,
-		force: Bool,
-		disableEditMessage: Bool,
-		chatId: TelegramInteger,
-		messageId: TelegramInteger,
-		inlineMessageId: String
+		force: Bool? = nil,
+		disableEditMessage: Bool? = nil,
+		chatId: TelegramInteger? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil
 	) {
 		self.userId = userId
 		self.score = score
@@ -60,10 +60,10 @@ public final class SetGameScoreInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.userId.self, forKey: .userId)
 		try container.encode(self.score.self, forKey: .score)
-		try container.encode(self.force.self, forKey: .force)
-		try container.encode(self.disableEditMessage.self, forKey: .disableEditMessage)
-		try container.encode(self.chatId.self, forKey: .chatId)
-		try container.encode(self.messageId.self, forKey: .messageId)
-		try container.encode(self.inlineMessageId.self, forKey: .inlineMessageId)
+		try container.encodeIfPresent(self.force.self, forKey: .force)
+		try container.encodeIfPresent(self.disableEditMessage.self, forKey: .disableEditMessage)
+		try container.encodeIfPresent(self.chatId.self, forKey: .chatId)
+		try container.encodeIfPresent(self.messageId.self, forKey: .messageId)
+		try container.encodeIfPresent(self.inlineMessageId.self, forKey: .inlineMessageId)
 	}
 }

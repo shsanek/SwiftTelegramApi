@@ -14,16 +14,16 @@ public final class BanChatMemberInput: IMultiPartFromDataEncodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let untilDate: TelegramInteger
+	public let untilDate: TelegramInteger?
 	
 	///Optional
-	public let revokeMessages: Bool
+	public let revokeMessages: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		userId: TelegramInteger,
-		untilDate: TelegramInteger,
-		revokeMessages: Bool
+		untilDate: TelegramInteger? = nil,
+		revokeMessages: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.userId = userId

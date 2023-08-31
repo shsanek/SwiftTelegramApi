@@ -14,16 +14,16 @@ public final class AnswerShippingQueryInput: Encodable {
 	public let ok: Bool
 	
 	///Optional
-	public let shippingOptions: [ShippingOption]
+	public let shippingOptions: [ShippingOption]?
 	
 	///Optional
-	public let errorMessage: String
+	public let errorMessage: String?
 
 	public init(
 		shippingQueryId: String,
 		ok: Bool,
-		shippingOptions: [ShippingOption],
-		errorMessage: String
+		shippingOptions: [ShippingOption]? = nil,
+		errorMessage: String? = nil
 	) {
 		self.shippingQueryId = shippingQueryId
 		self.ok = ok
@@ -42,7 +42,7 @@ public final class AnswerShippingQueryInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.shippingQueryId.self, forKey: .shippingQueryId)
 		try container.encode(self.ok.self, forKey: .ok)
-		try container.encode(self.shippingOptions.self, forKey: .shippingOptions)
-		try container.encode(self.errorMessage.self, forKey: .errorMessage)
+		try container.encodeIfPresent(self.shippingOptions.self, forKey: .shippingOptions)
+		try container.encodeIfPresent(self.errorMessage.self, forKey: .errorMessage)
 	}
 }

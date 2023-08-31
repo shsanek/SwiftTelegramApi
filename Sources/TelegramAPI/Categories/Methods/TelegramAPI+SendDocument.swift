@@ -11,55 +11,55 @@ public final class SendDocumentInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let document: TelegramInputFileContainer
 	
 	///Optional
-	public let thumbnail: TelegramInputFileContainer
+	public let thumbnail: TelegramInputFileContainer?
 	
 	///Optional
-	public let caption: String
+	public let caption: String?
 	
 	///Optional
-	public let parseMode: String
+	public let parseMode: String?
 	
 	///Optional
-	public let captionEntities: [MessageEntity]
+	public let captionEntities: [MessageEntity]?
 	
 	///Optional
-	public let disableContentTypeDetection: Bool
+	public let disableContentTypeDetection: Bool?
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 	
 	///Optional
-	public let protectContent: Bool
+	public let protectContent: Bool?
 	
 	///Optional
-	public let replyToMessageId: TelegramInteger
+	public let replyToMessageId: TelegramInteger?
 	
 	///Optional
-	public let allowSendingWithoutReply: Bool
+	public let allowSendingWithoutReply: Bool?
 	
 	///Optional
-	public let replyMarkup: TelegramMarkupContainer
+	public let replyMarkup: TelegramMarkupContainer?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		document: TelegramInputFileContainer,
-		thumbnail: TelegramInputFileContainer,
-		caption: String,
-		parseMode: String,
-		captionEntities: [MessageEntity],
-		disableContentTypeDetection: Bool,
-		disableNotification: Bool,
-		protectContent: Bool,
-		replyToMessageId: TelegramInteger,
-		allowSendingWithoutReply: Bool,
-		replyMarkup: TelegramMarkupContainer
+		thumbnail: TelegramInputFileContainer? = nil,
+		caption: String? = nil,
+		parseMode: String? = nil,
+		captionEntities: [MessageEntity]? = nil,
+		disableContentTypeDetection: Bool? = nil,
+		disableNotification: Bool? = nil,
+		protectContent: Bool? = nil,
+		replyToMessageId: TelegramInteger? = nil,
+		allowSendingWithoutReply: Bool? = nil,
+		replyMarkup: TelegramMarkupContainer? = nil
 	) {
 		self.chatId = chatId
 		self.messageThreadId = messageThreadId

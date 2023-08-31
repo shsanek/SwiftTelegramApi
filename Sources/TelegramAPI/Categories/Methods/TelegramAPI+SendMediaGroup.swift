@@ -11,31 +11,31 @@ public final class SendMediaGroupInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let media: [TelegramInputMediaContainer]
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 	
 	///Optional
-	public let protectContent: Bool
+	public let protectContent: Bool?
 	
 	///Optional
-	public let replyToMessageId: TelegramInteger
+	public let replyToMessageId: TelegramInteger?
 	
 	///Optional
-	public let allowSendingWithoutReply: Bool
+	public let allowSendingWithoutReply: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		media: [TelegramInputMediaContainer],
-		disableNotification: Bool,
-		protectContent: Bool,
-		replyToMessageId: TelegramInteger,
-		allowSendingWithoutReply: Bool
+		disableNotification: Bool? = nil,
+		protectContent: Bool? = nil,
+		replyToMessageId: TelegramInteger? = nil,
+		allowSendingWithoutReply: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.messageThreadId = messageThreadId

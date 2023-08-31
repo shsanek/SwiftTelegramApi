@@ -11,23 +11,23 @@ public final class AnswerCallbackQueryInput: Encodable {
 	public let callbackQueryId: String
 	
 	///Optional
-	public let text: String
+	public let text: String?
 	
 	///Optional
-	public let showAlert: Bool
+	public let showAlert: Bool?
 	
 	///Optional
-	public let url: String
+	public let url: String?
 	
 	///Optional
-	public let cacheTime: TelegramInteger
+	public let cacheTime: TelegramInteger?
 
 	public init(
 		callbackQueryId: String,
-		text: String,
-		showAlert: Bool,
-		url: String,
-		cacheTime: TelegramInteger
+		text: String? = nil,
+		showAlert: Bool? = nil,
+		url: String? = nil,
+		cacheTime: TelegramInteger? = nil
 	) {
 		self.callbackQueryId = callbackQueryId
 		self.text = text
@@ -47,9 +47,9 @@ public final class AnswerCallbackQueryInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.callbackQueryId.self, forKey: .callbackQueryId)
-		try container.encode(self.text.self, forKey: .text)
-		try container.encode(self.showAlert.self, forKey: .showAlert)
-		try container.encode(self.url.self, forKey: .url)
-		try container.encode(self.cacheTime.self, forKey: .cacheTime)
+		try container.encodeIfPresent(self.text.self, forKey: .text)
+		try container.encodeIfPresent(self.showAlert.self, forKey: .showAlert)
+		try container.encodeIfPresent(self.url.self, forKey: .url)
+		try container.encodeIfPresent(self.cacheTime.self, forKey: .cacheTime)
 	}
 }

@@ -11,15 +11,15 @@ public final class GetUserProfilePhotosInput: Encodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let offset: TelegramInteger
+	public let offset: TelegramInteger?
 	
 	///Optional
-	public let limit: TelegramInteger
+	public let limit: TelegramInteger?
 
 	public init(
 		userId: TelegramInteger,
-		offset: TelegramInteger,
-		limit: TelegramInteger
+		offset: TelegramInteger? = nil,
+		limit: TelegramInteger? = nil
 	) {
 		self.userId = userId
 		self.offset = offset
@@ -35,7 +35,7 @@ public final class GetUserProfilePhotosInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.userId.self, forKey: .userId)
-		try container.encode(self.offset.self, forKey: .offset)
-		try container.encode(self.limit.self, forKey: .limit)
+		try container.encodeIfPresent(self.offset.self, forKey: .offset)
+		try container.encodeIfPresent(self.limit.self, forKey: .limit)
 	}
 }

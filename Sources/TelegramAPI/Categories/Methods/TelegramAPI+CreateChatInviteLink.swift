@@ -11,23 +11,23 @@ public final class CreateChatInviteLinkInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let name: String
+	public let name: String?
 	
 	///Optional
-	public let expireDate: TelegramInteger
+	public let expireDate: TelegramInteger?
 	
 	///Optional
-	public let memberLimit: TelegramInteger
+	public let memberLimit: TelegramInteger?
 	
 	///Optional
-	public let createsJoinRequest: Bool
+	public let createsJoinRequest: Bool?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		name: String,
-		expireDate: TelegramInteger,
-		memberLimit: TelegramInteger,
-		createsJoinRequest: Bool
+		name: String? = nil,
+		expireDate: TelegramInteger? = nil,
+		memberLimit: TelegramInteger? = nil,
+		createsJoinRequest: Bool? = nil
 	) {
 		self.chatId = chatId
 		self.name = name

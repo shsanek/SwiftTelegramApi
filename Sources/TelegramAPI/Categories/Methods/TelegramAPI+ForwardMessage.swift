@@ -11,26 +11,26 @@ public final class ForwardMessageInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let fromChatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 	
 	///Optional
-	public let protectContent: Bool
+	public let protectContent: Bool?
 	
 	///Yes
 	public let messageId: TelegramInteger
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		fromChatId: TelegramIdentifierContainer,
-		disableNotification: Bool,
-		protectContent: Bool,
+		disableNotification: Bool? = nil,
+		protectContent: Bool? = nil,
 		messageId: TelegramInteger
 	) {
 		self.chatId = chatId

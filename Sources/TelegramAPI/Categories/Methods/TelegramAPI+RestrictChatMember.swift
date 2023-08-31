@@ -17,17 +17,17 @@ public final class RestrictChatMemberInput: IMultiPartFromDataEncodable {
 	public let permissions: ChatPermissions
 	
 	///Optional
-	public let useIndependentChatPermissions: Bool
+	public let useIndependentChatPermissions: Bool?
 	
 	///Optional
-	public let untilDate: TelegramInteger
+	public let untilDate: TelegramInteger?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		userId: TelegramInteger,
 		permissions: ChatPermissions,
-		useIndependentChatPermissions: Bool,
-		untilDate: TelegramInteger
+		useIndependentChatPermissions: Bool? = nil,
+		untilDate: TelegramInteger? = nil
 	) {
 		self.chatId = chatId
 		self.userId = userId

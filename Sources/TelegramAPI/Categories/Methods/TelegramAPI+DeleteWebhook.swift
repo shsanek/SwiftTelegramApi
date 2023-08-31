@@ -8,10 +8,10 @@ extension TelegramAPI {
 //Input model for request deleteWebhook
 public final class DeleteWebhookInput: Encodable {
 	///Optional
-	public let dropPendingUpdates: Bool
+	public let dropPendingUpdates: Bool?
 
 	public init(
-		dropPendingUpdates: Bool
+		dropPendingUpdates: Bool? = nil
 	) {
 		self.dropPendingUpdates = dropPendingUpdates
 	}
@@ -22,6 +22,6 @@ public final class DeleteWebhookInput: Encodable {
 
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.dropPendingUpdates.self, forKey: .dropPendingUpdates)
+		try container.encodeIfPresent(self.dropPendingUpdates.self, forKey: .dropPendingUpdates)
 	}
 }

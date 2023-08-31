@@ -11,19 +11,19 @@ public final class GetGameHighScoresInput: Encodable {
 	public let userId: TelegramInteger
 	
 	///Optional
-	public let chatId: TelegramInteger
+	public let chatId: TelegramInteger?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 
 	public init(
 		userId: TelegramInteger,
-		chatId: TelegramInteger,
-		messageId: TelegramInteger,
-		inlineMessageId: String
+		chatId: TelegramInteger? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil
 	) {
 		self.userId = userId
 		self.chatId = chatId
@@ -41,8 +41,8 @@ public final class GetGameHighScoresInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.userId.self, forKey: .userId)
-		try container.encode(self.chatId.self, forKey: .chatId)
-		try container.encode(self.messageId.self, forKey: .messageId)
-		try container.encode(self.inlineMessageId.self, forKey: .inlineMessageId)
+		try container.encodeIfPresent(self.chatId.self, forKey: .chatId)
+		try container.encodeIfPresent(self.messageId.self, forKey: .messageId)
+		try container.encodeIfPresent(self.inlineMessageId.self, forKey: .inlineMessageId)
 	}
 }

@@ -14,12 +14,12 @@ public final class StopPollInput: IMultiPartFromDataEncodable {
 	public let messageId: TelegramInteger
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
 		messageId: TelegramInteger,
-		replyMarkup: InlineKeyboardMarkup
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

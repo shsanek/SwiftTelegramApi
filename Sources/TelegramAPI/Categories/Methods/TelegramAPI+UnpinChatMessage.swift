@@ -11,11 +11,11 @@ public final class UnpinChatMessageInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageId: TelegramInteger
+		messageId: TelegramInteger? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

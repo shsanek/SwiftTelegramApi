@@ -11,11 +11,11 @@ public final class SetChatDescriptionInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let description: String
+	public let description: String?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		description: String
+		description: String? = nil
 	) {
 		self.chatId = chatId
 		self.description = description

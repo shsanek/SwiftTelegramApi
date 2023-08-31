@@ -11,7 +11,7 @@ public final class SendInvoiceInput: IMultiPartFromDataEncodable {
 	public let chatId: TelegramIdentifierContainer
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let title: String
@@ -32,94 +32,94 @@ public final class SendInvoiceInput: IMultiPartFromDataEncodable {
 	public let prices: [LabeledPrice]
 	
 	///Optional
-	public let maxTipAmount: TelegramInteger
+	public let maxTipAmount: TelegramInteger?
 	
 	///Optional
-	public let suggestedTipAmounts: [TelegramInteger]
+	public let suggestedTipAmounts: [TelegramInteger]?
 	
 	///Optional
-	public let startParameter: String
+	public let startParameter: String?
 	
 	///Optional
-	public let providerData: String
+	public let providerData: String?
 	
 	///Optional
-	public let photoUrl: String
+	public let photoUrl: String?
 	
 	///Optional
-	public let photoSize: TelegramInteger
+	public let photoSize: TelegramInteger?
 	
 	///Optional
-	public let photoWidth: TelegramInteger
+	public let photoWidth: TelegramInteger?
 	
 	///Optional
-	public let photoHeight: TelegramInteger
+	public let photoHeight: TelegramInteger?
 	
 	///Optional
-	public let needName: Bool
+	public let needName: Bool?
 	
 	///Optional
-	public let needPhoneNumber: Bool
+	public let needPhoneNumber: Bool?
 	
 	///Optional
-	public let needEmail: Bool
+	public let needEmail: Bool?
 	
 	///Optional
-	public let needShippingAddress: Bool
+	public let needShippingAddress: Bool?
 	
 	///Optional
-	public let sendPhoneNumberToProvider: Bool
+	public let sendPhoneNumberToProvider: Bool?
 	
 	///Optional
-	public let sendEmailToProvider: Bool
+	public let sendEmailToProvider: Bool?
 	
 	///Optional
-	public let isFlexible: Bool
+	public let isFlexible: Bool?
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 	
 	///Optional
-	public let protectContent: Bool
+	public let protectContent: Bool?
 	
 	///Optional
-	public let replyToMessageId: TelegramInteger
+	public let replyToMessageId: TelegramInteger?
 	
 	///Optional
-	public let allowSendingWithoutReply: Bool
+	public let allowSendingWithoutReply: Bool?
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
 		chatId: TelegramIdentifierContainer,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		title: String,
 		description: String,
 		payload: String,
 		providerToken: String,
 		currency: String,
 		prices: [LabeledPrice],
-		maxTipAmount: TelegramInteger,
-		suggestedTipAmounts: [TelegramInteger],
-		startParameter: String,
-		providerData: String,
-		photoUrl: String,
-		photoSize: TelegramInteger,
-		photoWidth: TelegramInteger,
-		photoHeight: TelegramInteger,
-		needName: Bool,
-		needPhoneNumber: Bool,
-		needEmail: Bool,
-		needShippingAddress: Bool,
-		sendPhoneNumberToProvider: Bool,
-		sendEmailToProvider: Bool,
-		isFlexible: Bool,
-		disableNotification: Bool,
-		protectContent: Bool,
-		replyToMessageId: TelegramInteger,
-		allowSendingWithoutReply: Bool,
-		replyMarkup: InlineKeyboardMarkup
+		maxTipAmount: TelegramInteger? = nil,
+		suggestedTipAmounts: [TelegramInteger]? = nil,
+		startParameter: String? = nil,
+		providerData: String? = nil,
+		photoUrl: String? = nil,
+		photoSize: TelegramInteger? = nil,
+		photoWidth: TelegramInteger? = nil,
+		photoHeight: TelegramInteger? = nil,
+		needName: Bool? = nil,
+		needPhoneNumber: Bool? = nil,
+		needEmail: Bool? = nil,
+		needShippingAddress: Bool? = nil,
+		sendPhoneNumberToProvider: Bool? = nil,
+		sendEmailToProvider: Bool? = nil,
+		isFlexible: Bool? = nil,
+		disableNotification: Bool? = nil,
+		protectContent: Bool? = nil,
+		replyToMessageId: TelegramInteger? = nil,
+		allowSendingWithoutReply: Bool? = nil,
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageThreadId = messageThreadId

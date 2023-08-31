@@ -8,26 +8,26 @@ extension TelegramAPI {
 //Input model for request editMessageMedia
 public final class EditMessageMediaInput: IMultiPartFromDataEncodable {
 	///Optional
-	public let chatId: TelegramIdentifierContainer
+	public let chatId: TelegramIdentifierContainer?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 	
 	///Yes
 	public let media: InputMedia
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
-		chatId: TelegramIdentifierContainer,
-		messageId: TelegramInteger,
-		inlineMessageId: String,
+		chatId: TelegramIdentifierContainer? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil,
 		media: InputMedia,
-		replyMarkup: InlineKeyboardMarkup
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

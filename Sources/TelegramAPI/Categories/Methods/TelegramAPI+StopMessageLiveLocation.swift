@@ -8,22 +8,22 @@ extension TelegramAPI {
 //Input model for request stopMessageLiveLocation
 public final class StopMessageLiveLocationInput: IMultiPartFromDataEncodable {
 	///Optional
-	public let chatId: TelegramIdentifierContainer
+	public let chatId: TelegramIdentifierContainer?
 	
 	///Optional
-	public let messageId: TelegramInteger
+	public let messageId: TelegramInteger?
 	
 	///Optional
-	public let inlineMessageId: String
+	public let inlineMessageId: String?
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
-		chatId: TelegramIdentifierContainer,
-		messageId: TelegramInteger,
-		inlineMessageId: String,
-		replyMarkup: InlineKeyboardMarkup
+		chatId: TelegramIdentifierContainer? = nil,
+		messageId: TelegramInteger? = nil,
+		inlineMessageId: String? = nil,
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageId = messageId

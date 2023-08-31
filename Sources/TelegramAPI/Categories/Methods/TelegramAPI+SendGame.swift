@@ -11,35 +11,35 @@ public final class SendGameInput: Encodable {
 	public let chatId: TelegramInteger
 	
 	///Optional
-	public let messageThreadId: TelegramInteger
+	public let messageThreadId: TelegramInteger?
 	
 	///Yes
 	public let gameShortName: String
 	
 	///Optional
-	public let disableNotification: Bool
+	public let disableNotification: Bool?
 	
 	///Optional
-	public let protectContent: Bool
+	public let protectContent: Bool?
 	
 	///Optional
-	public let replyToMessageId: TelegramInteger
+	public let replyToMessageId: TelegramInteger?
 	
 	///Optional
-	public let allowSendingWithoutReply: Bool
+	public let allowSendingWithoutReply: Bool?
 	
 	///Optional
-	public let replyMarkup: InlineKeyboardMarkup
+	public let replyMarkup: InlineKeyboardMarkup?
 
 	public init(
 		chatId: TelegramInteger,
-		messageThreadId: TelegramInteger,
+		messageThreadId: TelegramInteger? = nil,
 		gameShortName: String,
-		disableNotification: Bool,
-		protectContent: Bool,
-		replyToMessageId: TelegramInteger,
-		allowSendingWithoutReply: Bool,
-		replyMarkup: InlineKeyboardMarkup
+		disableNotification: Bool? = nil,
+		protectContent: Bool? = nil,
+		replyToMessageId: TelegramInteger? = nil,
+		allowSendingWithoutReply: Bool? = nil,
+		replyMarkup: InlineKeyboardMarkup? = nil
 	) {
 		self.chatId = chatId
 		self.messageThreadId = messageThreadId
@@ -65,12 +65,12 @@ public final class SendGameInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.chatId.self, forKey: .chatId)
-		try container.encode(self.messageThreadId.self, forKey: .messageThreadId)
+		try container.encodeIfPresent(self.messageThreadId.self, forKey: .messageThreadId)
 		try container.encode(self.gameShortName.self, forKey: .gameShortName)
-		try container.encode(self.disableNotification.self, forKey: .disableNotification)
-		try container.encode(self.protectContent.self, forKey: .protectContent)
-		try container.encode(self.replyToMessageId.self, forKey: .replyToMessageId)
-		try container.encode(self.allowSendingWithoutReply.self, forKey: .allowSendingWithoutReply)
-		try container.encode(self.replyMarkup.self, forKey: .replyMarkup)
+		try container.encodeIfPresent(self.disableNotification.self, forKey: .disableNotification)
+		try container.encodeIfPresent(self.protectContent.self, forKey: .protectContent)
+		try container.encodeIfPresent(self.replyToMessageId.self, forKey: .replyToMessageId)
+		try container.encodeIfPresent(self.allowSendingWithoutReply.self, forKey: .allowSendingWithoutReply)
+		try container.encodeIfPresent(self.replyMarkup.self, forKey: .replyMarkup)
 	}
 }
