@@ -5,12 +5,18 @@ import PackageDescription
 
 let package = Package(
     name: "TelegramAPI",
+    platforms: [.macOS(.v10_14)],
     products: [
         .library(name: "TelegramAPI", targets: ["TelegramAPI"]),
+        .executable(name: "TelegramAPIGenerator", targets: ["TelegramAPIGenerator"])
     ],
     targets: [
         .target(
             name: "TelegramAPI",
-            dependencies: [])
+            dependencies: []),
+        .target(
+            name: "TelegramAPIGenerator",
+            dependencies: []
+        ),
     ]
 )

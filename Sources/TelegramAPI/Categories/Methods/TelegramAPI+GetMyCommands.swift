@@ -1,0 +1,34 @@
+extension TelegramAPI {
+    /// Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
+    public func getMyCommands(_ input: GetMyCommandsInput, completionHandler: @escaping (TelegramResult<[BotCommand]>) -> Void) {
+        self.requester.request("getMyCommands", object: input, completion: completionHandler)
+    }
+}
+
+//Input model for request getMyCommands
+public final class GetMyCommandsInput: Encodable {
+	///Optional
+	public let scope: BotCommandScope
+	
+	///Optional
+	public let languageCode: String
+
+	public init(
+		scope: BotCommandScope,
+		languageCode: String
+	) {
+		self.scope = scope
+		self.languageCode = languageCode
+	}
+
+	private enum CodingKeys: String, CodingKey {
+		case scope
+		case languageCode = "language_code"
+	}
+
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(self.scope.self, forKey: .scope)
+		try container.encode(self.languageCode.self, forKey: .languageCode)
+	}
+}
