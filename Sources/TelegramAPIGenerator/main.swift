@@ -32,15 +32,13 @@ struct Element: Codable {
         }
 
         var isInputFile: Bool {
-            ["TelegramIdentifierContainer", "TelegramInputFile", "InputSticker"].contains(baseType)
+            ["TelegramIdentifierContainer", "TelegramInputFile", "InputSticker"].contains(subtype)
         }
 
-        func calculate(baseType: String) -> String {
+        var subtype: String {
             let arrayPrefix = "Array of "
-            var base = baseType
-            var arrayCount = 0
+            var base = type
             while base.hasPrefix(arrayPrefix) {
-                arrayCount += 1
                 base = String(base.dropFirst(arrayPrefix.count))
             }
             if base == "Integer" {
@@ -73,6 +71,18 @@ struct Element: Codable {
             if base == "InputMediaAudio, InputMediaDocument, InputMediaPhoto and InputMediaVideo" {
                 base = "TelegramInputMediaContainer"
             }
+            return base
+        }
+
+        func calculate(baseType: String) -> String {
+            let arrayPrefix = "Array of "
+            var base = baseType
+            var arrayCount = 0
+            while base.hasPrefix(arrayPrefix) {
+                arrayCount += 1
+                base = String(base.dropFirst(arrayPrefix.count))
+            }
+            base = subtype
             for _ in 0..<arrayCount {
                 base = "[\(base)]"
             }

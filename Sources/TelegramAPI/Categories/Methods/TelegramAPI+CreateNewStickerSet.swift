@@ -6,7 +6,7 @@ extension TelegramAPI {
 }
 
 //Input model for request createNewStickerSet
-public final class CreateNewStickerSetInput: Encodable {
+public final class CreateNewStickerSetInput: IMultiPartFromDataEncodable {
 	///Yes. User identifier of created sticker set owner
 	public let userId: TelegramInteger
 	
@@ -46,24 +46,13 @@ public final class CreateNewStickerSetInput: Encodable {
 		self.needsRepainting = needsRepainting
 	}
 
-	private enum CodingKeys: String, CodingKey {
-		case userId = "user_id"
-		case name
-		case title
-		case stickers
-		case stickerFormat = "sticker_format"
-		case stickerType = "sticker_type"
-		case needsRepainting = "needs_repainting"
-	}
-
-	public func encode(to encoder: Encoder) throws {
-		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(self.userId.self, forKey: .userId)
-		try container.encode(self.name.self, forKey: .name)
-		try container.encode(self.title.self, forKey: .title)
-		try container.encode(self.stickers.self, forKey: .stickers)
-		try container.encode(self.stickerFormat.self, forKey: .stickerFormat)
-		try container.encodeIfPresent(self.stickerType.self, forKey: .stickerType)
-		try container.encodeIfPresent(self.needsRepainting.self, forKey: .needsRepainting)
+	func encode(_ encoder: MultiPartFromDataEncoder) {
+		encoder.append("user_id", object: self.userId)
+		encoder.append("name", object: self.name)
+		encoder.append("title", object: self.title)
+		encoder.append("stickers", object: self.stickers)
+		encoder.append("sticker_format", object: self.stickerFormat)
+		encoder.append("sticker_type", object: self.stickerType)
+		encoder.append("needs_repainting", object: self.needsRepainting)
 	}
 }
