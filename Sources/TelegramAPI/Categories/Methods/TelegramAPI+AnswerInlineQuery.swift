@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request answerInlineQuery
-public final class AnswerInlineQueryInput: Encodable {
+import Foundation
+public final class AnswerInlineQueryInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier for the answered query
 	public let inlineQueryId: String
 	
@@ -58,5 +59,19 @@ public final class AnswerInlineQueryInput: Encodable {
 		try container.encodeIfPresent(self.isPersonal.self, forKey: .isPersonal)
 		try container.encodeIfPresent(self.nextOffset.self, forKey: .nextOffset)
 		try container.encodeIfPresent(self.button.self, forKey: .button)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.inlineQueryId = try container.decode(String.self, forKey: .inlineQueryId)
+		self.results = try container.decode([InlineQueryResult].self, forKey: .results)
+		self.cacheTime = try container.decodeIfPresent(TelegramInteger.self, forKey: .cacheTime)
+		self.isPersonal = try container.decodeIfPresent(Bool.self, forKey: .isPersonal)
+		self.nextOffset = try container.decodeIfPresent(String.self, forKey: .nextOffset)
+		self.button = try container.decodeIfPresent(InlineQueryResultsButton.self, forKey: .button)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

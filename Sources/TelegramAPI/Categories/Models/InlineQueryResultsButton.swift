@@ -1,4 +1,5 @@
-public final class InlineQueryResultsButton: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultsButton: Codable, IMultiPartFromDataValueEncodable {
 	///Label text on the button
 	public let text: String
 	
@@ -38,9 +39,7 @@ public final class InlineQueryResultsButton: Codable, IMultiPartFromDataEncodabl
 		self.startParameter = try container.decodeIfPresent(String.self, forKey: .startParameter)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("text", object: self.text)
-		encoder.append("web_app", object: self.webApp)
-		encoder.append("start_parameter", object: self.startParameter)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

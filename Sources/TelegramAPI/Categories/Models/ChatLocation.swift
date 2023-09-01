@@ -1,4 +1,5 @@
-public final class ChatLocation: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatLocation: Codable, IMultiPartFromDataValueEncodable {
 	///The location to which the supergroup is connected. Can't be a live location.
 	public let location: Location
 	
@@ -30,8 +31,7 @@ public final class ChatLocation: Codable, IMultiPartFromDataEncodable {
 		self.address = try container.decode(String.self, forKey: .address)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("location", object: self.location)
-		encoder.append("address", object: self.address)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

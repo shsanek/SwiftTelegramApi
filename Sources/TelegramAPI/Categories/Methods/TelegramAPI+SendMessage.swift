@@ -66,17 +66,17 @@ public final class SendMessageInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("text", object: self.text)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("entities", object: self.entities)
-		encoder.append("disable_web_page_preview", object: self.disableWebPagePreview)
-		encoder.append("disable_notification", object: self.disableNotification)
-		encoder.append("protect_content", object: self.protectContent)
-		encoder.append("reply_to_message_id", object: self.replyToMessageId)
-		encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("text", object: self.text)
+		try encoder.append("parse_mode", object: self.parseMode)
+		try encoder.append("entities", object: self.entities)
+		try encoder.append("disable_web_page_preview", object: self.disableWebPagePreview)
+		try encoder.append("disable_notification", object: self.disableNotification)
+		try encoder.append("protect_content", object: self.protectContent)
+		try encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		try encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

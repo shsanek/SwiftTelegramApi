@@ -86,21 +86,21 @@ public final class SendVenueInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("latitude", object: self.latitude)
-		encoder.append("longitude", object: self.longitude)
-		encoder.append("title", object: self.title)
-		encoder.append("address", object: self.address)
-		encoder.append("foursquare_id", object: self.foursquareId)
-		encoder.append("foursquare_type", object: self.foursquareType)
-		encoder.append("google_place_id", object: self.googlePlaceId)
-		encoder.append("google_place_type", object: self.googlePlaceType)
-		encoder.append("disable_notification", object: self.disableNotification)
-		encoder.append("protect_content", object: self.protectContent)
-		encoder.append("reply_to_message_id", object: self.replyToMessageId)
-		encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("latitude", object: self.latitude)
+		try encoder.append("longitude", object: self.longitude)
+		try encoder.append("title", object: self.title)
+		try encoder.append("address", object: self.address)
+		try encoder.append("foursquare_id", object: self.foursquareId)
+		try encoder.append("foursquare_type", object: self.foursquareType)
+		try encoder.append("google_place_id", object: self.googlePlaceId)
+		try encoder.append("google_place_type", object: self.googlePlaceType)
+		try encoder.append("disable_notification", object: self.disableNotification)
+		try encoder.append("protect_content", object: self.protectContent)
+		try encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		try encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

@@ -1,4 +1,5 @@
-public final class SuccessfulPayment: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class SuccessfulPayment: Codable, IMultiPartFromDataValueEncodable {
 	///Three-letter ISO 4217 currency code
 	public let currency: String
 	
@@ -70,13 +71,7 @@ public final class SuccessfulPayment: Codable, IMultiPartFromDataEncodable {
 		self.providerPaymentChargeId = try container.decode(String.self, forKey: .providerPaymentChargeId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("currency", object: self.currency)
-		encoder.append("total_amount", object: self.totalAmount)
-		encoder.append("invoice_payload", object: self.invoicePayload)
-		encoder.append("shipping_option_id", object: self.shippingOptionId)
-		encoder.append("order_info", object: self.orderInfo)
-		encoder.append("telegram_payment_charge_id", object: self.telegramPaymentChargeId)
-		encoder.append("provider_payment_charge_id", object: self.providerPaymentChargeId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

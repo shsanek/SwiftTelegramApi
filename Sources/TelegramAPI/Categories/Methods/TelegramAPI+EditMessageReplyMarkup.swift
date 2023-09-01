@@ -31,10 +31,10 @@ public final class EditMessageReplyMarkupInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
+		try encoder.append("inline_message_id", object: self.inlineMessageId)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

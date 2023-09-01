@@ -1,4 +1,5 @@
-public final class InlineQueryResultCachedMpeg4Gif: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultCachedMpeg4Gif: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be mpeg4_gif
 	public let type: String
 	
@@ -86,15 +87,7 @@ public final class InlineQueryResultCachedMpeg4Gif: Codable, IMultiPartFromDataE
 		self.inputMessageContent = try container.decodeIfPresent(InputMessageContent.self, forKey: .inputMessageContent)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("mpeg4_file_id", object: self.mpeg4FileId)
-		encoder.append("title", object: self.title)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("input_message_content", object: self.inputMessageContent)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

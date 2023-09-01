@@ -1,4 +1,5 @@
-public final class InputMediaDocument: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputMediaDocument: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be document
 	public let type: String
 	
@@ -70,13 +71,7 @@ public final class InputMediaDocument: Codable, IMultiPartFromDataEncodable {
 		self.disableContentTypeDetection = try container.decodeIfPresent(Bool.self, forKey: .disableContentTypeDetection)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("media", object: self.media)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("disable_content_type_detection", object: self.disableContentTypeDetection)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

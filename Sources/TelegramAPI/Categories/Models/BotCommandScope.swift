@@ -1,4 +1,5 @@
-public final class BotCommandScope: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class BotCommandScope: Codable, IMultiPartFromDataValueEncodable {
 	
 
 	public init(
@@ -13,7 +14,7 @@ public final class BotCommandScope: Codable, IMultiPartFromDataEncodable {
 
 	public init(from decoder: Decoder) throws {}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-	
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

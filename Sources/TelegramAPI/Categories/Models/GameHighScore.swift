@@ -1,4 +1,5 @@
-public final class GameHighScore: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class GameHighScore: Codable, IMultiPartFromDataValueEncodable {
 	///Position in high score table for the game
 	public let position: TelegramInteger
 	
@@ -38,9 +39,7 @@ public final class GameHighScore: Codable, IMultiPartFromDataEncodable {
 		self.score = try container.decode(TelegramInteger.self, forKey: .score)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("position", object: self.position)
-		encoder.append("user", object: self.user)
-		encoder.append("score", object: self.score)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

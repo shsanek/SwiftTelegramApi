@@ -16,7 +16,7 @@ public final class UnpinAllGeneralForumTopicMessagesInput: IMultiPartFromDataEnc
 		self.chatId = chatId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
 	}
 }

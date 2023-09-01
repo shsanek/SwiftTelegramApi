@@ -1,4 +1,5 @@
-public final class PassportData: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PassportData: Codable, IMultiPartFromDataValueEncodable {
 	///Array with information about documents and other Telegram Passport elements that was shared with the bot
 	public let data: [EncryptedPassportElement]
 	
@@ -30,8 +31,7 @@ public final class PassportData: Codable, IMultiPartFromDataEncodable {
 		self.credentials = try container.decode(EncryptedCredentials.self, forKey: .credentials)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("data", object: self.data)
-		encoder.append("credentials", object: self.credentials)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

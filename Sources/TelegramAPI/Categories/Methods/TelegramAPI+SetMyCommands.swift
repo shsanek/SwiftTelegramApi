@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setMyCommands
-public final class SetMyCommandsInput: Encodable {
+import Foundation
+public final class SetMyCommandsInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
 	public let commands: [BotCommand]
 	
@@ -37,5 +38,16 @@ public final class SetMyCommandsInput: Encodable {
 		try container.encode(self.commands.self, forKey: .commands)
 		try container.encodeIfPresent(self.scope.self, forKey: .scope)
 		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.commands = try container.decode([BotCommand].self, forKey: .commands)
+		self.scope = try container.decodeIfPresent(BotCommandScope.self, forKey: .scope)
+		self.languageCode = try container.decodeIfPresent(String.self, forKey: .languageCode)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

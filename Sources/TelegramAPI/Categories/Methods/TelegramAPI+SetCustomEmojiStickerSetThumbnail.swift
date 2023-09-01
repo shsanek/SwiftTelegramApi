@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setCustomEmojiStickerSetThumbnail
-public final class SetCustomEmojiStickerSetThumbnailInput: Encodable {
+import Foundation
+public final class SetCustomEmojiStickerSetThumbnailInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Sticker set name
 	public let name: String
 	
@@ -30,5 +31,15 @@ public final class SetCustomEmojiStickerSetThumbnailInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.name.self, forKey: .name)
 		try container.encodeIfPresent(self.customEmojiId.self, forKey: .customEmojiId)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.customEmojiId = try container.decodeIfPresent(String.self, forKey: .customEmojiId)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

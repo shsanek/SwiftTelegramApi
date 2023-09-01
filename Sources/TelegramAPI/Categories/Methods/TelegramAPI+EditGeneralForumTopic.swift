@@ -21,8 +21,8 @@ public final class EditGeneralForumTopicInput: IMultiPartFromDataEncodable {
 		self.name = name
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("name", object: self.name)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("name", object: self.name)
 	}
 }

@@ -1,4 +1,5 @@
-public final class ChatMemberUpdated: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatMemberUpdated: Codable, IMultiPartFromDataValueEncodable {
 	///Chat the user belongs to
 	public let chat: Chat
 	
@@ -70,13 +71,7 @@ public final class ChatMemberUpdated: Codable, IMultiPartFromDataEncodable {
 		self.viaChatFolderInviteLink = try container.decodeIfPresent(Bool.self, forKey: .viaChatFolderInviteLink)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat", object: self.chat)
-		encoder.append("from", object: self.from)
-		encoder.append("date", object: self.date)
-		encoder.append("old_chat_member", object: self.oldChatMember)
-		encoder.append("new_chat_member", object: self.newChatMember)
-		encoder.append("invite_link", object: self.inviteLink)
-		encoder.append("via_chat_folder_invite_link", object: self.viaChatFolderInviteLink)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

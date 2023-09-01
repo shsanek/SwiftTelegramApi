@@ -76,19 +76,19 @@ public final class SendDocumentInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("document", object: self.document)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("disable_content_type_detection", object: self.disableContentTypeDetection)
-		encoder.append("disable_notification", object: self.disableNotification)
-		encoder.append("protect_content", object: self.protectContent)
-		encoder.append("reply_to_message_id", object: self.replyToMessageId)
-		encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("document", object: self.document)
+		try encoder.append("thumbnail", object: self.thumbnail)
+		try encoder.append("caption", object: self.caption)
+		try encoder.append("parse_mode", object: self.parseMode)
+		try encoder.append("caption_entities", object: self.captionEntities)
+		try encoder.append("disable_content_type_detection", object: self.disableContentTypeDetection)
+		try encoder.append("disable_notification", object: self.disableNotification)
+		try encoder.append("protect_content", object: self.protectContent)
+		try encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		try encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

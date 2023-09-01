@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setPassportDataErrors
-public final class SetPassportDataErrorsInput: Encodable {
+import Foundation
+public final class SetPassportDataErrorsInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. User identifier
 	public let userId: TelegramInteger
 	
@@ -30,5 +31,15 @@ public final class SetPassportDataErrorsInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.userId.self, forKey: .userId)
 		try container.encode(self.errors.self, forKey: .errors)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.userId = try container.decode(TelegramInteger.self, forKey: .userId)
+		self.errors = try container.decode([PassportElementError].self, forKey: .errors)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setMyName
-public final class SetMyNameInput: Encodable {
+import Foundation
+public final class SetMyNameInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language.
 	public let name: String?
 	
@@ -30,5 +31,15 @@ public final class SetMyNameInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.name.self, forKey: .name)
 		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decodeIfPresent(String.self, forKey: .name)
+		self.languageCode = try container.decodeIfPresent(String.self, forKey: .languageCode)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

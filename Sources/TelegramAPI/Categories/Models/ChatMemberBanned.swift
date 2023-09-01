@@ -1,4 +1,5 @@
-public final class ChatMemberBanned: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatMemberBanned: Codable, IMultiPartFromDataValueEncodable {
 	///The member's status in the chat, always “kicked”
 	public let status: String
 	
@@ -38,9 +39,7 @@ public final class ChatMemberBanned: Codable, IMultiPartFromDataEncodable {
 		self.untilDate = try container.decode(TelegramInteger.self, forKey: .untilDate)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("status", object: self.status)
-		encoder.append("user", object: self.user)
-		encoder.append("until_date", object: self.untilDate)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

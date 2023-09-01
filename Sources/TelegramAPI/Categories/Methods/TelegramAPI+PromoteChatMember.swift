@@ -81,20 +81,20 @@ public final class PromoteChatMemberInput: IMultiPartFromDataEncodable {
 		self.canManageTopics = canManageTopics
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
-		encoder.append("is_anonymous", object: self.isAnonymous)
-		encoder.append("can_manage_chat", object: self.canManageChat)
-		encoder.append("can_post_messages", object: self.canPostMessages)
-		encoder.append("can_edit_messages", object: self.canEditMessages)
-		encoder.append("can_delete_messages", object: self.canDeleteMessages)
-		encoder.append("can_manage_video_chats", object: self.canManageVideoChats)
-		encoder.append("can_restrict_members", object: self.canRestrictMembers)
-		encoder.append("can_promote_members", object: self.canPromoteMembers)
-		encoder.append("can_change_info", object: self.canChangeInfo)
-		encoder.append("can_invite_users", object: self.canInviteUsers)
-		encoder.append("can_pin_messages", object: self.canPinMessages)
-		encoder.append("can_manage_topics", object: self.canManageTopics)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("is_anonymous", object: self.isAnonymous)
+		try encoder.append("can_manage_chat", object: self.canManageChat)
+		try encoder.append("can_post_messages", object: self.canPostMessages)
+		try encoder.append("can_edit_messages", object: self.canEditMessages)
+		try encoder.append("can_delete_messages", object: self.canDeleteMessages)
+		try encoder.append("can_manage_video_chats", object: self.canManageVideoChats)
+		try encoder.append("can_restrict_members", object: self.canRestrictMembers)
+		try encoder.append("can_promote_members", object: self.canPromoteMembers)
+		try encoder.append("can_change_info", object: self.canChangeInfo)
+		try encoder.append("can_invite_users", object: self.canInviteUsers)
+		try encoder.append("can_pin_messages", object: self.canPinMessages)
+		try encoder.append("can_manage_topics", object: self.canManageTopics)
 	}
 }

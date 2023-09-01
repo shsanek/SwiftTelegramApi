@@ -1,4 +1,5 @@
-public final class ChatJoinRequest: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatJoinRequest: Codable, IMultiPartFromDataValueEncodable {
 	///Chat to which the request was sent
 	public let chat: Chat
 	
@@ -62,12 +63,7 @@ public final class ChatJoinRequest: Codable, IMultiPartFromDataEncodable {
 		self.inviteLink = try container.decodeIfPresent(ChatInviteLink.self, forKey: .inviteLink)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat", object: self.chat)
-		encoder.append("from", object: self.from)
-		encoder.append("user_chat_id", object: self.userChatId)
-		encoder.append("date", object: self.date)
-		encoder.append("bio", object: self.bio)
-		encoder.append("invite_link", object: self.inviteLink)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

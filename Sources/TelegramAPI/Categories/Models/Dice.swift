@@ -1,4 +1,5 @@
-public final class Dice: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Dice: Codable, IMultiPartFromDataValueEncodable {
 	///Emoji on which the dice throw animation is based
 	public let emoji: String
 	
@@ -30,8 +31,7 @@ public final class Dice: Codable, IMultiPartFromDataEncodable {
 		self.value = try container.decode(TelegramInteger.self, forKey: .value)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("emoji", object: self.emoji)
-		encoder.append("value", object: self.value)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

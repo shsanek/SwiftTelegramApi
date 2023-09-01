@@ -1,4 +1,5 @@
-public final class MessageEntity: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MessageEntity: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers)
 	public let type: String
 	
@@ -70,13 +71,7 @@ public final class MessageEntity: Codable, IMultiPartFromDataEncodable {
 		self.customEmojiId = try container.decodeIfPresent(String.self, forKey: .customEmojiId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("offset", object: self.offset)
-		encoder.append("length", object: self.length)
-		encoder.append("url", object: self.url)
-		encoder.append("user", object: self.user)
-		encoder.append("language", object: self.language)
-		encoder.append("custom_emoji_id", object: self.customEmojiId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

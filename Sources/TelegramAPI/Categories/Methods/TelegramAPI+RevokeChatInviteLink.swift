@@ -21,8 +21,8 @@ public final class RevokeChatInviteLinkInput: IMultiPartFromDataEncodable {
 		self.inviteLink = inviteLink
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("invite_link", object: self.inviteLink)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("invite_link", object: self.inviteLink)
 	}
 }

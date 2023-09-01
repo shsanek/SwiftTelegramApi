@@ -1,4 +1,5 @@
-public final class InputContactMessageContent: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputContactMessageContent: Codable, IMultiPartFromDataValueEncodable {
 	///Contact's phone number
 	public let phoneNumber: String
 	
@@ -46,10 +47,7 @@ public final class InputContactMessageContent: Codable, IMultiPartFromDataEncoda
 		self.vcard = try container.decodeIfPresent(String.self, forKey: .vcard)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("phone_number", object: self.phoneNumber)
-		encoder.append("first_name", object: self.firstName)
-		encoder.append("last_name", object: self.lastName)
-		encoder.append("vcard", object: self.vcard)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

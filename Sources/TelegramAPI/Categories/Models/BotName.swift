@@ -1,4 +1,5 @@
-public final class BotName: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class BotName: Codable, IMultiPartFromDataValueEncodable {
 	///The bot's name
 	public let name: String
 
@@ -22,7 +23,7 @@ public final class BotName: Codable, IMultiPartFromDataEncodable {
 		self.name = try container.decode(String.self, forKey: .name)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("name", object: self.name)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

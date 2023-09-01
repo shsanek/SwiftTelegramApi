@@ -1,4 +1,5 @@
-public final class Audio: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Audio: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -86,15 +87,7 @@ public final class Audio: Codable, IMultiPartFromDataEncodable {
 		self.thumbnail = try container.decodeIfPresent(PhotoSize.self, forKey: .thumbnail)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("duration", object: self.duration)
-		encoder.append("performer", object: self.performer)
-		encoder.append("title", object: self.title)
-		encoder.append("file_name", object: self.fileName)
-		encoder.append("mime_type", object: self.mimeType)
-		encoder.append("file_size", object: self.fileSize)
-		encoder.append("thumbnail", object: self.thumbnail)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

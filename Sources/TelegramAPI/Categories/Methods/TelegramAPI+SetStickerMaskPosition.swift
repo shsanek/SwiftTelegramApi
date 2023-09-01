@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setStickerMaskPosition
-public final class SetStickerMaskPositionInput: Encodable {
+import Foundation
+public final class SetStickerMaskPositionInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. File identifier of the sticker
 	public let sticker: String
 	
@@ -30,5 +31,15 @@ public final class SetStickerMaskPositionInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.sticker.self, forKey: .sticker)
 		try container.encodeIfPresent(self.maskPosition.self, forKey: .maskPosition)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.sticker = try container.decode(String.self, forKey: .sticker)
+		self.maskPosition = try container.decodeIfPresent(MaskPosition.self, forKey: .maskPosition)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

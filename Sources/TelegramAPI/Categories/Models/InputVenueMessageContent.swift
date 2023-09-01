@@ -1,4 +1,5 @@
-public final class InputVenueMessageContent: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputVenueMessageContent: Codable, IMultiPartFromDataValueEncodable {
 	///Latitude of the venue in degrees
 	public let latitude: TelegramFloat
 	
@@ -78,14 +79,7 @@ public final class InputVenueMessageContent: Codable, IMultiPartFromDataEncodabl
 		self.googlePlaceType = try container.decodeIfPresent(String.self, forKey: .googlePlaceType)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("latitude", object: self.latitude)
-		encoder.append("longitude", object: self.longitude)
-		encoder.append("title", object: self.title)
-		encoder.append("address", object: self.address)
-		encoder.append("foursquare_id", object: self.foursquareId)
-		encoder.append("foursquare_type", object: self.foursquareType)
-		encoder.append("google_place_id", object: self.googlePlaceId)
-		encoder.append("google_place_type", object: self.googlePlaceType)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

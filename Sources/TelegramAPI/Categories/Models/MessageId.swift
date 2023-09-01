@@ -1,4 +1,5 @@
-public final class MessageId: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MessageId: Codable, IMultiPartFromDataValueEncodable {
 	///Unique message identifier
 	public let messageId: TelegramInteger
 
@@ -22,7 +23,7 @@ public final class MessageId: Codable, IMultiPartFromDataEncodable {
 		self.messageId = try container.decode(TelegramInteger.self, forKey: .messageId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("message_id", object: self.messageId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

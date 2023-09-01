@@ -1,4 +1,5 @@
-public final class ChatInviteLink: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatInviteLink: Codable, IMultiPartFromDataValueEncodable {
 	///The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.
 	public let inviteLink: String
 	
@@ -86,15 +87,7 @@ public final class ChatInviteLink: Codable, IMultiPartFromDataEncodable {
 		self.pendingJoinRequestCount = try container.decodeIfPresent(TelegramInteger.self, forKey: .pendingJoinRequestCount)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("invite_link", object: self.inviteLink)
-		encoder.append("creator", object: self.creator)
-		encoder.append("creates_join_request", object: self.createsJoinRequest)
-		encoder.append("is_primary", object: self.isPrimary)
-		encoder.append("is_revoked", object: self.isRevoked)
-		encoder.append("name", object: self.name)
-		encoder.append("expire_date", object: self.expireDate)
-		encoder.append("member_limit", object: self.memberLimit)
-		encoder.append("pending_join_request_count", object: self.pendingJoinRequestCount)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

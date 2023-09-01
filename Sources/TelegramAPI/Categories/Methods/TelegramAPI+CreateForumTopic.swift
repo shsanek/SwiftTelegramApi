@@ -31,10 +31,10 @@ public final class CreateForumTopicInput: IMultiPartFromDataEncodable {
 		self.iconCustomEmojiId = iconCustomEmojiId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("name", object: self.name)
-		encoder.append("icon_color", object: self.iconColor)
-		encoder.append("icon_custom_emoji_id", object: self.iconCustomEmojiId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("name", object: self.name)
+		try encoder.append("icon_color", object: self.iconColor)
+		try encoder.append("icon_custom_emoji_id", object: self.iconCustomEmojiId)
 	}
 }

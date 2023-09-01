@@ -26,9 +26,9 @@ public final class UnbanChatMemberInput: IMultiPartFromDataEncodable {
 		self.onlyIfBanned = onlyIfBanned
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
-		encoder.append("only_if_banned", object: self.onlyIfBanned)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("only_if_banned", object: self.onlyIfBanned)
 	}
 }

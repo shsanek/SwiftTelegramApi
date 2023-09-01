@@ -1,4 +1,5 @@
-public final class Game: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Game: Codable, IMultiPartFromDataValueEncodable {
 	///Title of the game
 	public let title: String
 	
@@ -62,12 +63,7 @@ public final class Game: Codable, IMultiPartFromDataEncodable {
 		self.animation = try container.decodeIfPresent(Animation.self, forKey: .animation)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("title", object: self.title)
-		encoder.append("description", object: self.description)
-		encoder.append("photo", object: self.photo)
-		encoder.append("text", object: self.text)
-		encoder.append("text_entities", object: self.textEntities)
-		encoder.append("animation", object: self.animation)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -21,8 +21,8 @@ public final class SetChatPhotoInput: IMultiPartFromDataEncodable {
 		self.photo = photo
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("photo", object: self.photo)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("photo", object: self.photo)
 	}
 }

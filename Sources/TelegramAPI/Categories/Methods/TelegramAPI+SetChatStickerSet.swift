@@ -21,8 +21,8 @@ public final class SetChatStickerSetInput: IMultiPartFromDataEncodable {
 		self.stickerSetName = stickerSetName
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("sticker_set_name", object: self.stickerSetName)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("sticker_set_name", object: self.stickerSetName)
 	}
 }

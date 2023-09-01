@@ -31,10 +31,10 @@ public final class BanChatMemberInput: IMultiPartFromDataEncodable {
 		self.revokeMessages = revokeMessages
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
-		encoder.append("until_date", object: self.untilDate)
-		encoder.append("revoke_messages", object: self.revokeMessages)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("until_date", object: self.untilDate)
+		try encoder.append("revoke_messages", object: self.revokeMessages)
 	}
 }

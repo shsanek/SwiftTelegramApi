@@ -1,4 +1,5 @@
-public final class Sticker: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Sticker: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -134,21 +135,7 @@ public final class Sticker: Codable, IMultiPartFromDataEncodable {
 		self.fileSize = try container.decodeIfPresent(TelegramInteger.self, forKey: .fileSize)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("type", object: self.type)
-		encoder.append("width", object: self.width)
-		encoder.append("height", object: self.height)
-		encoder.append("is_animated", object: self.isAnimated)
-		encoder.append("is_video", object: self.isVideo)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("emoji", object: self.emoji)
-		encoder.append("set_name", object: self.setName)
-		encoder.append("premium_animation", object: self.premiumAnimation)
-		encoder.append("mask_position", object: self.maskPosition)
-		encoder.append("custom_emoji_id", object: self.customEmojiId)
-		encoder.append("needs_repainting", object: self.needsRepainting)
-		encoder.append("file_size", object: self.fileSize)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

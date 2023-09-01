@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setStickerSetThumbnail
-public final class SetStickerSetThumbnailInput: Encodable {
+import Foundation
+public final class SetStickerSetThumbnailInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Sticker set name
 	public let name: String
 	
@@ -37,5 +38,16 @@ public final class SetStickerSetThumbnailInput: Encodable {
 		try container.encode(self.name.self, forKey: .name)
 		try container.encode(self.userId.self, forKey: .userId)
 		try container.encodeIfPresent(self.thumbnail.self, forKey: .thumbnail)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.userId = try container.decode(TelegramInteger.self, forKey: .userId)
+		self.thumbnail = try container.decodeIfPresent(TelegramInputFileContainer.self, forKey: .thumbnail)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

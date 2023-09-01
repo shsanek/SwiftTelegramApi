@@ -46,13 +46,13 @@ public final class SetWebhookInput: IMultiPartFromDataEncodable {
 		self.secretToken = secretToken
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("url", object: self.url)
-		encoder.append("certificate", object: self.certificate)
-		encoder.append("ip_address", object: self.ipAddress)
-		encoder.append("max_connections", object: self.maxConnections)
-		encoder.append("allowed_updates", object: self.allowedUpdates)
-		encoder.append("drop_pending_updates", object: self.dropPendingUpdates)
-		encoder.append("secret_token", object: self.secretToken)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("url", object: self.url)
+		try encoder.append("certificate", object: self.certificate)
+		try encoder.append("ip_address", object: self.ipAddress)
+		try encoder.append("max_connections", object: self.maxConnections)
+		try encoder.append("allowed_updates", object: self.allowedUpdates)
+		try encoder.append("drop_pending_updates", object: self.dropPendingUpdates)
+		try encoder.append("secret_token", object: self.secretToken)
 	}
 }

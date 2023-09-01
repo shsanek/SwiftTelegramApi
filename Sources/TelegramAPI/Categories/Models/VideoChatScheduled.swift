@@ -1,4 +1,5 @@
-public final class VideoChatScheduled: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class VideoChatScheduled: Codable, IMultiPartFromDataValueEncodable {
 	///Point in time (Unix timestamp) when the video chat is supposed to be started by a chat administrator
 	public let startDate: TelegramInteger
 
@@ -22,7 +23,7 @@ public final class VideoChatScheduled: Codable, IMultiPartFromDataEncodable {
 		self.startDate = try container.decode(TelegramInteger.self, forKey: .startDate)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("start_date", object: self.startDate)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

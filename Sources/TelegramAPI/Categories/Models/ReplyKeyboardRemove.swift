@@ -1,4 +1,5 @@
-public final class ReplyKeyboardRemove: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ReplyKeyboardRemove: Codable, IMultiPartFromDataValueEncodable {
 	///Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup)
 	public let removeKeyboard: Bool
 	
@@ -30,8 +31,7 @@ public final class ReplyKeyboardRemove: Codable, IMultiPartFromDataEncodable {
 		self.selective = try container.decodeIfPresent(Bool.self, forKey: .selective)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("remove_keyboard", object: self.removeKeyboard)
-		encoder.append("selective", object: self.selective)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

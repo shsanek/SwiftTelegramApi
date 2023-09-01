@@ -1,4 +1,5 @@
-public final class ChatMemberOwner: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatMemberOwner: Codable, IMultiPartFromDataValueEncodable {
 	///The member's status in the chat, always “creator”
 	public let status: String
 	
@@ -46,10 +47,7 @@ public final class ChatMemberOwner: Codable, IMultiPartFromDataEncodable {
 		self.customTitle = try container.decodeIfPresent(String.self, forKey: .customTitle)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("status", object: self.status)
-		encoder.append("user", object: self.user)
-		encoder.append("is_anonymous", object: self.isAnonymous)
-		encoder.append("custom_title", object: self.customTitle)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

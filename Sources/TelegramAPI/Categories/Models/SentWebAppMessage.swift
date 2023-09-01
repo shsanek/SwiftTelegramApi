@@ -1,4 +1,5 @@
-public final class SentWebAppMessage: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class SentWebAppMessage: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message.
 	public let inlineMessageId: String?
 
@@ -22,7 +23,7 @@ public final class SentWebAppMessage: Codable, IMultiPartFromDataEncodable {
 		self.inlineMessageId = try container.decodeIfPresent(String.self, forKey: .inlineMessageId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("inline_message_id", object: self.inlineMessageId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

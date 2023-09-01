@@ -1,4 +1,5 @@
-public final class LabeledPrice: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class LabeledPrice: Codable, IMultiPartFromDataValueEncodable {
 	///Portion label
 	public let label: String
 	
@@ -30,8 +31,7 @@ public final class LabeledPrice: Codable, IMultiPartFromDataEncodable {
 		self.amount = try container.decode(TelegramInteger.self, forKey: .amount)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("label", object: self.label)
-		encoder.append("amount", object: self.amount)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

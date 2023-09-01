@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request deleteStickerFromSet
-public final class DeleteStickerFromSetInput: Encodable {
+import Foundation
+public final class DeleteStickerFromSetInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. File identifier of the sticker
 	public let sticker: String
 
@@ -23,5 +24,14 @@ public final class DeleteStickerFromSetInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.sticker.self, forKey: .sticker)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.sticker = try container.decode(String.self, forKey: .sticker)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

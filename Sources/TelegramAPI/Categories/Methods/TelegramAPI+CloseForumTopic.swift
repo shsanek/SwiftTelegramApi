@@ -21,8 +21,8 @@ public final class CloseForumTopicInput: IMultiPartFromDataEncodable {
 		self.messageThreadId = messageThreadId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
 	}
 }

@@ -1,4 +1,5 @@
-public final class InlineQueryResultArticle: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultArticle: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be article
 	public let type: String
 	
@@ -102,17 +103,7 @@ public final class InlineQueryResultArticle: Codable, IMultiPartFromDataEncodabl
 		self.thumbnailHeight = try container.decodeIfPresent(TelegramInteger.self, forKey: .thumbnailHeight)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("title", object: self.title)
-		encoder.append("input_message_content", object: self.inputMessageContent)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("url", object: self.url)
-		encoder.append("hide_url", object: self.hideUrl)
-		encoder.append("description", object: self.description)
-		encoder.append("thumbnail_url", object: self.thumbnailUrl)
-		encoder.append("thumbnail_width", object: self.thumbnailWidth)
-		encoder.append("thumbnail_height", object: self.thumbnailHeight)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

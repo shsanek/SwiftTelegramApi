@@ -1,4 +1,5 @@
-public final class InlineQueryResultAudio: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultAudio: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be audio
 	public let type: String
 	
@@ -102,17 +103,7 @@ public final class InlineQueryResultAudio: Codable, IMultiPartFromDataEncodable 
 		self.inputMessageContent = try container.decodeIfPresent(InputMessageContent.self, forKey: .inputMessageContent)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("audio_url", object: self.audioUrl)
-		encoder.append("title", object: self.title)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("performer", object: self.performer)
-		encoder.append("audio_duration", object: self.audioDuration)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("input_message_content", object: self.inputMessageContent)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

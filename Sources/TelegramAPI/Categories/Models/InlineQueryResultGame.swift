@@ -1,4 +1,5 @@
-public final class InlineQueryResultGame: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultGame: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be game
 	public let type: String
 	
@@ -46,10 +47,7 @@ public final class InlineQueryResultGame: Codable, IMultiPartFromDataEncodable {
 		self.replyMarkup = try container.decodeIfPresent(InlineKeyboardMarkup.self, forKey: .replyMarkup)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("game_short_name", object: self.gameShortName)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getUpdates
-public final class GetUpdatesInput: Encodable {
+import Foundation
+public final class GetUpdatesInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id. The negative offset can be specified to retrieve updates starting from -offset update from the end of the updates queue. All previous updates will be forgotten.
 	public let offset: TelegramInteger?
 	
@@ -44,5 +45,17 @@ public final class GetUpdatesInput: Encodable {
 		try container.encodeIfPresent(self.limit.self, forKey: .limit)
 		try container.encodeIfPresent(self.timeout.self, forKey: .timeout)
 		try container.encodeIfPresent(self.allowedUpdates.self, forKey: .allowedUpdates)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.offset = try container.decodeIfPresent(TelegramInteger.self, forKey: .offset)
+		self.limit = try container.decodeIfPresent(TelegramInteger.self, forKey: .limit)
+		self.timeout = try container.decodeIfPresent(TelegramInteger.self, forKey: .timeout)
+		self.allowedUpdates = try container.decodeIfPresent([String].self, forKey: .allowedUpdates)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

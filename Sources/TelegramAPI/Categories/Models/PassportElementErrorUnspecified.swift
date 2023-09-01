@@ -1,4 +1,5 @@
-public final class PassportElementErrorUnspecified: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PassportElementErrorUnspecified: Codable, IMultiPartFromDataValueEncodable {
 	///Error source, must be unspecified
 	public let source: String
 	
@@ -46,10 +47,7 @@ public final class PassportElementErrorUnspecified: Codable, IMultiPartFromDataE
 		self.message = try container.decode(String.self, forKey: .message)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("source", object: self.source)
-		encoder.append("type", object: self.type)
-		encoder.append("element_hash", object: self.elementHash)
-		encoder.append("message", object: self.message)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

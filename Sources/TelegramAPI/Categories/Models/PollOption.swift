@@ -1,4 +1,5 @@
-public final class PollOption: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PollOption: Codable, IMultiPartFromDataValueEncodable {
 	///Option text, 1-100 characters
 	public let text: String
 	
@@ -30,8 +31,7 @@ public final class PollOption: Codable, IMultiPartFromDataEncodable {
 		self.voterCount = try container.decode(TelegramInteger.self, forKey: .voterCount)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("text", object: self.text)
-		encoder.append("voter_count", object: self.voterCount)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

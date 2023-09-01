@@ -53,7 +53,7 @@ extension TelegramIdentifierContainer: Codable
 extension TelegramIdentifierContainer: IMultiPartFromDataValueEncodable
 {
     
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         switch self {
         case .integer(let identifier):
             return MultiPartFromDataContainer("\(identifier)")

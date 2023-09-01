@@ -1,4 +1,5 @@
-public final class PollAnswer: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PollAnswer: Codable, IMultiPartFromDataValueEncodable {
 	///Unique poll identifier
 	public let pollId: String
 	
@@ -46,10 +47,7 @@ public final class PollAnswer: Codable, IMultiPartFromDataEncodable {
 		self.optionIds = try container.decode([TelegramInteger].self, forKey: .optionIds)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("poll_id", object: self.pollId)
-		encoder.append("voter_chat", object: self.voterChat)
-		encoder.append("user", object: self.user)
-		encoder.append("option_ids", object: self.optionIds)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

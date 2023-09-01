@@ -21,8 +21,8 @@ public final class DeleteMessageInput: IMultiPartFromDataEncodable {
 		self.messageId = messageId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
 	}
 }

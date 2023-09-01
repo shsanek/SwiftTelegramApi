@@ -1,4 +1,5 @@
-public final class PreCheckoutQuery: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PreCheckoutQuery: Codable, IMultiPartFromDataValueEncodable {
 	///Unique query identifier
 	public let id: String
 	
@@ -70,13 +71,7 @@ public final class PreCheckoutQuery: Codable, IMultiPartFromDataEncodable {
 		self.orderInfo = try container.decodeIfPresent(OrderInfo.self, forKey: .orderInfo)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("from", object: self.from)
-		encoder.append("currency", object: self.currency)
-		encoder.append("total_amount", object: self.totalAmount)
-		encoder.append("invoice_payload", object: self.invoicePayload)
-		encoder.append("shipping_option_id", object: self.shippingOptionId)
-		encoder.append("order_info", object: self.orderInfo)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

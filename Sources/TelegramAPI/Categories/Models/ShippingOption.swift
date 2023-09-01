@@ -1,4 +1,5 @@
-public final class ShippingOption: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ShippingOption: Codable, IMultiPartFromDataValueEncodable {
 	///Shipping option identifier
 	public let id: String
 	
@@ -38,9 +39,7 @@ public final class ShippingOption: Codable, IMultiPartFromDataEncodable {
 		self.prices = try container.decode([LabeledPrice].self, forKey: .prices)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("title", object: self.title)
-		encoder.append("prices", object: self.prices)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

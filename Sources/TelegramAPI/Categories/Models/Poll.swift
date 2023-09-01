@@ -1,4 +1,5 @@
-public final class Poll: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Poll: Codable, IMultiPartFromDataValueEncodable {
 	///Unique poll identifier
 	public let id: String
 	
@@ -118,19 +119,7 @@ public final class Poll: Codable, IMultiPartFromDataEncodable {
 		self.closeDate = try container.decodeIfPresent(TelegramInteger.self, forKey: .closeDate)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("question", object: self.question)
-		encoder.append("options", object: self.options)
-		encoder.append("total_voter_count", object: self.totalVoterCount)
-		encoder.append("is_closed", object: self.isClosed)
-		encoder.append("is_anonymous", object: self.isAnonymous)
-		encoder.append("type", object: self.type)
-		encoder.append("allows_multiple_answers", object: self.allowsMultipleAnswers)
-		encoder.append("correct_option_id", object: self.correctOptionId)
-		encoder.append("explanation", object: self.explanation)
-		encoder.append("explanation_entities", object: self.explanationEntities)
-		encoder.append("open_period", object: self.openPeriod)
-		encoder.append("close_date", object: self.closeDate)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -26,9 +26,9 @@ public final class AddStickerToSetInput: IMultiPartFromDataEncodable {
 		self.sticker = sticker
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("user_id", object: self.userId)
-		encoder.append("name", object: self.name)
-		encoder.append("sticker", object: self.sticker)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("name", object: self.name)
+		try encoder.append("sticker", object: self.sticker)
 	}
 }

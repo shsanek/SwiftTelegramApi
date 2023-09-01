@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getChatMenuButton
-public final class GetChatMenuButtonInput: Encodable {
+import Foundation
+public final class GetChatMenuButtonInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
 	public let chatId: TelegramInteger?
 
@@ -23,5 +24,14 @@ public final class GetChatMenuButtonInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.chatId.self, forKey: .chatId)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.chatId = try container.decodeIfPresent(TelegramInteger.self, forKey: .chatId)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

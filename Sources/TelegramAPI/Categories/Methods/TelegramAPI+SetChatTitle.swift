@@ -21,8 +21,8 @@ public final class SetChatTitleInput: IMultiPartFromDataEncodable {
 		self.title = title
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("title", object: self.title)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("title", object: self.title)
 	}
 }

@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setMyDefaultAdministratorRights
-public final class SetMyDefaultAdministratorRightsInput: Encodable {
+import Foundation
+public final class SetMyDefaultAdministratorRightsInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
 	public let rights: ChatAdministratorRights?
 	
@@ -30,5 +31,15 @@ public final class SetMyDefaultAdministratorRightsInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.rights.self, forKey: .rights)
 		try container.encodeIfPresent(self.forChannels.self, forKey: .forChannels)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.rights = try container.decodeIfPresent(ChatAdministratorRights.self, forKey: .rights)
+		self.forChannels = try container.decodeIfPresent(Bool.self, forKey: .forChannels)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class InlineQuery: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQuery: Codable, IMultiPartFromDataValueEncodable {
 	///Unique identifier for this query
 	public let id: String
 	
@@ -62,12 +63,7 @@ public final class InlineQuery: Codable, IMultiPartFromDataEncodable {
 		self.location = try container.decodeIfPresent(Location.self, forKey: .location)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("from", object: self.from)
-		encoder.append("query", object: self.query)
-		encoder.append("offset", object: self.offset)
-		encoder.append("chat_type", object: self.chatType)
-		encoder.append("location", object: self.location)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

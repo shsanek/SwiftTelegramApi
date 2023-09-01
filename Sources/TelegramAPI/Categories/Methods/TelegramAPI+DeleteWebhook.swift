@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request deleteWebhook
-public final class DeleteWebhookInput: Encodable {
+import Foundation
+public final class DeleteWebhookInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. Pass True to drop all pending updates
 	public let dropPendingUpdates: Bool?
 
@@ -23,5 +24,14 @@ public final class DeleteWebhookInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.dropPendingUpdates.self, forKey: .dropPendingUpdates)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.dropPendingUpdates = try container.decodeIfPresent(Bool.self, forKey: .dropPendingUpdates)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

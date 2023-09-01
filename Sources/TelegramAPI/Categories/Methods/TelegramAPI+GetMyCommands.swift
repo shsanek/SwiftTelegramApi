@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getMyCommands
-public final class GetMyCommandsInput: Encodable {
+import Foundation
+public final class GetMyCommandsInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
 	public let scope: BotCommandScope?
 	
@@ -30,5 +31,15 @@ public final class GetMyCommandsInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.scope.self, forKey: .scope)
 		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.scope = try container.decodeIfPresent(BotCommandScope.self, forKey: .scope)
+		self.languageCode = try container.decodeIfPresent(String.self, forKey: .languageCode)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getMyDescription
-public final class GetMyDescriptionInput: Encodable {
+import Foundation
+public final class GetMyDescriptionInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. A two-letter ISO 639-1 language code or an empty string
 	public let languageCode: String?
 
@@ -23,5 +24,14 @@ public final class GetMyDescriptionInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.languageCode = try container.decodeIfPresent(String.self, forKey: .languageCode)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

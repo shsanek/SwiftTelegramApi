@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request createInvoiceLink
-public final class CreateInvoiceLinkInput: Encodable {
+import Foundation
+public final class CreateInvoiceLinkInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Product name, 1-32 characters
 	public let title: String
 	
@@ -156,5 +157,33 @@ public final class CreateInvoiceLinkInput: Encodable {
 		try container.encodeIfPresent(self.sendPhoneNumberToProvider.self, forKey: .sendPhoneNumberToProvider)
 		try container.encodeIfPresent(self.sendEmailToProvider.self, forKey: .sendEmailToProvider)
 		try container.encodeIfPresent(self.isFlexible.self, forKey: .isFlexible)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.title = try container.decode(String.self, forKey: .title)
+		self.description = try container.decode(String.self, forKey: .description)
+		self.payload = try container.decode(String.self, forKey: .payload)
+		self.providerToken = try container.decode(String.self, forKey: .providerToken)
+		self.currency = try container.decode(String.self, forKey: .currency)
+		self.prices = try container.decode([LabeledPrice].self, forKey: .prices)
+		self.maxTipAmount = try container.decodeIfPresent(TelegramInteger.self, forKey: .maxTipAmount)
+		self.suggestedTipAmounts = try container.decodeIfPresent([TelegramInteger].self, forKey: .suggestedTipAmounts)
+		self.providerData = try container.decodeIfPresent(String.self, forKey: .providerData)
+		self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
+		self.photoSize = try container.decodeIfPresent(TelegramInteger.self, forKey: .photoSize)
+		self.photoWidth = try container.decodeIfPresent(TelegramInteger.self, forKey: .photoWidth)
+		self.photoHeight = try container.decodeIfPresent(TelegramInteger.self, forKey: .photoHeight)
+		self.needName = try container.decodeIfPresent(Bool.self, forKey: .needName)
+		self.needPhoneNumber = try container.decodeIfPresent(Bool.self, forKey: .needPhoneNumber)
+		self.needEmail = try container.decodeIfPresent(Bool.self, forKey: .needEmail)
+		self.needShippingAddress = try container.decodeIfPresent(Bool.self, forKey: .needShippingAddress)
+		self.sendPhoneNumberToProvider = try container.decodeIfPresent(Bool.self, forKey: .sendPhoneNumberToProvider)
+		self.sendEmailToProvider = try container.decodeIfPresent(Bool.self, forKey: .sendEmailToProvider)
+		self.isFlexible = try container.decodeIfPresent(Bool.self, forKey: .isFlexible)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

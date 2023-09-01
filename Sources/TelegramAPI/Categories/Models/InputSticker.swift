@@ -1,4 +1,5 @@
-public final class InputSticker: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputSticker: Codable, IMultiPartFromDataValueEncodable {
 	///The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, upload a new one using multipart/form-data, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files »
 	public let sticker: TelegramInputFileContainer
 	
@@ -46,10 +47,7 @@ public final class InputSticker: Codable, IMultiPartFromDataEncodable {
 		self.keywords = try container.decodeIfPresent([String].self, forKey: .keywords)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("sticker", object: self.sticker)
-		encoder.append("emoji_list", object: self.emojiList)
-		encoder.append("mask_position", object: self.maskPosition)
-		encoder.append("keywords", object: self.keywords)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

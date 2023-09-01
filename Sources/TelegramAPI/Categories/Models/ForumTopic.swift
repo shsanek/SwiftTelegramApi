@@ -1,4 +1,5 @@
-public final class ForumTopic: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ForumTopic: Codable, IMultiPartFromDataValueEncodable {
 	///Unique identifier of the forum topic
 	public let messageThreadId: TelegramInteger
 	
@@ -46,10 +47,7 @@ public final class ForumTopic: Codable, IMultiPartFromDataEncodable {
 		self.iconCustomEmojiId = try container.decodeIfPresent(String.self, forKey: .iconCustomEmojiId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("name", object: self.name)
-		encoder.append("icon_color", object: self.iconColor)
-		encoder.append("icon_custom_emoji_id", object: self.iconCustomEmojiId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

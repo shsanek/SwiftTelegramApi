@@ -1,4 +1,5 @@
-public final class PassportElementErrorFiles: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PassportElementErrorFiles: Codable, IMultiPartFromDataValueEncodable {
 	///Error source, must be files
 	public let source: String
 	
@@ -46,10 +47,7 @@ public final class PassportElementErrorFiles: Codable, IMultiPartFromDataEncodab
 		self.message = try container.decode(String.self, forKey: .message)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("source", object: self.source)
-		encoder.append("type", object: self.type)
-		encoder.append("file_hashes", object: self.fileHashes)
-		encoder.append("message", object: self.message)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

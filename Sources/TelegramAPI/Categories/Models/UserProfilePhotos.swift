@@ -1,4 +1,5 @@
-public final class UserProfilePhotos: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class UserProfilePhotos: Codable, IMultiPartFromDataValueEncodable {
 	///Total number of profile pictures the target user has
 	public let totalCount: TelegramInteger
 	
@@ -30,8 +31,7 @@ public final class UserProfilePhotos: Codable, IMultiPartFromDataEncodable {
 		self.photos = try container.decode([[PhotoSize]].self, forKey: .photos)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("total_count", object: self.totalCount)
-		encoder.append("photos", object: self.photos)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

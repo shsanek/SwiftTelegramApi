@@ -21,8 +21,8 @@ public final class BanChatSenderChatInput: IMultiPartFromDataEncodable {
 		self.senderChatId = senderChatId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("sender_chat_id", object: self.senderChatId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("sender_chat_id", object: self.senderChatId)
 	}
 }

@@ -21,8 +21,8 @@ public final class DeclineChatJoinRequestInput: IMultiPartFromDataEncodable {
 		self.userId = userId
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
 	}
 }

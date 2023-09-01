@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request sendGame
-public final class SendGameInput: Encodable {
+import Foundation
+public final class SendGameInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier for the target chat
 	public let chatId: TelegramInteger
 	
@@ -72,5 +73,21 @@ public final class SendGameInput: Encodable {
 		try container.encodeIfPresent(self.replyToMessageId.self, forKey: .replyToMessageId)
 		try container.encodeIfPresent(self.allowSendingWithoutReply.self, forKey: .allowSendingWithoutReply)
 		try container.encodeIfPresent(self.replyMarkup.self, forKey: .replyMarkup)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.chatId = try container.decode(TelegramInteger.self, forKey: .chatId)
+		self.messageThreadId = try container.decodeIfPresent(TelegramInteger.self, forKey: .messageThreadId)
+		self.gameShortName = try container.decode(String.self, forKey: .gameShortName)
+		self.disableNotification = try container.decodeIfPresent(Bool.self, forKey: .disableNotification)
+		self.protectContent = try container.decodeIfPresent(Bool.self, forKey: .protectContent)
+		self.replyToMessageId = try container.decodeIfPresent(TelegramInteger.self, forKey: .replyToMessageId)
+		self.allowSendingWithoutReply = try container.decodeIfPresent(Bool.self, forKey: .allowSendingWithoutReply)
+		self.replyMarkup = try container.decodeIfPresent(InlineKeyboardMarkup.self, forKey: .replyMarkup)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

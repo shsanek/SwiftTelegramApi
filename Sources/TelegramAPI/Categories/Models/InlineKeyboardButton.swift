@@ -1,4 +1,5 @@
-public final class InlineKeyboardButton: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineKeyboardButton: Codable, IMultiPartFromDataValueEncodable {
 	///Label text on the button
 	public let text: String
 	
@@ -94,16 +95,7 @@ public final class InlineKeyboardButton: Codable, IMultiPartFromDataEncodable {
 		self.pay = try container.decodeIfPresent(Bool.self, forKey: .pay)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("text", object: self.text)
-		encoder.append("url", object: self.url)
-		encoder.append("callback_data", object: self.callbackData)
-		encoder.append("web_app", object: self.webApp)
-		encoder.append("login_url", object: self.loginUrl)
-		encoder.append("switch_inline_query", object: self.switchInlineQuery)
-		encoder.append("switch_inline_query_current_chat", object: self.switchInlineQueryCurrentChat)
-		encoder.append("switch_inline_query_chosen_chat", object: self.switchInlineQueryChosenChat)
-		encoder.append("callback_game", object: self.callbackGame)
-		encoder.append("pay", object: self.pay)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class Update: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Update: Codable, IMultiPartFromDataValueEncodable {
 	///The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
 	public let updateId: TelegramInteger
 	
@@ -134,21 +135,7 @@ public final class Update: Codable, IMultiPartFromDataEncodable {
 		self.chatJoinRequest = try container.decodeIfPresent(ChatJoinRequest.self, forKey: .chatJoinRequest)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("update_id", object: self.updateId)
-		encoder.append("message", object: self.message)
-		encoder.append("edited_message", object: self.editedMessage)
-		encoder.append("channel_post", object: self.channelPost)
-		encoder.append("edited_channel_post", object: self.editedChannelPost)
-		encoder.append("inline_query", object: self.inlineQuery)
-		encoder.append("chosen_inline_result", object: self.chosenInlineResult)
-		encoder.append("callback_query", object: self.callbackQuery)
-		encoder.append("shipping_query", object: self.shippingQuery)
-		encoder.append("pre_checkout_query", object: self.preCheckoutQuery)
-		encoder.append("poll", object: self.poll)
-		encoder.append("poll_answer", object: self.pollAnswer)
-		encoder.append("my_chat_member", object: self.myChatMember)
-		encoder.append("chat_member", object: self.chatMember)
-		encoder.append("chat_join_request", object: self.chatJoinRequest)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

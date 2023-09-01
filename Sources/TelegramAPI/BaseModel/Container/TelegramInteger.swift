@@ -10,7 +10,7 @@ public typealias TelegramInteger = Int64
 extension Int64: IMultiPartFromDataValueEncodable
 {
     
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         return MultiPartFromDataContainer("\(self)")
     }
     

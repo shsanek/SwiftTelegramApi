@@ -1,4 +1,5 @@
-public final class BotCommandScopeAllGroupChats: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class BotCommandScopeAllGroupChats: Codable, IMultiPartFromDataValueEncodable {
 	///Scope type, must be all_group_chats
 	public let type: String
 
@@ -22,7 +23,7 @@ public final class BotCommandScopeAllGroupChats: Codable, IMultiPartFromDataEnco
 		self.type = try container.decode(String.self, forKey: .type)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

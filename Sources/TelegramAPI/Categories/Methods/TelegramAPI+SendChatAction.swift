@@ -26,9 +26,9 @@ public final class SendChatActionInput: IMultiPartFromDataEncodable {
 		self.action = action
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("action", object: self.action)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("action", object: self.action)
 	}
 }

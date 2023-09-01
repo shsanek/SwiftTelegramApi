@@ -1,4 +1,5 @@
-public final class ProximityAlertTriggered: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ProximityAlertTriggered: Codable, IMultiPartFromDataValueEncodable {
 	///User that triggered the alert
 	public let traveler: User
 	
@@ -38,9 +39,7 @@ public final class ProximityAlertTriggered: Codable, IMultiPartFromDataEncodable
 		self.distance = try container.decode(TelegramInteger.self, forKey: .distance)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("traveler", object: self.traveler)
-		encoder.append("watcher", object: self.watcher)
-		encoder.append("distance", object: self.distance)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

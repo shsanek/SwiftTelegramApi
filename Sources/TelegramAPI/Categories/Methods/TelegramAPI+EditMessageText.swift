@@ -51,14 +51,14 @@ public final class EditMessageTextInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("text", object: self.text)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("entities", object: self.entities)
-		encoder.append("disable_web_page_preview", object: self.disableWebPagePreview)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
+		try encoder.append("inline_message_id", object: self.inlineMessageId)
+		try encoder.append("text", object: self.text)
+		try encoder.append("parse_mode", object: self.parseMode)
+		try encoder.append("entities", object: self.entities)
+		try encoder.append("disable_web_page_preview", object: self.disableWebPagePreview)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

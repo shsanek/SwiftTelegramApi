@@ -1,4 +1,5 @@
-public final class ChatPermissions: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatPermissions: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. True, if the user is allowed to send text messages, contacts, invoices, locations and venues
 	public let canSendMessages: Bool?
 	
@@ -126,20 +127,7 @@ public final class ChatPermissions: Codable, IMultiPartFromDataEncodable {
 		self.canManageTopics = try container.decodeIfPresent(Bool.self, forKey: .canManageTopics)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("can_send_messages", object: self.canSendMessages)
-		encoder.append("can_send_audios", object: self.canSendAudios)
-		encoder.append("can_send_documents", object: self.canSendDocuments)
-		encoder.append("can_send_photos", object: self.canSendPhotos)
-		encoder.append("can_send_videos", object: self.canSendVideos)
-		encoder.append("can_send_video_notes", object: self.canSendVideoNotes)
-		encoder.append("can_send_voice_notes", object: self.canSendVoiceNotes)
-		encoder.append("can_send_polls", object: self.canSendPolls)
-		encoder.append("can_send_other_messages", object: self.canSendOtherMessages)
-		encoder.append("can_add_web_page_previews", object: self.canAddWebPagePreviews)
-		encoder.append("can_change_info", object: self.canChangeInfo)
-		encoder.append("can_invite_users", object: self.canInviteUsers)
-		encoder.append("can_pin_messages", object: self.canPinMessages)
-		encoder.append("can_manage_topics", object: self.canManageTopics)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

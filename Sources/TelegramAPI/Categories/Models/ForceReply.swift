@@ -1,4 +1,5 @@
-public final class ForceReply: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ForceReply: Codable, IMultiPartFromDataValueEncodable {
 	///Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
 	public let forceReply: Bool
 	
@@ -38,9 +39,7 @@ public final class ForceReply: Codable, IMultiPartFromDataEncodable {
 		self.selective = try container.decodeIfPresent(Bool.self, forKey: .selective)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("force_reply", object: self.forceReply)
-		encoder.append("input_field_placeholder", object: self.inputFieldPlaceholder)
-		encoder.append("selective", object: self.selective)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

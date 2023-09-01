@@ -1,4 +1,5 @@
-public final class EncryptedPassportElement: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class EncryptedPassportElement: Codable, IMultiPartFromDataValueEncodable {
 	///Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
 	public let type: String
 	
@@ -94,16 +95,7 @@ public final class EncryptedPassportElement: Codable, IMultiPartFromDataEncodabl
 		self.hash = try container.decode(String.self, forKey: .hash)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("data", object: self.data)
-		encoder.append("phone_number", object: self.phoneNumber)
-		encoder.append("email", object: self.email)
-		encoder.append("files", object: self.files)
-		encoder.append("front_side", object: self.frontSide)
-		encoder.append("reverse_side", object: self.reverseSide)
-		encoder.append("selfie", object: self.selfie)
-		encoder.append("translation", object: self.translation)
-		encoder.append("hash", object: self.hash)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

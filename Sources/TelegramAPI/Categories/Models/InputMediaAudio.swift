@@ -1,4 +1,5 @@
-public final class InputMediaAudio: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputMediaAudio: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be audio
 	public let type: String
 	
@@ -86,15 +87,7 @@ public final class InputMediaAudio: Codable, IMultiPartFromDataEncodable {
 		self.title = try container.decodeIfPresent(String.self, forKey: .title)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("media", object: self.media)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("duration", object: self.duration)
-		encoder.append("performer", object: self.performer)
-		encoder.append("title", object: self.title)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

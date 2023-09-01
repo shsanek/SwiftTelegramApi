@@ -1,4 +1,5 @@
-public final class LoginUrl: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class LoginUrl: Codable, IMultiPartFromDataValueEncodable {
 	///An HTTPS URL to be opened with user authorization data added to the query string when the button is pressed. If the user refuses to provide authorization data, the original URL without information about the user will be opened. The data added is the same as described in Receiving authorization data.NOTE: You must always check the hash of the received data to verify the authentication and the integrity of the data as described in Checking authorization.
 	public let url: String
 	
@@ -46,10 +47,7 @@ public final class LoginUrl: Codable, IMultiPartFromDataEncodable {
 		self.requestWriteAccess = try container.decodeIfPresent(Bool.self, forKey: .requestWriteAccess)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("url", object: self.url)
-		encoder.append("forward_text", object: self.forwardText)
-		encoder.append("bot_username", object: self.botUsername)
-		encoder.append("request_write_access", object: self.requestWriteAccess)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

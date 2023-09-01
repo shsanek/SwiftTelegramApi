@@ -1,4 +1,5 @@
-public final class ShippingAddress: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ShippingAddress: Codable, IMultiPartFromDataValueEncodable {
 	///Two-letter ISO 3166-1 alpha-2 country code
 	public let countryCode: String
 	
@@ -62,12 +63,7 @@ public final class ShippingAddress: Codable, IMultiPartFromDataEncodable {
 		self.postCode = try container.decode(String.self, forKey: .postCode)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("country_code", object: self.countryCode)
-		encoder.append("state", object: self.state)
-		encoder.append("city", object: self.city)
-		encoder.append("street_line1", object: self.streetLine1)
-		encoder.append("street_line2", object: self.streetLine2)
-		encoder.append("post_code", object: self.postCode)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

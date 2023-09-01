@@ -1,4 +1,5 @@
-public final class StickerSet: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class StickerSet: Codable, IMultiPartFromDataValueEncodable {
 	///Sticker set name
 	public let name: String
 	
@@ -70,13 +71,7 @@ public final class StickerSet: Codable, IMultiPartFromDataEncodable {
 		self.thumbnail = try container.decodeIfPresent(PhotoSize.self, forKey: .thumbnail)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("name", object: self.name)
-		encoder.append("title", object: self.title)
-		encoder.append("sticker_type", object: self.stickerType)
-		encoder.append("is_animated", object: self.isAnimated)
-		encoder.append("is_video", object: self.isVideo)
-		encoder.append("stickers", object: self.stickers)
-		encoder.append("thumbnail", object: self.thumbnail)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

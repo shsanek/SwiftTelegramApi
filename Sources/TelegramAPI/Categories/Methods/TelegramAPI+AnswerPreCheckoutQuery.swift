@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request answerPreCheckoutQuery
-public final class AnswerPreCheckoutQueryInput: Encodable {
+import Foundation
+public final class AnswerPreCheckoutQueryInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier for the query to be answered
 	public let preCheckoutQueryId: String
 	
@@ -37,5 +38,16 @@ public final class AnswerPreCheckoutQueryInput: Encodable {
 		try container.encode(self.preCheckoutQueryId.self, forKey: .preCheckoutQueryId)
 		try container.encode(self.ok.self, forKey: .ok)
 		try container.encodeIfPresent(self.errorMessage.self, forKey: .errorMessage)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.preCheckoutQueryId = try container.decode(String.self, forKey: .preCheckoutQueryId)
+		self.ok = try container.decode(Bool.self, forKey: .ok)
+		self.errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

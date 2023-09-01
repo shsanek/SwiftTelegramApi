@@ -1,4 +1,5 @@
-public final class ChatMemberAdministrator: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatMemberAdministrator: Codable, IMultiPartFromDataValueEncodable {
 	///The member's status in the chat, always “administrator”
 	public let status: String
 	
@@ -142,22 +143,7 @@ public final class ChatMemberAdministrator: Codable, IMultiPartFromDataEncodable
 		self.customTitle = try container.decodeIfPresent(String.self, forKey: .customTitle)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("status", object: self.status)
-		encoder.append("user", object: self.user)
-		encoder.append("can_be_edited", object: self.canBeEdited)
-		encoder.append("is_anonymous", object: self.isAnonymous)
-		encoder.append("can_manage_chat", object: self.canManageChat)
-		encoder.append("can_delete_messages", object: self.canDeleteMessages)
-		encoder.append("can_manage_video_chats", object: self.canManageVideoChats)
-		encoder.append("can_restrict_members", object: self.canRestrictMembers)
-		encoder.append("can_promote_members", object: self.canPromoteMembers)
-		encoder.append("can_change_info", object: self.canChangeInfo)
-		encoder.append("can_invite_users", object: self.canInviteUsers)
-		encoder.append("can_post_messages", object: self.canPostMessages)
-		encoder.append("can_edit_messages", object: self.canEditMessages)
-		encoder.append("can_pin_messages", object: self.canPinMessages)
-		encoder.append("can_manage_topics", object: self.canManageTopics)
-		encoder.append("custom_title", object: self.customTitle)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

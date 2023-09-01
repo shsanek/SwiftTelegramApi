@@ -1,4 +1,5 @@
-public final class WriteAccessAllowed: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class WriteAccessAllowed: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. Name of the Web App which was launched from a link
 	public let webAppName: String?
 
@@ -22,7 +23,7 @@ public final class WriteAccessAllowed: Codable, IMultiPartFromDataEncodable {
 		self.webAppName = try container.decodeIfPresent(String.self, forKey: .webAppName)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("web_app_name", object: self.webAppName)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

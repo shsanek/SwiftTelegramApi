@@ -1,4 +1,5 @@
-public final class SwitchInlineQueryChosenChat: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class SwitchInlineQueryChosenChat: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
 	public let query: String?
 	
@@ -54,11 +55,7 @@ public final class SwitchInlineQueryChosenChat: Codable, IMultiPartFromDataEncod
 		self.allowChannelChats = try container.decodeIfPresent(Bool.self, forKey: .allowChannelChats)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("query", object: self.query)
-		encoder.append("allow_user_chats", object: self.allowUserChats)
-		encoder.append("allow_bot_chats", object: self.allowBotChats)
-		encoder.append("allow_group_chats", object: self.allowGroupChats)
-		encoder.append("allow_channel_chats", object: self.allowChannelChats)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

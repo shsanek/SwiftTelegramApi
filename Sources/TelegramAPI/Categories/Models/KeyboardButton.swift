@@ -1,4 +1,5 @@
-public final class KeyboardButton: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class KeyboardButton: Codable, IMultiPartFromDataValueEncodable {
 	///Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
 	public let text: String
 	
@@ -70,13 +71,7 @@ public final class KeyboardButton: Codable, IMultiPartFromDataEncodable {
 		self.webApp = try container.decodeIfPresent(WebAppInfo.self, forKey: .webApp)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("text", object: self.text)
-		encoder.append("request_user", object: self.requestUser)
-		encoder.append("request_chat", object: self.requestChat)
-		encoder.append("request_contact", object: self.requestContact)
-		encoder.append("request_location", object: self.requestLocation)
-		encoder.append("request_poll", object: self.requestPoll)
-		encoder.append("web_app", object: self.webApp)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request answerWebAppQuery
-public final class AnswerWebAppQueryInput: Encodable {
+import Foundation
+public final class AnswerWebAppQueryInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier for the query to be answered
 	public let webAppQueryId: String
 	
@@ -30,5 +31,15 @@ public final class AnswerWebAppQueryInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.webAppQueryId.self, forKey: .webAppQueryId)
 		try container.encode(self.result.self, forKey: .result)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.webAppQueryId = try container.decode(String.self, forKey: .webAppQueryId)
+		self.result = try container.decode(InlineQueryResult.self, forKey: .result)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

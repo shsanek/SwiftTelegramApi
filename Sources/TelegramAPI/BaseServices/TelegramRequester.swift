@@ -46,7 +46,7 @@ internal class TelegramRequester
          completion: @escaping (TelegramResult<OutType>) -> Void)
     {
         let encoder = MultiPartFromDataEncoder()
-        object.encode(encoder)
+        try? object.encode(encoder)
         let values = encoder.allValues
         let boundary = UUID().uuidString.replacingOccurrences(of: " ", with: "")
         let data = MultiPartFromDataBuilder.multipartData(values: values, boundary: boundary)

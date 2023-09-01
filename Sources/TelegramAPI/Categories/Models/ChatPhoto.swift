@@ -1,4 +1,5 @@
-public final class ChatPhoto: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChatPhoto: Codable, IMultiPartFromDataValueEncodable {
 	///File identifier of small (160x160) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed.
 	public let smallFileId: String
 	
@@ -46,10 +47,7 @@ public final class ChatPhoto: Codable, IMultiPartFromDataEncodable {
 		self.bigFileUniqueId = try container.decode(String.self, forKey: .bigFileUniqueId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("small_file_id", object: self.smallFileId)
-		encoder.append("small_file_unique_id", object: self.smallFileUniqueId)
-		encoder.append("big_file_id", object: self.bigFileId)
-		encoder.append("big_file_unique_id", object: self.bigFileUniqueId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

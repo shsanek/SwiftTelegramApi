@@ -1,4 +1,5 @@
-public final class ChosenInlineResult: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ChosenInlineResult: Codable, IMultiPartFromDataValueEncodable {
 	///The unique identifier for the result that was chosen
 	public let resultId: String
 	
@@ -54,11 +55,7 @@ public final class ChosenInlineResult: Codable, IMultiPartFromDataEncodable {
 		self.query = try container.decode(String.self, forKey: .query)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("result_id", object: self.resultId)
-		encoder.append("from", object: self.from)
-		encoder.append("location", object: self.location)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("query", object: self.query)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

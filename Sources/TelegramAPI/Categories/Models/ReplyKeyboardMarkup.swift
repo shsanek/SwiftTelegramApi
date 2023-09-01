@@ -1,4 +1,5 @@
-public final class ReplyKeyboardMarkup: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ReplyKeyboardMarkup: Codable, IMultiPartFromDataValueEncodable {
 	///Array of button rows, each represented by an Array of KeyboardButton objects
 	public let keyboard: [[KeyboardButton]]
 	
@@ -62,12 +63,7 @@ public final class ReplyKeyboardMarkup: Codable, IMultiPartFromDataEncodable {
 		self.selective = try container.decodeIfPresent(Bool.self, forKey: .selective)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("keyboard", object: self.keyboard)
-		encoder.append("is_persistent", object: self.isPersistent)
-		encoder.append("resize_keyboard", object: self.resizeKeyboard)
-		encoder.append("one_time_keyboard", object: self.oneTimeKeyboard)
-		encoder.append("input_field_placeholder", object: self.inputFieldPlaceholder)
-		encoder.append("selective", object: self.selective)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

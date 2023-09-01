@@ -1,4 +1,5 @@
-public final class Animation: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Animation: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -86,15 +87,7 @@ public final class Animation: Codable, IMultiPartFromDataEncodable {
 		self.fileSize = try container.decodeIfPresent(TelegramInteger.self, forKey: .fileSize)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("width", object: self.width)
-		encoder.append("height", object: self.height)
-		encoder.append("duration", object: self.duration)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("file_name", object: self.fileName)
-		encoder.append("mime_type", object: self.mimeType)
-		encoder.append("file_size", object: self.fileSize)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

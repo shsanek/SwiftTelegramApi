@@ -1,4 +1,5 @@
-public final class PassportFile: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PassportFile: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -46,10 +47,7 @@ public final class PassportFile: Codable, IMultiPartFromDataEncodable {
 		self.fileDate = try container.decode(TelegramInteger.self, forKey: .fileDate)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("file_size", object: self.fileSize)
-		encoder.append("file_date", object: self.fileDate)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

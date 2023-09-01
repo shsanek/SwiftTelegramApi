@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request answerCallbackQuery
-public final class AnswerCallbackQueryInput: Encodable {
+import Foundation
+public final class AnswerCallbackQueryInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier for the query to be answered
 	public let callbackQueryId: String
 	
@@ -51,5 +52,18 @@ public final class AnswerCallbackQueryInput: Encodable {
 		try container.encodeIfPresent(self.showAlert.self, forKey: .showAlert)
 		try container.encodeIfPresent(self.url.self, forKey: .url)
 		try container.encodeIfPresent(self.cacheTime.self, forKey: .cacheTime)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.callbackQueryId = try container.decode(String.self, forKey: .callbackQueryId)
+		self.text = try container.decodeIfPresent(String.self, forKey: .text)
+		self.showAlert = try container.decodeIfPresent(Bool.self, forKey: .showAlert)
+		self.url = try container.decodeIfPresent(String.self, forKey: .url)
+		self.cacheTime = try container.decodeIfPresent(TelegramInteger.self, forKey: .cacheTime)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

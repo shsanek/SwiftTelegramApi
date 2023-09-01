@@ -26,9 +26,9 @@ public final class SetChatAdministratorCustomTitleInput: IMultiPartFromDataEncod
 		self.customTitle = customTitle
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
-		encoder.append("custom_title", object: self.customTitle)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("custom_title", object: self.customTitle)
 	}
 }

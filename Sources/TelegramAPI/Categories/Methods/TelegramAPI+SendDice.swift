@@ -51,14 +51,14 @@ public final class SendDiceInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("emoji", object: self.emoji)
-		encoder.append("disable_notification", object: self.disableNotification)
-		encoder.append("protect_content", object: self.protectContent)
-		encoder.append("reply_to_message_id", object: self.replyToMessageId)
-		encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("emoji", object: self.emoji)
+		try encoder.append("disable_notification", object: self.disableNotification)
+		try encoder.append("protect_content", object: self.protectContent)
+		try encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		try encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

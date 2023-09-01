@@ -1,4 +1,5 @@
-public final class WebAppData: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class WebAppData: Codable, IMultiPartFromDataValueEncodable {
 	///The data. Be aware that a bad client can send arbitrary data in this field.
 	public let data: String
 	
@@ -30,8 +31,7 @@ public final class WebAppData: Codable, IMultiPartFromDataEncodable {
 		self.buttonText = try container.decode(String.self, forKey: .buttonText)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("data", object: self.data)
-		encoder.append("button_text", object: self.buttonText)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

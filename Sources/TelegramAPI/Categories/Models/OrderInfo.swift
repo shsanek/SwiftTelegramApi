@@ -1,4 +1,5 @@
-public final class OrderInfo: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class OrderInfo: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. User name
 	public let name: String?
 	
@@ -46,10 +47,7 @@ public final class OrderInfo: Codable, IMultiPartFromDataEncodable {
 		self.shippingAddress = try container.decodeIfPresent(ShippingAddress.self, forKey: .shippingAddress)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("name", object: self.name)
-		encoder.append("phone_number", object: self.phoneNumber)
-		encoder.append("email", object: self.email)
-		encoder.append("shipping_address", object: self.shippingAddress)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

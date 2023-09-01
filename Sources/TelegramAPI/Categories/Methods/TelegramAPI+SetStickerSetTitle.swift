@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setStickerSetTitle
-public final class SetStickerSetTitleInput: Encodable {
+import Foundation
+public final class SetStickerSetTitleInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Sticker set name
 	public let name: String
 	
@@ -30,5 +31,15 @@ public final class SetStickerSetTitleInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.name.self, forKey: .name)
 		try container.encode(self.title.self, forKey: .title)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.title = try container.decode(String.self, forKey: .title)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

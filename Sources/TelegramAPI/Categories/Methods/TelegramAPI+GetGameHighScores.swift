@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getGameHighScores
-public final class GetGameHighScoresInput: Encodable {
+import Foundation
+public final class GetGameHighScoresInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Target user id
 	public let userId: TelegramInteger
 	
@@ -44,5 +45,17 @@ public final class GetGameHighScoresInput: Encodable {
 		try container.encodeIfPresent(self.chatId.self, forKey: .chatId)
 		try container.encodeIfPresent(self.messageId.self, forKey: .messageId)
 		try container.encodeIfPresent(self.inlineMessageId.self, forKey: .inlineMessageId)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.userId = try container.decode(TelegramInteger.self, forKey: .userId)
+		self.chatId = try container.decodeIfPresent(TelegramInteger.self, forKey: .chatId)
+		self.messageId = try container.decodeIfPresent(TelegramInteger.self, forKey: .messageId)
+		self.inlineMessageId = try container.decodeIfPresent(String.self, forKey: .inlineMessageId)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

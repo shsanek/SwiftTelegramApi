@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request setMyShortDescription
-public final class SetMyShortDescriptionInput: Encodable {
+import Foundation
+public final class SetMyShortDescriptionInput: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language.
 	public let shortDescription: String?
 	
@@ -30,5 +31,15 @@ public final class SetMyShortDescriptionInput: Encodable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encodeIfPresent(self.shortDescription.self, forKey: .shortDescription)
 		try container.encodeIfPresent(self.languageCode.self, forKey: .languageCode)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.shortDescription = try container.decodeIfPresent(String.self, forKey: .shortDescription)
+		self.languageCode = try container.decodeIfPresent(String.self, forKey: .languageCode)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

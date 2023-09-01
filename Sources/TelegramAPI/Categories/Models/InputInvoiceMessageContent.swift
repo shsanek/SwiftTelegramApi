@@ -1,4 +1,5 @@
-public final class InputInvoiceMessageContent: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputInvoiceMessageContent: Codable, IMultiPartFromDataValueEncodable {
 	///Product name, 1-32 characters
 	public let title: String
 	
@@ -174,26 +175,7 @@ public final class InputInvoiceMessageContent: Codable, IMultiPartFromDataEncoda
 		self.isFlexible = try container.decodeIfPresent(Bool.self, forKey: .isFlexible)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("title", object: self.title)
-		encoder.append("description", object: self.description)
-		encoder.append("payload", object: self.payload)
-		encoder.append("provider_token", object: self.providerToken)
-		encoder.append("currency", object: self.currency)
-		encoder.append("prices", object: self.prices)
-		encoder.append("max_tip_amount", object: self.maxTipAmount)
-		encoder.append("suggested_tip_amounts", object: self.suggestedTipAmounts)
-		encoder.append("provider_data", object: self.providerData)
-		encoder.append("photo_url", object: self.photoUrl)
-		encoder.append("photo_size", object: self.photoSize)
-		encoder.append("photo_width", object: self.photoWidth)
-		encoder.append("photo_height", object: self.photoHeight)
-		encoder.append("need_name", object: self.needName)
-		encoder.append("need_phone_number", object: self.needPhoneNumber)
-		encoder.append("need_email", object: self.needEmail)
-		encoder.append("need_shipping_address", object: self.needShippingAddress)
-		encoder.append("send_phone_number_to_provider", object: self.sendPhoneNumberToProvider)
-		encoder.append("send_email_to_provider", object: self.sendEmailToProvider)
-		encoder.append("is_flexible", object: self.isFlexible)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

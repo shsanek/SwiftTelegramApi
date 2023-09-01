@@ -1,4 +1,5 @@
-public final class InputMediaAnimation: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputMediaAnimation: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be animation
 	public let type: String
 	
@@ -94,16 +95,7 @@ public final class InputMediaAnimation: Codable, IMultiPartFromDataEncodable {
 		self.hasSpoiler = try container.decodeIfPresent(Bool.self, forKey: .hasSpoiler)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("media", object: self.media)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("width", object: self.width)
-		encoder.append("height", object: self.height)
-		encoder.append("duration", object: self.duration)
-		encoder.append("has_spoiler", object: self.hasSpoiler)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

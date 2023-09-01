@@ -1,4 +1,5 @@
-public final class VideoNote: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class VideoNote: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -62,12 +63,7 @@ public final class VideoNote: Codable, IMultiPartFromDataEncodable {
 		self.fileSize = try container.decodeIfPresent(TelegramInteger.self, forKey: .fileSize)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("length", object: self.length)
-		encoder.append("duration", object: self.duration)
-		encoder.append("thumbnail", object: self.thumbnail)
-		encoder.append("file_size", object: self.fileSize)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

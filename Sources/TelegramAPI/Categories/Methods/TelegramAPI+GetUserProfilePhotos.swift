@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getUserProfilePhotos
-public final class GetUserProfilePhotosInput: Encodable {
+import Foundation
+public final class GetUserProfilePhotosInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. Unique identifier of the target user
 	public let userId: TelegramInteger
 	
@@ -37,5 +38,16 @@ public final class GetUserProfilePhotosInput: Encodable {
 		try container.encode(self.userId.self, forKey: .userId)
 		try container.encodeIfPresent(self.offset.self, forKey: .offset)
 		try container.encodeIfPresent(self.limit.self, forKey: .limit)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.userId = try container.decode(TelegramInteger.self, forKey: .userId)
+		self.offset = try container.decodeIfPresent(TelegramInteger.self, forKey: .offset)
+		self.limit = try container.decodeIfPresent(TelegramInteger.self, forKey: .limit)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

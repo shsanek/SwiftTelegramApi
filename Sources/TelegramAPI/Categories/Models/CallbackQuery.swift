@@ -1,4 +1,5 @@
-public final class CallbackQuery: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class CallbackQuery: Codable, IMultiPartFromDataValueEncodable {
 	///Unique identifier for this query
 	public let id: String
 	
@@ -70,13 +71,7 @@ public final class CallbackQuery: Codable, IMultiPartFromDataEncodable {
 		self.gameShortName = try container.decodeIfPresent(String.self, forKey: .gameShortName)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("from", object: self.from)
-		encoder.append("message", object: self.message)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("chat_instance", object: self.chatInstance)
-		encoder.append("data", object: self.data)
-		encoder.append("game_short_name", object: self.gameShortName)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class MaskPosition: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MaskPosition: Codable, IMultiPartFromDataValueEncodable {
 	///The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
 	public let point: String
 	
@@ -46,10 +47,7 @@ public final class MaskPosition: Codable, IMultiPartFromDataEncodable {
 		self.scale = try container.decode(TelegramFloat.self, forKey: .scale)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("point", object: self.point)
-		encoder.append("x_shift", object: self.xShift)
-		encoder.append("y_shift", object: self.yShift)
-		encoder.append("scale", object: self.scale)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

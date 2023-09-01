@@ -1,4 +1,5 @@
-public final class MenuButton: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MenuButton: Codable, IMultiPartFromDataValueEncodable {
 	
 
 	public init(
@@ -13,7 +14,7 @@ public final class MenuButton: Codable, IMultiPartFromDataEncodable {
 
 	public init(from decoder: Decoder) throws {}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-	
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

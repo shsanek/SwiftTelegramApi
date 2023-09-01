@@ -1,4 +1,5 @@
-public final class MenuButtonCommands: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MenuButtonCommands: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the button, must be commands
 	public let type: String
 
@@ -22,7 +23,7 @@ public final class MenuButtonCommands: Codable, IMultiPartFromDataEncodable {
 		self.type = try container.decode(String.self, forKey: .type)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

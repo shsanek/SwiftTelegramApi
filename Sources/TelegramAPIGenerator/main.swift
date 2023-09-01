@@ -184,7 +184,7 @@ func generateModel(element: Element, name: String, allNames: [String], isInput: 
     }
 
     let multipartEncodes = element.properties.map {
-        "encoder.append(\"\($0.name)\", object: self.\($0.swiftName))"
+        "try encoder.append(\"\($0.name)\", object: self.\($0.swiftName))"
     }
 
     let initInput = element.properties.map {
@@ -199,25 +199,25 @@ func generateModel(element: Element, name: String, allNames: [String], isInput: 
     var codingKeysBlock = "private enum CodingKeys: String, CodingKey {\n\(codingKeys.joined(1, separator: "\n"))\n}"
     var encodeBlock = "public func encode(to encoder: Encoder) throws {\n\(encodes.joined(1, separator: "\n"))\n}"
     var decodeBlock = "public init(from decoder: Decoder) throws {\n\(decodes.joined(1, separator: "\n"))\n}"
-    let multipartEncodeBlock = "func encode(_ encoder: MultiPartFromDataEncoder) {\n\(multipartEncodes.joined(1, separator: "\n"))\n}"
+    let multipartEncodeBlock = "func encode(_ encoder: MultiPartFromDataEncoder) throws {\n\(multipartEncodes.joined(1, separator: "\n"))\n}"
     if properties.isEmpty {
         codingKeysBlock = ""
         encodeBlock = "public func encode(to encoder: Encoder) throws {}"
         decodeBlock = "public init(from decoder: Decoder) throws {}"
     }
-    if element.properties.contains(where: { $0.isInputFile }) {
+    let attach = """
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+        try MultiPartFromDataContainer(object: self)
+    }
+    """
+    if element.properties.contains(where: { $0.isInputFile }) && isInput {
         let initBlock = "public init(\n\(initInput.joined(1, separator: ",\n"))\n) {\n\(initProp.joined(1, separator: "\n"))\n}"
         let blocks = [propertiesBlock, initBlock, multipartEncodeBlock]
         return "public final class \(name): IMultiPartFromDataEncodable {\n\(blocks.joined(1, separator: "\n\n"))\n}"
     }
-    if isInput {
-        let initBlock = "public init(\n\(initInput.joined(1, separator: ",\n"))\n) {\n\(initProp.joined(1, separator: "\n"))\n}"
-        let blocks = [propertiesBlock, initBlock, codingKeysBlock, encodeBlock]
-        return "public final class \(name): Encodable {\n\(blocks.joined(1, separator: "\n\n"))\n}"
-    }
     let initBlock = "public init(\n\(initInput.joined(1, separator: ",\n"))\n) {\n\(initProp.joined(1, separator: "\n"))\n}"
-    let blocks = [propertiesBlock, initBlock, codingKeysBlock, encodeBlock, decodeBlock, multipartEncodeBlock]
-    return "public final class \(name): Codable, IMultiPartFromDataEncodable {\n\(blocks.joined(1, separator: "\n\n"))\n}"
+    let blocks = [propertiesBlock, initBlock, codingKeysBlock, encodeBlock, decodeBlock, attach]
+    return "import Foundation\npublic final class \(name): Codable, IMultiPartFromDataValueEncodable {\n\(blocks.joined(1, separator: "\n\n"))\n}"
 }
 
 extension Array where Element == String {

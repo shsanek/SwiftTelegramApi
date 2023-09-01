@@ -1,4 +1,5 @@
-public final class BotCommandScopeDefault: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class BotCommandScopeDefault: Codable, IMultiPartFromDataValueEncodable {
 	///Scope type, must be default
 	public let type: String
 
@@ -22,7 +23,7 @@ public final class BotCommandScopeDefault: Codable, IMultiPartFromDataEncodable 
 		self.type = try container.decode(String.self, forKey: .type)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

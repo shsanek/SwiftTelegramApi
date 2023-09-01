@@ -16,7 +16,7 @@ public struct TelegramMarkupContainer: Codable
 }
 
 
-extension TelegramMarkupContainer: IMultiPartFromDataEncodable
+extension TelegramMarkupContainer: IMultiPartFromDataValueEncodable
 {
 
 	public init(from decoder: Decoder) throws {
@@ -28,9 +28,9 @@ extension TelegramMarkupContainer: IMultiPartFromDataEncodable
 		try self.inlineKeyboard?.encode(to: encoder)
 	}
 
-	internal func encode(_ encoder: MultiPartFromDataEncoder)
-    {
-		inlineKeyboard?.encode(encoder)
+
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+        try MultiPartFromDataContainer(object: self)
     }
 
 }

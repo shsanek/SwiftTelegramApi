@@ -8,14 +8,14 @@
 internal protocol IMultiPartFromDataValueEncodable
 {
     
-    var multipartFromDataValue: MultiPartFromDataContainer { get }
-    
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer
+
 }
 
 extension Bool: IMultiPartFromDataValueEncodable
 {
     
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         return self ? MultiPartFromDataContainer("true") : MultiPartFromDataContainer("false")
     }
     
@@ -24,7 +24,7 @@ extension Bool: IMultiPartFromDataValueEncodable
 extension String: IMultiPartFromDataValueEncodable
 {
 
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         return MultiPartFromDataContainer(self)
     }
 

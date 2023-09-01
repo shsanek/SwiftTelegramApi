@@ -1,4 +1,5 @@
-public final class InputLocationMessageContent: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputLocationMessageContent: Codable, IMultiPartFromDataValueEncodable {
 	///Latitude of the location in degrees
 	public let latitude: TelegramFloat
 	
@@ -62,12 +63,7 @@ public final class InputLocationMessageContent: Codable, IMultiPartFromDataEncod
 		self.proximityAlertRadius = try container.decodeIfPresent(TelegramInteger.self, forKey: .proximityAlertRadius)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("latitude", object: self.latitude)
-		encoder.append("longitude", object: self.longitude)
-		encoder.append("horizontal_accuracy", object: self.horizontalAccuracy)
-		encoder.append("live_period", object: self.livePeriod)
-		encoder.append("heading", object: self.heading)
-		encoder.append("proximity_alert_radius", object: self.proximityAlertRadius)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

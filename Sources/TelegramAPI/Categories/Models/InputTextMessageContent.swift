@@ -1,4 +1,5 @@
-public final class InputTextMessageContent: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputTextMessageContent: Codable, IMultiPartFromDataValueEncodable {
 	///Text of the message to be sent, 1-4096 characters
 	public let messageText: String
 	
@@ -46,10 +47,7 @@ public final class InputTextMessageContent: Codable, IMultiPartFromDataEncodable
 		self.disableWebPagePreview = try container.decodeIfPresent(Bool.self, forKey: .disableWebPagePreview)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("message_text", object: self.messageText)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("entities", object: self.entities)
-		encoder.append("disable_web_page_preview", object: self.disableWebPagePreview)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

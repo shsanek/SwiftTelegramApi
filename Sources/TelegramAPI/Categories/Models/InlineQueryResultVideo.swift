@@ -1,4 +1,5 @@
-public final class InlineQueryResultVideo: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultVideo: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be video
 	public let type: String
 	
@@ -134,21 +135,7 @@ public final class InlineQueryResultVideo: Codable, IMultiPartFromDataEncodable 
 		self.inputMessageContent = try container.decodeIfPresent(InputMessageContent.self, forKey: .inputMessageContent)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("video_url", object: self.videoUrl)
-		encoder.append("mime_type", object: self.mimeType)
-		encoder.append("thumbnail_url", object: self.thumbnailUrl)
-		encoder.append("title", object: self.title)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("video_width", object: self.videoWidth)
-		encoder.append("video_height", object: self.videoHeight)
-		encoder.append("video_duration", object: self.videoDuration)
-		encoder.append("description", object: self.description)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("input_message_content", object: self.inputMessageContent)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

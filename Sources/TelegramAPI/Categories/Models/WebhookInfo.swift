@@ -1,4 +1,5 @@
-public final class WebhookInfo: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class WebhookInfo: Codable, IMultiPartFromDataValueEncodable {
 	///Webhook URL, may be empty if webhook is not set up
 	public let url: String
 	
@@ -86,15 +87,7 @@ public final class WebhookInfo: Codable, IMultiPartFromDataEncodable {
 		self.allowedUpdates = try container.decodeIfPresent([String].self, forKey: .allowedUpdates)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("url", object: self.url)
-		encoder.append("has_custom_certificate", object: self.hasCustomCertificate)
-		encoder.append("pending_update_count", object: self.pendingUpdateCount)
-		encoder.append("ip_address", object: self.ipAddress)
-		encoder.append("last_error_date", object: self.lastErrorDate)
-		encoder.append("last_error_message", object: self.lastErrorMessage)
-		encoder.append("last_synchronization_error_date", object: self.lastSynchronizationErrorDate)
-		encoder.append("max_connections", object: self.maxConnections)
-		encoder.append("allowed_updates", object: self.allowedUpdates)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

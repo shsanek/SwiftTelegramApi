@@ -1,4 +1,5 @@
-public final class EncryptedCredentials: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class EncryptedCredentials: Codable, IMultiPartFromDataValueEncodable {
 	///Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication
 	public let data: String
 	
@@ -38,9 +39,7 @@ public final class EncryptedCredentials: Codable, IMultiPartFromDataEncodable {
 		self.secret = try container.decode(String.self, forKey: .secret)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("data", object: self.data)
-		encoder.append("hash", object: self.hash)
-		encoder.append("secret", object: self.secret)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

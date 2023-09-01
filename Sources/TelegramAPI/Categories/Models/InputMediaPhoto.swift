@@ -1,4 +1,5 @@
-public final class InputMediaPhoto: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InputMediaPhoto: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be photo
 	public let type: String
 	
@@ -62,12 +63,7 @@ public final class InputMediaPhoto: Codable, IMultiPartFromDataEncodable {
 		self.hasSpoiler = try container.decodeIfPresent(Bool.self, forKey: .hasSpoiler)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("media", object: self.media)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("has_spoiler", object: self.hasSpoiler)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -76,19 +76,19 @@ public final class SendLocationInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_thread_id", object: self.messageThreadId)
-		encoder.append("latitude", object: self.latitude)
-		encoder.append("longitude", object: self.longitude)
-		encoder.append("horizontal_accuracy", object: self.horizontalAccuracy)
-		encoder.append("live_period", object: self.livePeriod)
-		encoder.append("heading", object: self.heading)
-		encoder.append("proximity_alert_radius", object: self.proximityAlertRadius)
-		encoder.append("disable_notification", object: self.disableNotification)
-		encoder.append("protect_content", object: self.protectContent)
-		encoder.append("reply_to_message_id", object: self.replyToMessageId)
-		encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_thread_id", object: self.messageThreadId)
+		try encoder.append("latitude", object: self.latitude)
+		try encoder.append("longitude", object: self.longitude)
+		try encoder.append("horizontal_accuracy", object: self.horizontalAccuracy)
+		try encoder.append("live_period", object: self.livePeriod)
+		try encoder.append("heading", object: self.heading)
+		try encoder.append("proximity_alert_radius", object: self.proximityAlertRadius)
+		try encoder.append("disable_notification", object: self.disableNotification)
+		try encoder.append("protect_content", object: self.protectContent)
+		try encoder.append("reply_to_message_id", object: self.replyToMessageId)
+		try encoder.append("allow_sending_without_reply", object: self.allowSendingWithoutReply)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

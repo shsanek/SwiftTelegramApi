@@ -26,9 +26,9 @@ public final class UploadStickerFileInput: IMultiPartFromDataEncodable {
 		self.stickerFormat = stickerFormat
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("user_id", object: self.userId)
-		encoder.append("sticker", object: self.sticker)
-		encoder.append("sticker_format", object: self.stickerFormat)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("sticker", object: self.sticker)
+		try encoder.append("sticker_format", object: self.stickerFormat)
 	}
 }

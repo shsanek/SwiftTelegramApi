@@ -10,7 +10,7 @@ public typealias TelegramFloat = Double
 extension Double: IMultiPartFromDataValueEncodable
 {
 
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         return MultiPartFromDataContainer("\(self)")
     }
 

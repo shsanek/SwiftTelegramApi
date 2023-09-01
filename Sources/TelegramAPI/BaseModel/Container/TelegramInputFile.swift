@@ -10,9 +10,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-public struct TelegramInputFile
+public struct TelegramInputFile: Encodable
 {
-    
+
     internal let name: String
     internal let metaInfo: String?
     internal let dataHandler: () -> Data
@@ -23,14 +23,30 @@ public struct TelegramInputFile
         self.metaInfo = metaInfo
         self.dataHandler = dataHandler
     }
-    
+
+    public func encode(to encoder: Encoder) throws {
+        let id = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        if let encoder = encoder.userInfo[JSONAttachEncoder.key] as? JSONAttachEncoder {
+            let data = MultiPartFromDataContainer(
+                { dataHandler() },
+                absoluteName: id,
+                parameters: ["filename": name]
+            )
+            encoder.attaches.append(data)
+        }
+        var container = encoder.singleValueContainer()
+        try container.encode("attach://\(id)")
+    }
+}
+
+class JSONAttachEncoder {
+    static let key: CodingUserInfoKey = CodingUserInfoKey(rawValue: "JSONAttachEncoder")!
+    var attaches: [MultiPartFromDataContainer] = []
 }
 
 extension TelegramInputFile: IMultiPartFromDataValueEncodable
 {
-    
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
-        return MultiPartFromDataContainer(self.dataHandler)
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+        MultiPartFromDataContainer({ dataHandler() }, parameters: ["filename": name])
     }
-    
 }

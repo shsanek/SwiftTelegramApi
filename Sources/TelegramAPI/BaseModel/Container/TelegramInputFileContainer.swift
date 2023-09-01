@@ -18,7 +18,13 @@ public enum TelegramInputFileContainer: Codable
     
     public func encode(to encoder: Encoder) throws 
     {
-        fatalError()
+        var container = encoder.singleValueContainer()
+        switch self{
+        case .file(let file):
+            try container.encode(file)
+        case .identifier(let identifier):
+            try container.encode(identifier)
+        }
     }
     
 }
@@ -26,12 +32,12 @@ public enum TelegramInputFileContainer: Codable
 extension TelegramInputFileContainer: IMultiPartFromDataValueEncodable
 {
     
-    internal var multipartFromDataValue: MultiPartFromDataContainer {
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
         switch self{
         case .file(let file):
-            return file.multipartFromDataValue
+            return try file.multipartFromDataValue()
         case .identifier(let identifier):
-            return identifier.multipartFromDataValue
+            return try identifier.multipartFromDataValue()
         }
     }
     

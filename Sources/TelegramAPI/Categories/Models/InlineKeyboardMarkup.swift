@@ -1,4 +1,5 @@
-public final class InlineKeyboardMarkup: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineKeyboardMarkup: Codable, IMultiPartFromDataValueEncodable {
 	///Array of button rows, each represented by an Array of InlineKeyboardButton objects
 	public let inlineKeyboard: [[InlineKeyboardButton]]
 
@@ -22,7 +23,7 @@ public final class InlineKeyboardMarkup: Codable, IMultiPartFromDataEncodable {
 		self.inlineKeyboard = try container.decode([[InlineKeyboardButton]].self, forKey: .inlineKeyboard)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("inline_keyboard", object: self.inlineKeyboard)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class Venue: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Venue: Codable, IMultiPartFromDataValueEncodable {
 	///Venue location. Can't be a live location
 	public let location: Location
 	
@@ -70,13 +71,7 @@ public final class Venue: Codable, IMultiPartFromDataEncodable {
 		self.googlePlaceType = try container.decodeIfPresent(String.self, forKey: .googlePlaceType)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("location", object: self.location)
-		encoder.append("title", object: self.title)
-		encoder.append("address", object: self.address)
-		encoder.append("foursquare_id", object: self.foursquareId)
-		encoder.append("foursquare_type", object: self.foursquareType)
-		encoder.append("google_place_id", object: self.googlePlaceId)
-		encoder.append("google_place_type", object: self.googlePlaceType)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

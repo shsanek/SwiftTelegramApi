@@ -5,33 +5,20 @@
 //  Created by Alex Shipin on 14.09.2019.
 //
 
+import Foundation
+
 internal protocol IMultiPartFromDataEncodable
 {
     
-    func encode(_ encoder: MultiPartFromDataEncoder)
+    func encode(_ encoder: MultiPartFromDataEncoder) throws
 
 }
 
-extension Array: IMultiPartFromDataEncodable
+extension Array: IMultiPartFromDataValueEncodable where Element: Encodable
 {
     
-    internal func encode(_ encoder: MultiPartFromDataEncoder)
-    {
-        for i in 0..<self.count
-        {
-            if let obj = self[i] as? IMultiPartFromDataEncodable
-            {
-                encoder.append("\(i)", object: obj)
-            }
-            else if let obj = self[i] as? IMultiPartFromDataValueEncodable
-            {
-                encoder.append("\(i)", object: obj)
-            }
-            else
-            {
-                fatalError()
-            }
-        }
+    func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+        try MultiPartFromDataContainer(object: self)
     }
-    
+
 }

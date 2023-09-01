@@ -1,4 +1,5 @@
-public final class VideoChatEnded: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class VideoChatEnded: Codable, IMultiPartFromDataValueEncodable {
 	///Video chat duration in seconds
 	public let duration: TelegramInteger
 
@@ -22,7 +23,7 @@ public final class VideoChatEnded: Codable, IMultiPartFromDataEncodable {
 		self.duration = try container.decode(TelegramInteger.self, forKey: .duration)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("duration", object: self.duration)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

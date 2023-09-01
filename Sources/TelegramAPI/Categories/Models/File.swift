@@ -1,4 +1,5 @@
-public final class File: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class File: Codable, IMultiPartFromDataValueEncodable {
 	///Identifier for this file, which can be used to download or reuse the file
 	public let fileId: String
 	
@@ -46,10 +47,7 @@ public final class File: Codable, IMultiPartFromDataEncodable {
 		self.filePath = try container.decodeIfPresent(String.self, forKey: .filePath)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("file_id", object: self.fileId)
-		encoder.append("file_unique_id", object: self.fileUniqueId)
-		encoder.append("file_size", object: self.fileSize)
-		encoder.append("file_path", object: self.filePath)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

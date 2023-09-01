@@ -46,13 +46,13 @@ public final class EditMessageCaptionInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
+		try encoder.append("inline_message_id", object: self.inlineMessageId)
+		try encoder.append("caption", object: self.caption)
+		try encoder.append("parse_mode", object: self.parseMode)
+		try encoder.append("caption_entities", object: self.captionEntities)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

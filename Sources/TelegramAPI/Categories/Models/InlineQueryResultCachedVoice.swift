@@ -1,4 +1,5 @@
-public final class InlineQueryResultCachedVoice: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultCachedVoice: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be voice
 	public let type: String
 	
@@ -86,15 +87,7 @@ public final class InlineQueryResultCachedVoice: Codable, IMultiPartFromDataEnco
 		self.inputMessageContent = try container.decodeIfPresent(InputMessageContent.self, forKey: .inputMessageContent)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("voice_file_id", object: self.voiceFileId)
-		encoder.append("title", object: self.title)
-		encoder.append("caption", object: self.caption)
-		encoder.append("parse_mode", object: self.parseMode)
-		encoder.append("caption_entities", object: self.captionEntities)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("input_message_content", object: self.inputMessageContent)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

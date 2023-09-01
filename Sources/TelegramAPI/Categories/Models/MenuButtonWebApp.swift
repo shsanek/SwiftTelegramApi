@@ -1,4 +1,5 @@
-public final class MenuButtonWebApp: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MenuButtonWebApp: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the button, must be web_app
 	public let type: String
 	
@@ -38,9 +39,7 @@ public final class MenuButtonWebApp: Codable, IMultiPartFromDataEncodable {
 		self.webApp = try container.decode(WebAppInfo.self, forKey: .webApp)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("text", object: self.text)
-		encoder.append("web_app", object: self.webApp)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

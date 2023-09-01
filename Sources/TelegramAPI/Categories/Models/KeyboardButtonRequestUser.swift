@@ -1,4 +1,5 @@
-public final class KeyboardButtonRequestUser: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class KeyboardButtonRequestUser: Codable, IMultiPartFromDataValueEncodable {
 	///Signed 32-bit identifier of the request, which will be received back in the UserShared object. Must be unique within the message
 	public let requestId: TelegramInteger
 	
@@ -38,9 +39,7 @@ public final class KeyboardButtonRequestUser: Codable, IMultiPartFromDataEncodab
 		self.userIsPremium = try container.decodeIfPresent(Bool.self, forKey: .userIsPremium)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("request_id", object: self.requestId)
-		encoder.append("user_is_bot", object: self.userIsBot)
-		encoder.append("user_is_premium", object: self.userIsPremium)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

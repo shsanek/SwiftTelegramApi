@@ -1,4 +1,5 @@
-public final class User: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class User: Codable, IMultiPartFromDataValueEncodable {
 	///Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
 	public let id: TelegramInteger
 	
@@ -102,17 +103,7 @@ public final class User: Codable, IMultiPartFromDataEncodable {
 		self.supportsInlineQueries = try container.decodeIfPresent(Bool.self, forKey: .supportsInlineQueries)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("is_bot", object: self.isBot)
-		encoder.append("first_name", object: self.firstName)
-		encoder.append("last_name", object: self.lastName)
-		encoder.append("username", object: self.username)
-		encoder.append("language_code", object: self.languageCode)
-		encoder.append("is_premium", object: self.isPremium)
-		encoder.append("added_to_attachment_menu", object: self.addedToAttachmentMenu)
-		encoder.append("can_join_groups", object: self.canJoinGroups)
-		encoder.append("can_read_all_group_messages", object: self.canReadAllGroupMessages)
-		encoder.append("supports_inline_queries", object: self.supportsInlineQueries)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

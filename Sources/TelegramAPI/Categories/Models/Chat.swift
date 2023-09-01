@@ -1,4 +1,5 @@
-public final class Chat: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Chat: Codable, IMultiPartFromDataValueEncodable {
 	///Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
 	public let id: TelegramInteger
 	
@@ -246,35 +247,7 @@ public final class Chat: Codable, IMultiPartFromDataEncodable {
 		self.location = try container.decodeIfPresent(ChatLocation.self, forKey: .location)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("type", object: self.type)
-		encoder.append("title", object: self.title)
-		encoder.append("username", object: self.username)
-		encoder.append("first_name", object: self.firstName)
-		encoder.append("last_name", object: self.lastName)
-		encoder.append("is_forum", object: self.isForum)
-		encoder.append("photo", object: self.photo)
-		encoder.append("active_usernames", object: self.activeUsernames)
-		encoder.append("emoji_status_custom_emoji_id", object: self.emojiStatusCustomEmojiId)
-		encoder.append("emoji_status_expiration_date", object: self.emojiStatusExpirationDate)
-		encoder.append("bio", object: self.bio)
-		encoder.append("has_private_forwards", object: self.hasPrivateForwards)
-		encoder.append("has_restricted_voice_and_video_messages", object: self.hasRestrictedVoiceAndVideoMessages)
-		encoder.append("join_to_send_messages", object: self.joinToSendMessages)
-		encoder.append("join_by_request", object: self.joinByRequest)
-		encoder.append("description", object: self.description)
-		encoder.append("invite_link", object: self.inviteLink)
-		encoder.append("pinned_message", object: self.pinnedMessage)
-		encoder.append("permissions", object: self.permissions)
-		encoder.append("slow_mode_delay", object: self.slowModeDelay)
-		encoder.append("message_auto_delete_time", object: self.messageAutoDeleteTime)
-		encoder.append("has_aggressive_anti_spam_enabled", object: self.hasAggressiveAntiSpamEnabled)
-		encoder.append("has_hidden_members", object: self.hasHiddenMembers)
-		encoder.append("has_protected_content", object: self.hasProtectedContent)
-		encoder.append("sticker_set_name", object: self.stickerSetName)
-		encoder.append("can_set_sticker_set", object: self.canSetStickerSet)
-		encoder.append("linked_chat_id", object: self.linkedChatId)
-		encoder.append("location", object: self.location)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

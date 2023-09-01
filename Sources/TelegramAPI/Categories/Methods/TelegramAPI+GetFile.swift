@@ -6,7 +6,8 @@ extension TelegramAPI {
 }
 
 //Input model for request getFile
-public final class GetFileInput: Encodable {
+import Foundation
+public final class GetFileInput: Codable, IMultiPartFromDataValueEncodable {
 	///Yes. File identifier to get information about
 	public let fileId: String
 
@@ -23,5 +24,14 @@ public final class GetFileInput: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(self.fileId.self, forKey: .fileId)
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.fileId = try container.decode(String.self, forKey: .fileId)
+	}
+
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

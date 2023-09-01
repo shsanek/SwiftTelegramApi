@@ -1,4 +1,5 @@
-public final class WebAppInfo: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class WebAppInfo: Codable, IMultiPartFromDataValueEncodable {
 	///An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps
 	public let url: String
 
@@ -22,7 +23,7 @@ public final class WebAppInfo: Codable, IMultiPartFromDataEncodable {
 		self.url = try container.decode(String.self, forKey: .url)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("url", object: self.url)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class ForumTopicCreated: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ForumTopicCreated: Codable, IMultiPartFromDataValueEncodable {
 	///Name of the topic
 	public let name: String
 	
@@ -38,9 +39,7 @@ public final class ForumTopicCreated: Codable, IMultiPartFromDataEncodable {
 		self.iconCustomEmojiId = try container.decodeIfPresent(String.self, forKey: .iconCustomEmojiId)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("name", object: self.name)
-		encoder.append("icon_color", object: self.iconColor)
-		encoder.append("icon_custom_emoji_id", object: self.iconCustomEmojiId)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

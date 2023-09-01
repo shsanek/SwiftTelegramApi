@@ -1,4 +1,5 @@
-public final class PassportElementErrorReverseSide: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class PassportElementErrorReverseSide: Codable, IMultiPartFromDataValueEncodable {
 	///Error source, must be reverse_side
 	public let source: String
 	
@@ -46,10 +47,7 @@ public final class PassportElementErrorReverseSide: Codable, IMultiPartFromDataE
 		self.message = try container.decode(String.self, forKey: .message)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("source", object: self.source)
-		encoder.append("type", object: self.type)
-		encoder.append("file_hash", object: self.fileHash)
-		encoder.append("message", object: self.message)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

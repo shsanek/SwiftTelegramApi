@@ -36,11 +36,11 @@ public final class CreateChatInviteLinkInput: IMultiPartFromDataEncodable {
 		self.createsJoinRequest = createsJoinRequest
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("name", object: self.name)
-		encoder.append("expire_date", object: self.expireDate)
-		encoder.append("member_limit", object: self.memberLimit)
-		encoder.append("creates_join_request", object: self.createsJoinRequest)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("name", object: self.name)
+		try encoder.append("expire_date", object: self.expireDate)
+		try encoder.append("member_limit", object: self.memberLimit)
+		try encoder.append("creates_join_request", object: self.createsJoinRequest)
 	}
 }

@@ -1,4 +1,5 @@
-public final class ShippingQuery: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class ShippingQuery: Codable, IMultiPartFromDataValueEncodable {
 	///Unique query identifier
 	public let id: String
 	
@@ -46,10 +47,7 @@ public final class ShippingQuery: Codable, IMultiPartFromDataEncodable {
 		self.shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("id", object: self.id)
-		encoder.append("from", object: self.from)
-		encoder.append("invoice_payload", object: self.invoicePayload)
-		encoder.append("shipping_address", object: self.shippingAddress)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

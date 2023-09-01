@@ -26,9 +26,9 @@ public final class SetChatPermissionsInput: IMultiPartFromDataEncodable {
 		self.useIndependentChatPermissions = useIndependentChatPermissions
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("permissions", object: self.permissions)
-		encoder.append("use_independent_chat_permissions", object: self.useIndependentChatPermissions)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("permissions", object: self.permissions)
+		try encoder.append("use_independent_chat_permissions", object: self.useIndependentChatPermissions)
 	}
 }

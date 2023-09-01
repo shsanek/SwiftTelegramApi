@@ -21,8 +21,8 @@ public final class SetChatDescriptionInput: IMultiPartFromDataEncodable {
 		self.description = description
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("description", object: self.description)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("description", object: self.description)
 	}
 }

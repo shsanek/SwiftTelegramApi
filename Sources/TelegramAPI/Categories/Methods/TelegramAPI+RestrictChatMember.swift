@@ -36,11 +36,11 @@ public final class RestrictChatMemberInput: IMultiPartFromDataEncodable {
 		self.untilDate = untilDate
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("user_id", object: self.userId)
-		encoder.append("permissions", object: self.permissions)
-		encoder.append("use_independent_chat_permissions", object: self.useIndependentChatPermissions)
-		encoder.append("until_date", object: self.untilDate)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("permissions", object: self.permissions)
+		try encoder.append("use_independent_chat_permissions", object: self.useIndependentChatPermissions)
+		try encoder.append("until_date", object: self.untilDate)
 	}
 }

@@ -1,6 +1,6 @@
 extension TelegramAPI {
     /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func stopMessageLiveLocation(_ input: StopMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+    public func stopMessageLiveLocation(_ input: StopMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
         self.requester.request("stopMessageLiveLocation", object: input, completion: completionHandler)
     }
 }
@@ -31,10 +31,10 @@ public final class StopMessageLiveLocationInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
+		try encoder.append("inline_message_id", object: self.inlineMessageId)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

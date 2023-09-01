@@ -1,4 +1,5 @@
-public final class VideoChatParticipantsInvited: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class VideoChatParticipantsInvited: Codable, IMultiPartFromDataValueEncodable {
 	///New members that were invited to the video chat
 	public let users: [User]
 
@@ -22,7 +23,7 @@ public final class VideoChatParticipantsInvited: Codable, IMultiPartFromDataEnco
 		self.users = try container.decode([User].self, forKey: .users)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("users", object: self.users)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class KeyboardButtonPollType: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class KeyboardButtonPollType: Codable, IMultiPartFromDataValueEncodable {
 	///Optional. If quiz is passed, the user will be allowed to create only polls in the quiz mode. If regular is passed, only regular polls will be allowed. Otherwise, the user will be allowed to create a poll of any type.
 	public let type: String?
 
@@ -22,7 +23,7 @@ public final class KeyboardButtonPollType: Codable, IMultiPartFromDataEncodable 
 		self.type = try container.decodeIfPresent(String.self, forKey: .type)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

@@ -1,4 +1,5 @@
-public final class Invoice: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class Invoice: Codable, IMultiPartFromDataValueEncodable {
 	///Product name
 	public let title: String
 	
@@ -54,11 +55,7 @@ public final class Invoice: Codable, IMultiPartFromDataEncodable {
 		self.totalAmount = try container.decode(TelegramInteger.self, forKey: .totalAmount)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("title", object: self.title)
-		encoder.append("description", object: self.description)
-		encoder.append("start_parameter", object: self.startParameter)
-		encoder.append("currency", object: self.currency)
-		encoder.append("total_amount", object: self.totalAmount)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

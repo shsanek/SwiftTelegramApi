@@ -1,4 +1,5 @@
-public final class InlineQueryResultCachedSticker: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class InlineQueryResultCachedSticker: Codable, IMultiPartFromDataValueEncodable {
 	///Type of the result, must be sticker
 	public let type: String
 	
@@ -54,11 +55,7 @@ public final class InlineQueryResultCachedSticker: Codable, IMultiPartFromDataEn
 		self.inputMessageContent = try container.decodeIfPresent(InputMessageContent.self, forKey: .inputMessageContent)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("type", object: self.type)
-		encoder.append("id", object: self.id)
-		encoder.append("sticker_file_id", object: self.stickerFileId)
-		encoder.append("reply_markup", object: self.replyMarkup)
-		encoder.append("input_message_content", object: self.inputMessageContent)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

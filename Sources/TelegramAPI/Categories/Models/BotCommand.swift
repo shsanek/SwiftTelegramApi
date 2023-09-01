@@ -1,4 +1,5 @@
-public final class BotCommand: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class BotCommand: Codable, IMultiPartFromDataValueEncodable {
 	///Text of the command; 1-32 characters. Can contain only lowercase English letters, digits and underscores.
 	public let command: String
 	
@@ -30,8 +31,7 @@ public final class BotCommand: Codable, IMultiPartFromDataEncodable {
 		self.description = try container.decode(String.self, forKey: .description)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("command", object: self.command)
-		encoder.append("description", object: self.description)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

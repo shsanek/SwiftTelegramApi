@@ -26,28 +26,27 @@ internal class MultiPartFromDataEncoder
     }
 
     private var values: [[String]: MultiPartFromDataContainer] = [:]
-    
-    internal func append(_ key: String, object: IMultiPartFromDataEncodable?)
+
+    internal func append(_ key: String, object: IMultiPartFromDataEncodable?) throws
     {
         guard let object = object else
         {
             return
         }
         let coder = MultiPartFromDataEncoder()
-        object.encode(coder)
+        try object.encode(coder)
         for container in coder.values
         {
             self.values[[key] + container.key] = container.value
         }
     }
     
-    internal func append(_ key: String, object: IMultiPartFromDataValueEncodable?)
+    internal func append(_ key: String, object: IMultiPartFromDataValueEncodable?) throws
     {
         guard let object = object else
         {
             return
         }
-        self.values[[key]] = object.multipartFromDataValue
+        self.values[[key]] = try object.multipartFromDataValue()
     }
-    
 }

@@ -56,15 +56,15 @@ public final class EditMessageLiveLocationInput: IMultiPartFromDataEncodable {
 		self.replyMarkup = replyMarkup
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("chat_id", object: self.chatId)
-		encoder.append("message_id", object: self.messageId)
-		encoder.append("inline_message_id", object: self.inlineMessageId)
-		encoder.append("latitude", object: self.latitude)
-		encoder.append("longitude", object: self.longitude)
-		encoder.append("horizontal_accuracy", object: self.horizontalAccuracy)
-		encoder.append("heading", object: self.heading)
-		encoder.append("proximity_alert_radius", object: self.proximityAlertRadius)
-		encoder.append("reply_markup", object: self.replyMarkup)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("chat_id", object: self.chatId)
+		try encoder.append("message_id", object: self.messageId)
+		try encoder.append("inline_message_id", object: self.inlineMessageId)
+		try encoder.append("latitude", object: self.latitude)
+		try encoder.append("longitude", object: self.longitude)
+		try encoder.append("horizontal_accuracy", object: self.horizontalAccuracy)
+		try encoder.append("heading", object: self.heading)
+		try encoder.append("proximity_alert_radius", object: self.proximityAlertRadius)
+		try encoder.append("reply_markup", object: self.replyMarkup)
 	}
 }

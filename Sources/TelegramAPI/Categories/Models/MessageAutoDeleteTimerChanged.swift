@@ -1,4 +1,5 @@
-public final class MessageAutoDeleteTimerChanged: Codable, IMultiPartFromDataEncodable {
+import Foundation
+public final class MessageAutoDeleteTimerChanged: Codable, IMultiPartFromDataValueEncodable {
 	///New auto-delete time for messages in the chat; in seconds
 	public let messageAutoDeleteTime: TelegramInteger
 
@@ -22,7 +23,7 @@ public final class MessageAutoDeleteTimerChanged: Codable, IMultiPartFromDataEnc
 		self.messageAutoDeleteTime = try container.decode(TelegramInteger.self, forKey: .messageAutoDeleteTime)
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("message_auto_delete_time", object: self.messageAutoDeleteTime)
+	func multipartFromDataValue() throws -> MultiPartFromDataContainer {
+	    try MultiPartFromDataContainer(object: self)
 	}
 }

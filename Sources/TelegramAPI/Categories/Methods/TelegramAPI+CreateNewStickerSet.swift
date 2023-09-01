@@ -46,13 +46,13 @@ public final class CreateNewStickerSetInput: IMultiPartFromDataEncodable {
 		self.needsRepainting = needsRepainting
 	}
 
-	func encode(_ encoder: MultiPartFromDataEncoder) {
-		encoder.append("user_id", object: self.userId)
-		encoder.append("name", object: self.name)
-		encoder.append("title", object: self.title)
-		encoder.append("stickers", object: self.stickers)
-		encoder.append("sticker_format", object: self.stickerFormat)
-		encoder.append("sticker_type", object: self.stickerType)
-		encoder.append("needs_repainting", object: self.needsRepainting)
+	func encode(_ encoder: MultiPartFromDataEncoder) throws {
+		try encoder.append("user_id", object: self.userId)
+		try encoder.append("name", object: self.name)
+		try encoder.append("title", object: self.title)
+		try encoder.append("stickers", object: self.stickers)
+		try encoder.append("sticker_format", object: self.stickerFormat)
+		try encoder.append("sticker_type", object: self.stickerType)
+		try encoder.append("needs_repainting", object: self.needsRepainting)
 	}
 }
