@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
-    public func setStickerMaskPosition(_ input: SetStickerMaskPositionInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setStickerMaskPosition", object: input, completion: completionHandler)
+    public func setStickerMaskPosition(_ input: SetStickerMaskPositionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setStickerMaskPosition", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

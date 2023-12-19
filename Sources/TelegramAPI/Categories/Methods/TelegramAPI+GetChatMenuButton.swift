@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
-    public func getChatMenuButton(_ input: GetChatMenuButtonInput, completionHandler: @escaping (TelegramResult<MenuButton>) -> Void) {
-        self.requester.request("getChatMenuButton", object: input, completion: completionHandler)
+    public func getChatMenuButton(_ input: GetChatMenuButtonInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<MenuButton>) -> Void) {
+        self.requester.request("getChatMenuButton", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

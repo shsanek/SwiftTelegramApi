@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
-    public func answerWebAppQuery(_ input: AnswerWebAppQueryInput, completionHandler: @escaping (TelegramResult<SentWebAppMessage>) -> Void) {
-        self.requester.request("answerWebAppQuery", object: input, completion: completionHandler)
+    public func answerWebAppQuery(_ input: AnswerWebAppQueryInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<SentWebAppMessage>) -> Void) {
+        self.requester.request("answerWebAppQuery", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

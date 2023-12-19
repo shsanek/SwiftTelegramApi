@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send point on the map. On success, the sent Message is returned.
-    public func sendLocation(_ input: SendLocationInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendLocation", object: input, completion: completionHandler)
+    public func sendLocation(_ input: SendLocationInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendLocation", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

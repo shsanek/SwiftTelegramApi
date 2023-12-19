@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
-    public func copyMessage(_ input: CopyMessageInput, completionHandler: @escaping (TelegramResult<MessageId>) -> Void) {
-        self.requester.request("copyMessage", object: input, completion: completionHandler)
+    public func copyMessage(_ input: CopyMessageInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<MessageId>) -> Void) {
+        self.requester.request("copyMessage", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

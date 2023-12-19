@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
-    public func createInvoiceLink(_ input: CreateInvoiceLinkInput, completionHandler: @escaping (TelegramResult<String>) -> Void) {
-        self.requester.request("createInvoiceLink", object: input, completion: completionHandler)
+    public func createInvoiceLink(_ input: CreateInvoiceLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<String>) -> Void) {
+        self.requester.request("createInvoiceLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

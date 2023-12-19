@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
-    public func createNewStickerSet(_ input: CreateNewStickerSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("createNewStickerSet", object: input, completion: completionHandler)
+    public func createNewStickerSet(_ input: CreateNewStickerSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("createNewStickerSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

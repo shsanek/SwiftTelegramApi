@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-    public func sendVideo(_ input: SendVideoInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendVideo", object: input, completion: completionHandler)
+    public func sendVideo(_ input: SendVideoInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendVideo", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

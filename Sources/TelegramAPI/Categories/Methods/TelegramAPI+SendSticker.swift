@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
-    public func sendSticker(_ input: SendStickerInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendSticker", object: input, completion: completionHandler)
+    public func sendSticker(_ input: SendStickerInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendSticker", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

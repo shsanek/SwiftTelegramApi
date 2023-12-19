@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.
-    public func setMyDescription(_ input: SetMyDescriptionInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setMyDescription", object: input, completion: completionHandler)
+    public func setMyDescription(_ input: SetMyDescriptionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setMyDescription", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

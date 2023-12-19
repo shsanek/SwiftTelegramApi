@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
-    public func setMyCommands(_ input: SetMyCommandsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setMyCommands", object: input, completion: completionHandler)
+    public func setMyCommands(_ input: SetMyCommandsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setMyCommands", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

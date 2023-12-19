@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns True on success.
-    public func setStickerSetThumbnail(_ input: SetStickerSetThumbnailInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setStickerSetThumbnail", object: input, completion: completionHandler)
+    public func setStickerSetThumbnail(_ input: SetStickerSetThumbnailInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setStickerSetThumbnail", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
-    public func setChatPhoto(_ input: SetChatPhotoInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setChatPhoto", object: input, completion: completionHandler)
+    public func setChatPhoto(_ input: SetChatPhotoInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setChatPhoto", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

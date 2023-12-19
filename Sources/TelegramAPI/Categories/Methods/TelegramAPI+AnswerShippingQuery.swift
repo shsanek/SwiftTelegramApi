@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.
-    public func answerShippingQuery(_ input: AnswerShippingQueryInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("answerShippingQuery", object: input, completion: completionHandler)
+    public func answerShippingQuery(_ input: AnswerShippingQueryInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("answerShippingQuery", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

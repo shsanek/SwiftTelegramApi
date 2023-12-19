@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
-    public func approveChatJoinRequest(_ input: ApproveChatJoinRequestInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("approveChatJoinRequest", object: input, completion: completionHandler)
+    public func approveChatJoinRequest(_ input: ApproveChatJoinRequestInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("approveChatJoinRequest", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func editMessageReplyMarkup(_ input: EditMessageReplyMarkupInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("editMessageReplyMarkup", object: input, completion: completionHandler)
+    public func editMessageReplyMarkup(_ input: EditMessageReplyMarkupInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("editMessageReplyMarkup", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

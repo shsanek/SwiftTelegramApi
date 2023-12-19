@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send a game. On success, the sent Message is returned.
-    public func sendGame(_ input: SendGameInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendGame", object: input, completion: completionHandler)
+    public func sendGame(_ input: SendGameInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendGame", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

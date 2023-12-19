@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-    public func sendDocument(_ input: SendDocumentInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendDocument", object: input, completion: completionHandler)
+    public func sendDocument(_ input: SendDocumentInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendDocument", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

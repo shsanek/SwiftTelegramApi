@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send information about a venue. On success, the sent Message is returned.
-    public func sendVenue(_ input: SendVenueInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendVenue", object: input, completion: completionHandler)
+    public func sendVenue(_ input: SendVenueInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendVenue", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

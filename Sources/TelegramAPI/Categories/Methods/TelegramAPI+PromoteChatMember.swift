@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
-    public func promoteChatMember(_ input: PromoteChatMemberInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("promoteChatMember", object: input, completion: completionHandler)
+    public func promoteChatMember(_ input: PromoteChatMemberInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("promoteChatMember", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

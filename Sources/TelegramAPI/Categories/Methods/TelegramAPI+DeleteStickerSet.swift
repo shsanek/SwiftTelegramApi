@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to delete a sticker set that was created by the bot. Returns True on success.
-    public func deleteStickerSet(_ input: DeleteStickerSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("deleteStickerSet", object: input, completion: completionHandler)
+    public func deleteStickerSet(_ input: DeleteStickerSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("deleteStickerSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

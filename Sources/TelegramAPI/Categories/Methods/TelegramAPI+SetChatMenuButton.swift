@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
-    public func setChatMenuButton(_ input: SetChatMenuButtonInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setChatMenuButton", object: input, completion: completionHandler)
+    public func setChatMenuButton(_ input: SetChatMenuButtonInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setChatMenuButton", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

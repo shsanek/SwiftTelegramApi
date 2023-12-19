@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
-    public func setPassportDataErrors(_ input: SetPassportDataErrorsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setPassportDataErrors", object: input, completion: completionHandler)
+    public func setPassportDataErrors(_ input: SetPassportDataErrorsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setPassportDataErrors", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get the current bot description for the given user language. Returns BotDescription on success.
-    public func getMyDescription(_ input: GetMyDescriptionInput, completionHandler: @escaping (TelegramResult<BotDescription>) -> Void) {
-        self.requester.request("getMyDescription", object: input, completion: completionHandler)
+    public func getMyDescription(_ input: GetMyDescriptionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<BotDescription>) -> Void) {
+        self.requester.request("getMyDescription", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

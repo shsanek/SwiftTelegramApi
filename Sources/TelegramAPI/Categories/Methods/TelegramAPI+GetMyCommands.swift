@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
-    public func getMyCommands(_ input: GetMyCommandsInput, completionHandler: @escaping (TelegramResult<[BotCommand]>) -> Void) {
-        self.requester.request("getMyCommands", object: input, completion: completionHandler)
+    public func getMyCommands(_ input: GetMyCommandsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[BotCommand]>) -> Void) {
+        self.requester.request("getMyCommands", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

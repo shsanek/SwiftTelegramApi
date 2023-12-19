@@ -233,10 +233,12 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
     let inputValue = element.properties.isEmpty ? "EmptyObject" : "\(element.name.upFirst)Input"
 
     var body = """
+    import Foundation
+    
     extension TelegramAPI {
         /// \(element.description)
-        public func \(element.name)(_ input: \(inputValue), completionHandler: @escaping (TelegramResult<\(resultValue)>) -> Void) {
-            self.requester.request("\(element.name)", object: input, completion: completionHandler)
+        public func \(element.name)(_ input: \(inputValue), numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<\(resultValue)>) -> Void) {
+            self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
         }
     }
     """

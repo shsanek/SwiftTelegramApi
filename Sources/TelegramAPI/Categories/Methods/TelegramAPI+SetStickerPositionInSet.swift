@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
-    public func setStickerPositionInSet(_ input: SetStickerPositionInSetInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setStickerPositionInSet", object: input, completion: completionHandler)
+    public func setStickerPositionInSet(_ input: SetStickerPositionInSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setStickerPositionInSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

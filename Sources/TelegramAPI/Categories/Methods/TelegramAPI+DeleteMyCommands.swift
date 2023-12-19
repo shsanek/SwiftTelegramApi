@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
-    public func deleteMyCommands(_ input: DeleteMyCommandsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("deleteMyCommands", object: input, completion: completionHandler)
+    public func deleteMyCommands(_ input: DeleteMyCommandsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("deleteMyCommands", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

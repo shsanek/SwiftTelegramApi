@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
-    public func setChatAdministratorCustomTitle(_ input: SetChatAdministratorCustomTitleInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setChatAdministratorCustomTitle", object: input, completion: completionHandler)
+    public func setChatAdministratorCustomTitle(_ input: SetChatAdministratorCustomTitleInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setChatAdministratorCustomTitle", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

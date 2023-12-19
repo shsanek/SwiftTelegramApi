@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
-    public func deleteWebhook(_ input: DeleteWebhookInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("deleteWebhook", object: input, completion: completionHandler)
+    public func deleteWebhook(_ input: DeleteWebhookInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("deleteWebhook", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

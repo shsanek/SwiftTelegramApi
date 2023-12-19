@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.
-    public func banChatSenderChat(_ input: BanChatSenderChatInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("banChatSenderChat", object: input, completion: completionHandler)
+    public func banChatSenderChat(_ input: BanChatSenderChatInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("banChatSenderChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

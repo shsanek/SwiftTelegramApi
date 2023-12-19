@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.
-    public func uploadStickerFile(_ input: UploadStickerFileInput, completionHandler: @escaping (TelegramResult<File>) -> Void) {
-        self.requester.request("uploadStickerFile", object: input, completion: completionHandler)
+    public func uploadStickerFile(_ input: UploadStickerFileInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<File>) -> Void) {
+        self.requester.request("uploadStickerFile", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

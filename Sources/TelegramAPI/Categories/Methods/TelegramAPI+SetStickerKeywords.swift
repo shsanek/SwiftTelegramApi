@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
-    public func setStickerKeywords(_ input: SetStickerKeywordsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setStickerKeywords", object: input, completion: completionHandler)
+    public func setStickerKeywords(_ input: SetStickerKeywordsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setStickerKeywords", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

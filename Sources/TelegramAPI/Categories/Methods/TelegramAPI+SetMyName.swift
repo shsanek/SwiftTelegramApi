@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the bot's name. Returns True on success.
-    public func setMyName(_ input: SetMyNameInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setMyName", object: input, completion: completionHandler)
+    public func setMyName(_ input: SetMyNameInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setMyName", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

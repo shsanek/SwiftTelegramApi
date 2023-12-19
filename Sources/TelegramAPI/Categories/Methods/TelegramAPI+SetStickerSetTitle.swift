@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set the title of a created sticker set. Returns True on success.
-    public func setStickerSetTitle(_ input: SetStickerSetTitleInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setStickerSetTitle", object: input, completion: completionHandler)
+    public func setStickerSetTitle(_ input: SetStickerSetTitleInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setStickerSetTitle", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

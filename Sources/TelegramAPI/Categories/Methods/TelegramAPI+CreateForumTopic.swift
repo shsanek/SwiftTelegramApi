@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
-    public func createForumTopic(_ input: CreateForumTopicInput, completionHandler: @escaping (TelegramResult<ForumTopic>) -> Void) {
-        self.requester.request("createForumTopic", object: input, completion: completionHandler)
+    public func createForumTopic(_ input: CreateForumTopicInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<ForumTopic>) -> Void) {
+        self.requester.request("createForumTopic", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

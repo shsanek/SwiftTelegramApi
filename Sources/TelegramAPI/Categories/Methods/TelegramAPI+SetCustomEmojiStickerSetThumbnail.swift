@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
-    public func setCustomEmojiStickerSetThumbnail(_ input: SetCustomEmojiStickerSetThumbnailInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setCustomEmojiStickerSetThumbnail", object: input, completion: completionHandler)
+    public func setCustomEmojiStickerSetThumbnail(_ input: SetCustomEmojiStickerSetThumbnailInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setCustomEmojiStickerSetThumbnail", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

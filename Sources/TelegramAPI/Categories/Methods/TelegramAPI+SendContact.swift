@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send phone contacts. On success, the sent Message is returned.
-    public func sendContact(_ input: SendContactInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendContact", object: input, completion: completionHandler)
+    public func sendContact(_ input: SendContactInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendContact", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

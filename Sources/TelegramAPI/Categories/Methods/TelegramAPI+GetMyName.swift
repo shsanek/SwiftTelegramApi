@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get the current bot name for the given user language. Returns BotName on success.
-    public func getMyName(_ input: GetMyNameInput, completionHandler: @escaping (TelegramResult<BotName>) -> Void) {
-        self.requester.request("getMyName", object: input, completion: completionHandler)
+    public func getMyName(_ input: GetMyNameInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<BotName>) -> Void) {
+        self.requester.request("getMyName", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

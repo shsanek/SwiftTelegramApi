@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
-    public func stopPoll(_ input: StopPollInput, completionHandler: @escaping (TelegramResult<Poll>) -> Void) {
-        self.requester.request("stopPoll", object: input, completion: completionHandler)
+    public func stopPoll(_ input: StopPollInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Poll>) -> Void) {
+        self.requester.request("stopPoll", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

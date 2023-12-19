@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
-    public func unpinAllForumTopicMessages(_ input: UnpinAllForumTopicMessagesInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("unpinAllForumTopicMessages", object: input, completion: completionHandler)
+    public func unpinAllForumTopicMessages(_ input: UnpinAllForumTopicMessagesInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("unpinAllForumTopicMessages", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

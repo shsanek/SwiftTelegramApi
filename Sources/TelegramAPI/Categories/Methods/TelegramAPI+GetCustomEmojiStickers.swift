@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
-    public func getCustomEmojiStickers(_ input: GetCustomEmojiStickersInput, completionHandler: @escaping (TelegramResult<[Sticker]>) -> Void) {
-        self.requester.request("getCustomEmojiStickers", object: input, completion: completionHandler)
+    public func getCustomEmojiStickers(_ input: GetCustomEmojiStickersInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[Sticker]>) -> Void) {
+        self.requester.request("getCustomEmojiStickers", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

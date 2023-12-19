@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
-    public func answerCallbackQuery(_ input: AnswerCallbackQueryInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("answerCallbackQuery", object: input, completion: completionHandler)
+    public func answerCallbackQuery(_ input: AnswerCallbackQueryInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("answerCallbackQuery", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

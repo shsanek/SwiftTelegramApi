@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-    public func sendMediaGroup(_ input: SendMediaGroupInput, completionHandler: @escaping (TelegramResult<[Message]>) -> Void) {
-        self.requester.request("sendMediaGroup", object: input, completion: completionHandler)
+    public func sendMediaGroup(_ input: SendMediaGroupInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[Message]>) -> Void) {
+        self.requester.request("sendMediaGroup", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

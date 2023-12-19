@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send text messages. On success, the sent Message is returned.
-    public func sendMessage(_ input: SendMessageInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendMessage", object: input, completion: completionHandler)
+    public func sendMessage(_ input: SendMessageInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendMessage", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

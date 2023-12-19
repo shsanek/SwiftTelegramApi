@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get a sticker set. On success, a StickerSet object is returned.
-    public func getStickerSet(_ input: GetStickerSetInput, completionHandler: @escaping (TelegramResult<StickerSet>) -> Void) {
-        self.requester.request("getStickerSet", object: input, completion: completionHandler)
+    public func getStickerSet(_ input: GetStickerSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<StickerSet>) -> Void) {
+        self.requester.request("getStickerSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

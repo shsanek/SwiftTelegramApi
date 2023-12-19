@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func editMessageLiveLocation(_ input: EditMessageLiveLocationInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("editMessageLiveLocation", object: input, completion: completionHandler)
+    public func editMessageLiveLocation(_ input: EditMessageLiveLocationInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("editMessageLiveLocation", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

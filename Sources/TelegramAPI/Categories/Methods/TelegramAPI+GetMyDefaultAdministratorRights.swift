@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
-    public func getMyDefaultAdministratorRights(_ input: GetMyDefaultAdministratorRightsInput, completionHandler: @escaping (TelegramResult<ChatAdministratorRights>) -> Void) {
-        self.requester.request("getMyDefaultAdministratorRights", object: input, completion: completionHandler)
+    public func getMyDefaultAdministratorRights(_ input: GetMyDefaultAdministratorRightsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<ChatAdministratorRights>) -> Void) {
+        self.requester.request("getMyDefaultAdministratorRights", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

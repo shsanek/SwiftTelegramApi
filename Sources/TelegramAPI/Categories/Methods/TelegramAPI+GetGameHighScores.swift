@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
-    public func getGameHighScores(_ input: GetGameHighScoresInput, completionHandler: @escaping (TelegramResult<[GameHighScore]>) -> Void) {
-        self.requester.request("getGameHighScores", object: input, completion: completionHandler)
+    public func getGameHighScores(_ input: GetGameHighScoresInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[GameHighScore]>) -> Void) {
+        self.requester.request("getGameHighScores", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

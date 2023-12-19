@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns True on success.
-    public func setMyDefaultAdministratorRights(_ input: SetMyDefaultAdministratorRightsInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("setMyDefaultAdministratorRights", object: input, completion: completionHandler)
+    public func setMyDefaultAdministratorRights(_ input: SetMyDefaultAdministratorRightsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("setMyDefaultAdministratorRights", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

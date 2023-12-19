@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
-    public func sendChatAction(_ input: SendChatActionInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("sendChatAction", object: input, completion: completionHandler)
+    public func sendChatAction(_ input: SendChatActionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("sendChatAction", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

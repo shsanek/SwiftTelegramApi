@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent Message is returned.
-    public func forwardMessage(_ input: ForwardMessageInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("forwardMessage", object: input, completion: completionHandler)
+    public func forwardMessage(_ input: ForwardMessageInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("forwardMessage", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
-    public func getUpdates(_ input: GetUpdatesInput, completionHandler: @escaping (TelegramResult<[Update]>) -> Void) {
-        self.requester.request("getUpdates", object: input, completion: completionHandler)
+    public func getUpdates(_ input: GetUpdatesInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[Update]>) -> Void) {
+        self.requester.request("getUpdates", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

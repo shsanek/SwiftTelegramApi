@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send a native poll. On success, the sent Message is returned.
-    public func sendPoll(_ input: SendPollInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendPoll", object: input, completion: completionHandler)
+    public func sendPoll(_ input: SendPollInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendPoll", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

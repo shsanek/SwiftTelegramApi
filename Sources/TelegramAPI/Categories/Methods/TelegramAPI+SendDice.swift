@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
-    public func sendDice(_ input: SendDiceInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendDice", object: input, completion: completionHandler)
+    public func sendDice(_ input: SendDiceInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendDice", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

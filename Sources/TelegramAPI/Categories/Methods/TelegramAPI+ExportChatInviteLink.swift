@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
-    public func exportChatInviteLink(_ input: ExportChatInviteLinkInput, completionHandler: @escaping (TelegramResult<String>) -> Void) {
-        self.requester.request("exportChatInviteLink", object: input, completion: completionHandler)
+    public func exportChatInviteLink(_ input: ExportChatInviteLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<String>) -> Void) {
+        self.requester.request("exportChatInviteLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

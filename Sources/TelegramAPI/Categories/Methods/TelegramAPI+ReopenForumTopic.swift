@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
-    public func reopenForumTopic(_ input: ReopenForumTopicInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("reopenForumTopic", object: input, completion: completionHandler)
+    public func reopenForumTopic(_ input: ReopenForumTopicInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("reopenForumTopic", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a ChatMember object on success.
-    public func getChatMember(_ input: GetChatMemberInput, completionHandler: @escaping (TelegramResult<ChatMember>) -> Void) {
-        self.requester.request("getChatMember", object: input, completion: completionHandler)
+    public func getChatMember(_ input: GetChatMemberInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<ChatMember>) -> Void) {
+        self.requester.request("getChatMember", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

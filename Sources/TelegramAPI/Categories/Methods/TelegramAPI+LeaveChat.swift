@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
-    public func leaveChat(_ input: LeaveChatInput, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
-        self.requester.request("leaveChat", object: input, completion: completionHandler)
+    public func leaveChat(_ input: LeaveChatInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+        self.requester.request("leaveChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

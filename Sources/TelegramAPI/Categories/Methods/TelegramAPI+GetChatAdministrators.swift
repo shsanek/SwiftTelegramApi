@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
-    public func getChatAdministrators(_ input: GetChatAdministratorsInput, completionHandler: @escaping (TelegramResult<[ChatMember]>) -> Void) {
-        self.requester.request("getChatAdministrators", object: input, completion: completionHandler)
+    public func getChatAdministrators(_ input: GetChatAdministratorsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[ChatMember]>) -> Void) {
+        self.requester.request("getChatAdministrators", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 

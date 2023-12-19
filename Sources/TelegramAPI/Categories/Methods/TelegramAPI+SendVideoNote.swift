@@ -1,7 +1,9 @@
+import Foundation
+
 extension TelegramAPI {
     /// As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
-    public func sendVideoNote(_ input: SendVideoNoteInput, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
-        self.requester.request("sendVideoNote", object: input, completion: completionHandler)
+    public func sendVideoNote(_ input: SendVideoNoteInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
+        self.requester.request("sendVideoNote", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 }
 
