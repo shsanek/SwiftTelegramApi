@@ -11,11 +11,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SwiftTelegramApi",
-            dependencies: []),
-        .target(
-            name: "TelegramAPIGenerator",
-            dependencies: []
+            name: "SwiftTelegramApi"
+        ),
+        .executableTarget(
+            name: "TelegramAPIGenerator"
         )
     ]
 )
