@@ -2,3 +2,5 @@
 .swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 .swiftpm/xcode/package.xcworkspace/xcuserdata/alexshipin.xcuserdatad/UserInterfaceState.xcuserstate
 .swiftpm/xcode/xcuserdata/alexshipin.xcuserdatad/xcschemes/xcschememanagement.plist
+.swiftpm/xcode/package.xcworkspace
+.swiftpm
