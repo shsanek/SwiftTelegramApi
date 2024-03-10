@@ -6,6 +6,7 @@ extension TelegramAPI {
         self.requester.request("getChatMemberCount", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     public func getChatMemberCount(_ input: GetChatMemberCountInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> TelegramInteger {
         try await self.requester.request("getChatMemberCount", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

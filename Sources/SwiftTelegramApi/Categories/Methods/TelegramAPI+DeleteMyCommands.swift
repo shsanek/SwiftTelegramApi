@@ -6,6 +6,7 @@ extension TelegramAPI {
         self.requester.request("deleteMyCommands", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     public func deleteMyCommands(_ input: DeleteMyCommandsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
         try await self.requester.request("deleteMyCommands", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

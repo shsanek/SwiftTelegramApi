@@ -6,6 +6,7 @@ extension TelegramAPI {
         self.requester.request("getChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     public func getChat(_ input: GetChatInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Chat {
         try await self.requester.request("getChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

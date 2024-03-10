@@ -241,6 +241,7 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
             self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
         }
 
+        @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
         public func \(element.name)(_ input: \(inputValue), numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> \(resultValue) {
             try await self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
         }
@@ -252,11 +253,15 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
     return body
 }
 
-let inputPath = "/Users/alexandershipin/Documents/projects/SwiftTelegramApi/Sources/TelegramAPIGenerator/Input.txt"
-let outputFolderPath = "/Users/alexandershipin/Documents/projects/SwiftTelegramApi/Sources/TelegramAPI/Categories"
 
 @available(macOS 13.0, *)
 func run() {
+    let base = URL(filePath: #file).deletingLastPathComponent().deletingLastPathComponent()
+
+    let inputPath = "\(base.path())/TelegramAPIGenerator/Input.txt"
+    let outputFolderPath = "\(base.path())/SwiftTelegramApi/Categories"
+
+
     let outURL = URL(filePath: outputFolderPath)
     let elements = try! JSONDecoder().decode(
         [Element].self,
@@ -287,8 +292,3 @@ if #available(macOS 13.0, *) {
 } else {
     // Fallback on earlier versions
 }
-
-// Returns \(Name) on success.
-// Returns an Array of \(Name) objects
-// Returns \(Name) on success.
-// Returns a \(Name) object on success.

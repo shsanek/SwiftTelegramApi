@@ -6,6 +6,7 @@ extension TelegramAPI {
         self.requester.request("close", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     public func close(_ input: EmptyObject, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
         try await self.requester.request("close", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

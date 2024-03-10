@@ -23,6 +23,7 @@ internal class TelegramRequester
         self.session = session
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     func request<InType: Encodable, OutType: Decodable>(
         _ method: String,
         object: InType,
@@ -34,6 +35,7 @@ internal class TelegramRequester
         })
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     func request<InType: IMultiPartFromDataEncodable, OutType: Decodable>(
         _ method: String,
         object: InType,
@@ -45,6 +47,7 @@ internal class TelegramRequester
         })
     }
 
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     private func convert<O>(_ function: @escaping (@escaping (TelegramResult<O>) -> Void) -> Void) async throws -> O {
         return try await withCheckedThrowingContinuation { continuation in
             function({ result in

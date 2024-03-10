@@ -2,11 +2,12 @@ import Foundation
 
 extension TelegramAPI {
     /// Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-    public func editMessageText(_ input: EditMessageTextInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
+    public func editMessageText(_ input: EditMessageTextInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
         self.requester.request("editMessageText", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
 
-    public func editMessageText(_ input: EditMessageTextInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    public func editMessageText(_ input: EditMessageTextInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Message {
         try await self.requester.request("editMessageText", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }
 }
