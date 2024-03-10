@@ -7,6 +7,7 @@ extension TelegramAPI {
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func editMessageReplyMarkup(_ input: EditMessageReplyMarkupInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
         try await self.requester.request("editMessageReplyMarkup", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

@@ -17,7 +17,7 @@ public struct TelegramInputFile: Encodable
     internal let metaInfo: String?
     internal let dataHandler: () -> Data
     
-    public init(name: String, metaInfo: String? = nil, dataHandler: @escaping () -> Data)
+    public init(name: String = "name", metaInfo: String? = nil, dataHandler: @escaping () -> Data)
     {
         self.name = name
         self.metaInfo = metaInfo

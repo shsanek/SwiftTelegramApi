@@ -7,6 +7,7 @@ extension TelegramAPI {
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func uploadStickerFile(_ input: UploadStickerFileInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> File {
         try await self.requester.request("uploadStickerFile", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

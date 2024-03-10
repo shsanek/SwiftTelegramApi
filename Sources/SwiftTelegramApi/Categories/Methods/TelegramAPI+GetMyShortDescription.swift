@@ -7,6 +7,7 @@ extension TelegramAPI {
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func getMyShortDescription(_ input: GetMyShortDescriptionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> BotShortDescription {
         try await self.requester.request("getMyShortDescription", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

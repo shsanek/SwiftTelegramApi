@@ -8,8 +8,8 @@
 public enum TelegramIdentifierContainer
 {
 
-    case integer(identifier: TelegramInteger)
-    case string(identifier: String)
+    case integer(_ identifier: TelegramInteger)
+    case string(_ identifier: String)
 
 }
 
@@ -26,12 +26,12 @@ extension TelegramIdentifierContainer: Codable
         let container = try decoder.singleValueContainer()
         if let integer = try? container.decode(TelegramInteger.self)
         {
-            self = .integer(identifier: integer)
+            self = .integer(integer)
             return
         }
         if let string = try? container.decode(String.self)
         {
-            self = .string(identifier: string)
+            self = .string(string)
             return
         }
         throw TelegramIdentifierContainerError.incorectType

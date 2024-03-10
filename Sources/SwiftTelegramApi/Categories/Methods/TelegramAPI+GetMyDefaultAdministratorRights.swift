@@ -7,6 +7,7 @@ extension TelegramAPI {
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func getMyDefaultAdministratorRights(_ input: GetMyDefaultAdministratorRightsInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> ChatAdministratorRights {
         try await self.requester.request("getMyDefaultAdministratorRights", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }

@@ -242,6 +242,7 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
         }
 
         @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+        @discardableResult
         public func \(element.name)(_ input: \(inputValue), numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> \(resultValue) {
             try await self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
         }
@@ -258,7 +259,7 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
 func run() {
     let base = URL(filePath: #file).deletingLastPathComponent().deletingLastPathComponent()
 
-    let inputPath = "\(base.path())/TelegramAPIGenerator/Input.txt"
+    let inputPath = "\(base.path())/TelegramAPIGenerator/Input.json"
     let outputFolderPath = "\(base.path())/SwiftTelegramApi/Categories"
 
 

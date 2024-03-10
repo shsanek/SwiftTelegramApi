@@ -1,6 +1,5 @@
 $x("//*[@id=\"dev_page_content_wrap\"]")[0].innerHTML = $x("//*[@id=\"dev_page_content_wrap\"]")[0].innerHTML.replaceAll("<h4>", "</div><div id=\"block_for_parce\"><h4>");
 
-
 function getAllItems() {
     var elements = $x("//*[@id=\"block_for_parce\"]");
     var jsResult = [];
@@ -37,3 +36,5 @@ function getAllItems() {
     }
     return jsResult;
 }
+
+getAllItems()

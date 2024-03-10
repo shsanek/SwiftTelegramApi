@@ -7,6 +7,7 @@ extension TelegramAPI {
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @discardableResult
     public func setChatPhoto(_ input: SetChatPhotoInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
         try await self.requester.request("setChatPhoto", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
     }
