@@ -48,7 +48,7 @@ async/await style:
 try await api.sendMessage(.init(chatId: .integer(MainChat), text: "Start bot"))
 ```
 
-You can find more methods in the [official documentation of Telegram]\(https://core.telegram.org/bots/api) their names and models are completely the same.
+You can find more methods in the [official documentation of Telegram](https://core.telegram.org/bots/api) their names and models are completely the same.
 
 
 ### Update
