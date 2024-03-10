@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func answerWebAppQuery(_ input: AnswerWebAppQueryInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<SentWebAppMessage>) -> Void) {
         self.requester.request("answerWebAppQuery", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func answerWebAppQuery(_ input: AnswerWebAppQueryInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> SentWebAppMessage {
+        try await self.requester.request("answerWebAppQuery", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request answerWebAppQuery

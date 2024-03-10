@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getStickerSet(_ input: GetStickerSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<StickerSet>) -> Void) {
         self.requester.request("getStickerSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getStickerSet(_ input: GetStickerSetInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> StickerSet {
+        try await self.requester.request("getStickerSet", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getStickerSet

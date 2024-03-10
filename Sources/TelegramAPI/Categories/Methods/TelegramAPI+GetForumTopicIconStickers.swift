@@ -5,4 +5,8 @@ extension TelegramAPI {
     public func getForumTopicIconStickers(_ input: EmptyObject, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[Sticker]>) -> Void) {
         self.requester.request("getForumTopicIconStickers", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getForumTopicIconStickers(_ input: EmptyObject, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> [Sticker] {
+        try await self.requester.request("getForumTopicIconStickers", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }

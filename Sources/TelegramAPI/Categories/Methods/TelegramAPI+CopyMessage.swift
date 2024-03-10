@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func copyMessage(_ input: CopyMessageInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<MessageId>) -> Void) {
         self.requester.request("copyMessage", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func copyMessage(_ input: CopyMessageInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> MessageId {
+        try await self.requester.request("copyMessage", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request copyMessage

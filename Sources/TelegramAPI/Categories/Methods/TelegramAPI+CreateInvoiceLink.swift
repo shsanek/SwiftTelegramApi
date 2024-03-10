@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func createInvoiceLink(_ input: CreateInvoiceLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<String>) -> Void) {
         self.requester.request("createInvoiceLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func createInvoiceLink(_ input: CreateInvoiceLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> String {
+        try await self.requester.request("createInvoiceLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request createInvoiceLink

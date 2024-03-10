@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getChatMenuButton(_ input: GetChatMenuButtonInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<MenuButton>) -> Void) {
         self.requester.request("getChatMenuButton", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getChatMenuButton(_ input: GetChatMenuButtonInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> MenuButton {
+        try await self.requester.request("getChatMenuButton", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getChatMenuButton

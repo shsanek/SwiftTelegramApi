@@ -5,4 +5,8 @@ extension TelegramAPI {
     public func getWebhookInfo(_ input: EmptyObject, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<WebhookInfo>) -> Void) {
         self.requester.request("getWebhookInfo", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getWebhookInfo(_ input: EmptyObject, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> WebhookInfo {
+        try await self.requester.request("getWebhookInfo", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }

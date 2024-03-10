@@ -240,6 +240,10 @@ func generateItemMethod(element: Element, allNames: [String]) -> String {
         public func \(element.name)(_ input: \(inputValue), numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<\(resultValue)>) -> Void) {
             self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
         }
+
+        public func \(element.name)(_ input: \(inputValue), numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> \(resultValue) {
+            try await self.requester.request("\(element.name)", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+        }
     }
     """
     if !element.properties.isEmpty {

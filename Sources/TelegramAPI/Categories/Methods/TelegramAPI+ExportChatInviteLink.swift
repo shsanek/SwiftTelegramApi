@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func exportChatInviteLink(_ input: ExportChatInviteLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<String>) -> Void) {
         self.requester.request("exportChatInviteLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func exportChatInviteLink(_ input: ExportChatInviteLinkInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> String {
+        try await self.requester.request("exportChatInviteLink", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request exportChatInviteLink

@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getGameHighScores(_ input: GetGameHighScoresInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<[GameHighScore]>) -> Void) {
         self.requester.request("getGameHighScores", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getGameHighScores(_ input: GetGameHighScoresInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> [GameHighScore] {
+        try await self.requester.request("getGameHighScores", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getGameHighScores

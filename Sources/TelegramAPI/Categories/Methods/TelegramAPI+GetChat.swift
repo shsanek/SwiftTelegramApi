@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getChat(_ input: GetChatInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Chat>) -> Void) {
         self.requester.request("getChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getChat(_ input: GetChatInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Chat {
+        try await self.requester.request("getChat", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getChat

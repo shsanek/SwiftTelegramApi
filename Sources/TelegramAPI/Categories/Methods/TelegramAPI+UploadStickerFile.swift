@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func uploadStickerFile(_ input: UploadStickerFileInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<File>) -> Void) {
         self.requester.request("uploadStickerFile", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func uploadStickerFile(_ input: UploadStickerFileInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> File {
+        try await self.requester.request("uploadStickerFile", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request uploadStickerFile

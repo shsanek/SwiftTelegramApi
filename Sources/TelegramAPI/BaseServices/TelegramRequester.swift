@@ -22,17 +22,65 @@ internal class TelegramRequester
         self.url = url
         self.session = session
     }
-    
+
+    func request<InType: Encodable, OutType: Decodable>(
+        _ method: String,
+        object: InType,
+        numberOfAttempts: Int,
+        timeoutInterval: TimeInterval
+    ) async throws -> OutType {
+        try await convert({ (completion: (@escaping (TelegramResult<OutType>) -> Void)) in
+            self.request(method, object: object, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completion)
+        })
+    }
+
+    func request<InType: IMultiPartFromDataEncodable, OutType: Decodable>(
+        _ method: String,
+        object: InType,
+        numberOfAttempts: Int,
+        timeoutInterval: TimeInterval
+    ) async throws -> OutType {
+        try await convert({ (completion: (@escaping (TelegramResult<OutType>) -> Void)) in
+            self.request(method, object: object, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completion)
+        })
+    }
+
+    private func convert<O>(_ function: @escaping (@escaping (TelegramResult<O>) -> Void) -> Void) async throws -> O {
+        return try await withCheckedThrowingContinuation { continuation in
+            function({ result in
+                switch result {
+                case .completion(let object):
+                    if let result = object.result {
+                        continuation.resume(returning: result)
+                    } else if let error = object.error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(throwing: TelegramError(errorCode: -1, description: "Unknown"))
+                    }
+                case .transportError(let error):
+                    continuation.resume(throwing: error)
+                case .parseError(let error):
+                    continuation.resume(throwing: error ?? TelegramError(errorCode: -1, description: "Unknown"))
+                }
+            })
+        }
+    }
+
     internal func request<InType: Encodable, OutType: Decodable>(_ method: String, 
                                                                  object: InType, 
                                                                  numberOfAttempts: Int,
                                                                  timeoutInterval: TimeInterval,
                                                                  completion: @escaping (TelegramResult<OutType>) -> Void)
     {
-        let data = try? JSONEncoder().encode(object)
-        let request = self.makeRequest(method, data: data, timeoutInterval: timeoutInterval)
-        self.log?.info(head: "REQUEST", request: request, data: data, error: nil)
-        run(numberOfAttempts: numberOfAttempts, request: request, completion: completion)
+        do {
+            let data = try JSONEncoder().encode(object)
+            let request = self.makeRequest(method, data: data, timeoutInterval: timeoutInterval)
+            self.log?.info(head: "REQUEST", request: request, data: data, error: nil)
+            run(numberOfAttempts: numberOfAttempts, request: request, completion: completion)
+        }
+        catch {
+            completion(.parseError(error: error))
+        }
     }
     
     internal func request<InType: IMultiPartFromDataEncodable, OutType: Decodable>
@@ -42,16 +90,21 @@ internal class TelegramRequester
          timeoutInterval: TimeInterval,
          completion: @escaping (TelegramResult<OutType>) -> Void)
     {
-        let encoder = MultiPartFromDataEncoder()
-        try? object.encode(encoder)
-        let values = encoder.allValues
-        let boundary = UUID().uuidString.replacingOccurrences(of: " ", with: "")
-        let data = MultiPartFromDataBuilder.multipartData(values: values, boundary: boundary)
-        let dataInfo = MultiPartFromDataBuilder.multipartData(values: values, boundary: boundary, log: true)
-        let contentType = "Content-Type: multipart/form-data; boundary=\(boundary)"
-        let request = self.makeRequest(method, data: data, timeoutInterval: timeoutInterval, contentType: contentType)
-        self.log?.info(head: "REQUEST", request: request, data: dataInfo, error: nil)
-        run(numberOfAttempts: numberOfAttempts, request: request, completion: completion)
+        do {
+            let encoder = MultiPartFromDataEncoder()
+            try object.encode(encoder)
+            let values = encoder.allValues
+            let boundary = UUID().uuidString.replacingOccurrences(of: " ", with: "")
+            let data = MultiPartFromDataBuilder.multipartData(values: values, boundary: boundary)
+            let dataInfo = MultiPartFromDataBuilder.multipartData(values: values, boundary: boundary, log: true)
+            let contentType = "Content-Type: multipart/form-data; boundary=\(boundary)"
+            let request = self.makeRequest(method, data: data, timeoutInterval: timeoutInterval, contentType: contentType)
+            self.log?.info(head: "REQUEST", request: request, data: dataInfo, error: nil)
+            run(numberOfAttempts: numberOfAttempts, request: request, completion: completion)
+        }
+        catch {
+            completion(.parseError(error: error))
+        }
     }
 
     private func run<OutType: Decodable>(

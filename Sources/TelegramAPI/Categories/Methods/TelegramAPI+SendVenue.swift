@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func sendVenue(_ input: SendVenueInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Message>) -> Void) {
         self.requester.request("sendVenue", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func sendVenue(_ input: SendVenueInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Message {
+        try await self.requester.request("sendVenue", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request sendVenue

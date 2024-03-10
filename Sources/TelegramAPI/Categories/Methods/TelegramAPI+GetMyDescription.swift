@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getMyDescription(_ input: GetMyDescriptionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<BotDescription>) -> Void) {
         self.requester.request("getMyDescription", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getMyDescription(_ input: GetMyDescriptionInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> BotDescription {
+        try await self.requester.request("getMyDescription", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getMyDescription

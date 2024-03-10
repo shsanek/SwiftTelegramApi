@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func deleteChatPhoto(_ input: DeleteChatPhotoInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<Bool>) -> Void) {
         self.requester.request("deleteChatPhoto", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func deleteChatPhoto(_ input: DeleteChatPhotoInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> Bool {
+        try await self.requester.request("deleteChatPhoto", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request deleteChatPhoto

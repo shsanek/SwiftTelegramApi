@@ -5,6 +5,10 @@ extension TelegramAPI {
     public func getUserProfilePhotos(_ input: GetUserProfilePhotosInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60, completionHandler: @escaping (TelegramResult<UserProfilePhotos>) -> Void) {
         self.requester.request("getUserProfilePhotos", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval, completion: completionHandler)
     }
+
+    public func getUserProfilePhotos(_ input: GetUserProfilePhotosInput, numberOfAttempts: Int = 1, timeoutInterval: TimeInterval = 60) async throws -> UserProfilePhotos {
+        try await self.requester.request("getUserProfilePhotos", object: input, numberOfAttempts: numberOfAttempts, timeoutInterval: timeoutInterval)
+    }
 }
 
 //Input model for request getUserProfilePhotos
