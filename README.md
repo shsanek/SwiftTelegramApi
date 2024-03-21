@@ -56,7 +56,7 @@ You can find more methods in the [official documentation of Telegram](https://co
 This api only supports updates by calling the `update` method. To support WebHook, use in conjunction with Vapor. To support WebHook, use in conjunction with [Vapor](https://github.com/vapor/vapor)
 
 Use method:
-```
+``` swift
 func update() {
     let updates = try await api.getUpdates(.init(offset: updateOffset.flatMap({ $0 + 1 })))
     for update in updates {
@@ -67,7 +67,7 @@ func update() {
 ```
 
 Use vapor:
-```
+``` swift
 import Vapor 
 
 func setUpdateHandler(
