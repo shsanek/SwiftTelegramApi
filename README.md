@@ -1,5 +1,7 @@
 # SwiftTelegramApi
 
+<img src="https://github.com/user-attachments/assets/27e179b5-4db2-4ad7-9ca8-d041c992564e" alt="INITIAL" width="200"/>
+
 Generated API for Telegram bots name of entities and methods coincides with the official documentation
 
 ### SPM
